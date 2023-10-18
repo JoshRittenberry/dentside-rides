@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { AllPostsItem } from "./AllPostsItem"
+import { useState } from "react"
+import { FilterPostsBTN } from "./FilterPostsBTN"
 
 export const MyPosts = ({ myPosts, currentUser, updateData }) => {
+    const [filteredPosts, setFilteredPosts] = useState([])
     const navigate = useNavigate()
 
     return (
@@ -17,11 +20,12 @@ export const MyPosts = ({ myPosts, currentUser, updateData }) => {
                     }}>
                         Create Post
                     </button>
+                    <FilterPostsBTN posts={myPosts} filteredPosts={filteredPosts} setFilteredPosts={setFilteredPosts} />
                 </header>
 
                 {/* All Posts List Container */}
                 <section className="posts-list">
-                    {myPosts.map(postObj => {
+                    {filteredPosts.map(postObj => {
                         return (
                             <AllPostsItem currentUser={currentUser} postObj={postObj} updateData={updateData} key={postObj.id} />
                         )
