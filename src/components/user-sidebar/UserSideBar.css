@@ -1,0 +1,30 @@
+.usersidebar {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 93vh;
+    background-color: #c4deff;
+    /* border-radius: 20px; */
+    /* margin: 1%; */
+    float: left;
+}
+
+.usersidebar h3 {
+    font-size: 1.5em;
+}
+
+.usersidebar-picture {
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.usersidebar-picture img {
+    border-radius: 100%;
+    width: 75%;
+}
+
+.usersidebar-item {
+    margin: 5%;
+    text-align: center;
+}

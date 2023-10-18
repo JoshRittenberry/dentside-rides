@@ -1,0 +1,27 @@
+.posts-container {
+    margin: auto;
+    height: 93vh;
+    overflow-y: auto;
+}
+
+.posts-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 95%; */
+    /* margin: 1%; */
+    background-color: white;
+}
+
+.posts-header button,
+.posts-header h1 {
+    margin: 1%;
+}
+
+.posts-list {
+    margin: 1%;
+}
