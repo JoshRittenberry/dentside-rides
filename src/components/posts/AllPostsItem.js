@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
 import "./AllPostsItem.css"
+import { Link, useNavigate } from "react-router-dom"
+import { deletePost } from "../../services/postService"
 
-export const AllPostsItem = ({ currentUser, postObj }) => {
+export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
 
     const [postLikes, setPostLikes] = useState(0)
     const [userIsPostOwner, setUserIsPostOwner] = useState(false)
+
+    const navigate = useNavigate()
 
     const postTopicClassName = "post-topic-item post-topic-" + postObj.postTopicId
 
@@ -55,13 +59,27 @@ export const AllPostsItem = ({ currentUser, postObj }) => {
                 </header>
 
                 <div className="post-info">
-                    <h4>{postObj.title}</h4>
+                    <Link to={`/posts/${postObj.id}`}>
+                        <h4>{postObj.title}</h4>
+                    </Link>
                     <div className="post-btn-container">
                         <div className={postTopicClassName}>{postObj.postTopic.name}</div>
                         {userIsPostOwner && (
                             <>
-                                <button className="post-btn btn btn-light">Delete</button>
-                                <button className="post-btn btn btn-light">Edit</button>
+                                <button className="post-btn btn btn-light" onClick={event => {
+                                    event.preventDefault()
+                                    deletePost(postObj.id).then(() => {
+                                        updateData()
+                                    })
+                                }}>
+                                    Delete
+                                </button>
+                                <button className="post-btn btn btn-light" onClick={event => {
+                                    event.preventDefault()
+                                    navigate(`/edit_post/${postObj.id}`)
+                                }}>
+                                    Edit
+                                </button>
                             </>
                         )}
                     </div>

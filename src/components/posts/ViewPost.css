@@ -1,0 +1,78 @@
+.view-post-container {
+    margin: ;
+    height: 93vh;
+    overflow-y: auto;
+}
+
+.view-post-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 1%;
+    height: 17vh;
+    /* background-color: white; */
+    background-color: #ebf4ff;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.view-post-likes-container {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+}
+
+.view-post-profile-picture {
+    text-align: center;
+}
+
+.view-post-profile-picture img {
+    width: 60%;
+    border-radius: 25px;
+}
+
+.view-post-header-text {
+    display: flex;
+    height: 75%;
+    width: 83%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.view-post-header-text-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view-post-btn {
+    margin-left: 40px;
+}
+
+.view-post-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view-post-body-container {
+    background-color: #ebf4ff;
+    border-radius: 25px;
+    margin: 1%;
+    height: 70vh;
+    padding: 1%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.view-post-body {
+    background-color: white;
+    height: 100%;
+    border-radius: 25px;
+    padding: 1%;
+    
+}

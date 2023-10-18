@@ -1,10 +1,19 @@
 .navbar {
     background-color: #003478;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: center;
     height: 7vh;
+}
+
+.navbar-logo {
+    margin-right: 5%;
 }
 
 .navbar-logo img {
     width: 100px;
+}
+
+.navbar-item {
+    margin-right: 5%;
 }

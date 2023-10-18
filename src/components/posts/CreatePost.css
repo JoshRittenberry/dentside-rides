@@ -1,0 +1,107 @@
+.create-post-container {
+    float: right;
+    font-family: 'Arial', sans-serif;
+    width: 88%;
+    height: 88vh;
+    margin: 1%;
+    padding: 1%;
+    background-color: #ebf4ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-post-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Form structure */
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling for the input fields and dropdown */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.create-post-title-container,
+.create-post-topic-container,
+.create-post-body-container {
+    margin-bottom: 1rem;
+}
+
+/* BRO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+.create-post-title-container {
+    float: left;
+}
+
+.create-post-topic-container {
+    float: right;
+}
+
+.create-post-title {
+    float: left;
+    width: 60%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.create-post-body {
+    width: 100%;
+    height: 65vh;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.create-post-title:focus,
+.create-post-body:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Dropdown styles */
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #c4deff;
+}
+
+/* Button styles */
+.btn.btn-secondary.dropdown-toggle {
+    /* width: 15%; */
+    text-align: left;
+    background-color: #003478;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.btn-secondary.dropdown-toggle:hover {
+    background-color: #c4deff;
+}
+
+.create-post-btn-container {
+    display: flex;
+    justify-content: space-around;
+}

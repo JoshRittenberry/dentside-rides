@@ -6,7 +6,7 @@ export const Home = ({ currentUser }) => {
         <main>
             <UserSideBar currentUser={currentUser} />
             <div>
-                <h1>THIS IS A HOME PAGE THAT IS MEANT TO BE CHANGED</h1>
+                <h1>Welocme to Dentside Rides</h1>
             </div>
         </main>
     )
