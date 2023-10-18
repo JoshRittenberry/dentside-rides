@@ -1,0 +1,42 @@
+.classified-container {
+    display: flex;
+    flex: column;
+    background: #ebf4ff;
+    border-radius: 20px;
+    width: 15%;
+    height: 35vh;
+    margin: auto;
+    margin-top: 1%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.classified {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    width: 95%;
+    height: 95%;
+}
+
+.classified-img {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    border-radius: 25px;
+    background-color: white;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.classified-img img {
+    width: 100%;
+}
+
+.classified-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

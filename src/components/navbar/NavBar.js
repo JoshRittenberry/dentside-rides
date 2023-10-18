@@ -23,6 +23,14 @@ export const NavBar = () => {
             }}>
                 Posts
             </button>
+
+            {/* All Classifieds */}
+            <button className="navbar-item btn btn-light" onClick={event => {
+                event.preventDefault()
+                navigate("/classifieds")
+            }}>
+                Classifieds
+            </button>
         </nav>
     )
 }

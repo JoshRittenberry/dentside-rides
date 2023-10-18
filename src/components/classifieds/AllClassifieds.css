@@ -1,0 +1,27 @@
+.classifieds-container {
+    margin: auto;
+    height: 93vh;
+    overflow-y: auto;
+}
+
+.classifieds-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 95%; */
+    /* margin: 1%; */
+    background-color: white;
+}
+
+.classifieds-header button,
+.classifieds-header h1 {
+    margin: 1%;
+}
+
+.classifieds-list {
+    margin: 1%;
+}

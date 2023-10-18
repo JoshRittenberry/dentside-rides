@@ -12,18 +12,25 @@ import { EditPost } from "../components/posts/EditPost"
 import { MyAccount } from "../components/users/my_account/MyAccount"
 import { UserAccount } from "../components/users/user_account/UserAccount"
 import { UserPosts } from "../components/posts/UserPosts"
+import { AllClassifieds } from "../components/classifieds/AllClassifieds"
+import { getAllClassifieds } from "../services/classifiedService"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
     const [currentUser, setCurrentUser] = useState({})
     const [allPosts, setAllPosts] = useState([])
     const [myPosts, setMyPosts] = useState([])
+    const [allClassifieds, setAllClassifieds] = useState([])
 
     // Exported Function to Update allPosts and myPosts
     const updateData = () => {
         getAllPosts().then(array => {
             setAllPosts(array)
             setMyPosts(array.filter(post => post.userId === currentUser.id))
+        })
+
+        getAllClassifieds().then(array => {
+            setAllClassifieds(array)
         })
     }
 
@@ -42,6 +49,10 @@ export const ApplicationViews = () => {
         getAllPosts().then(array => {
             setAllPosts(array)
             setMyPosts(array.filter(post => post.userId === currentUser.id))
+        })
+
+        getAllClassifieds().then(array => {
+            setAllClassifieds(array)
         })
     }, [currentUser])
 
@@ -72,6 +83,10 @@ export const ApplicationViews = () => {
                 <Route path="/my_account" element={<MyAccount currentUser={currentUser} />} />
                 <Route path="/user_account" >
                     <Route path=":userId" element={<UserAccount />} />
+                </Route>
+                <Route path="/classifieds">
+                    <Route index element={<AllClassifieds allClassifieds={allClassifieds} currentUser={currentUser} updateData={updateData} />} />
+                    {/* <Route path=":classifiedId" element={<ViewClassified />} /> */}
                 </Route>
             </Route>
         </Routes>
