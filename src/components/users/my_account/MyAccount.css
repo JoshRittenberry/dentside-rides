@@ -1,0 +1,21 @@
+.account-name {
+    text-align: center;
+    margin: 1%;
+}
+
+.account-container {
+    display: flex;
+    justify-content: center;
+}
+
+.account-picture img {
+    border-radius: 100%;
+}
+
+.account-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1%;
+}

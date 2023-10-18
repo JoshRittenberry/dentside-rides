@@ -1,8 +1,8 @@
 import "./ViewPost.css"
 import { useEffect, useState } from "react"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
-import { getCurrentUser } from "../../services/userService"
-import { useParams } from "react-router-dom"
+import { getUserById } from "../../services/userService"
+import { Link, useParams } from "react-router-dom"
 import { getPostById } from "../../services/postService"
 
 export const ViewPost = () => {
@@ -47,7 +47,7 @@ export const ViewPost = () => {
     }
 
     useEffect(() => {
-        getCurrentUser().then(userObj => {
+        getUserById().then(userObj => {
             setCurrentUser(userObj)
         })
 
@@ -80,9 +80,11 @@ export const ViewPost = () => {
                     </aside>
 
                     {/* Author Profile Picture */}
-                    <div className="view-post-profile-picture">
-                        <img src={authorProfilePicture()} />
-                    </div>
+                    <Link to={`/user_account/${post.user?.id}`}>
+                        <div className="view-post-profile-picture">
+                            <img src={authorProfilePicture()} />
+                        </div>
+                    </Link>
                     <div className="view-post-header-text">
                         <div className="view-post-header-text-top">
                             <h1 className="view-post-title">{post.title}</h1>
@@ -90,7 +92,9 @@ export const ViewPost = () => {
                         </div>
                         <div className={postTopicClassName}>{post.postTopic?.name}</div>
                         <div className="view-post-info">
-                            <div>{post.user?.username}</div>
+                            <Link to={`/user_account/${post.user?.id}`}>
+                                <div>{post.user?.username}</div>
+                            </Link>
                             <div>{post.postDate}</div>
                         </div>
                     </div>

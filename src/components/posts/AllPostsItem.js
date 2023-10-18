@@ -54,7 +54,9 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
 
             <div className="post">
                 <header className="post-header">
-                    <div>{postObj.user.username}</div>
+                    <Link to={`/user_account/${postObj.user.id}`}>
+                        <div>{postObj.user.username}</div>
+                    </Link>
                     <div>{postObj.postDate}</div>
                 </header>
 

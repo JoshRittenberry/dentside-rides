@@ -16,11 +16,17 @@ export const UserSideBar = ({ currentUser }) => {
             }}>
                 My Posts
             </button>
-            <button className="usersidebar-item btn btn-light">My Account</button>
+            <button className="usersidebar-item btn btn-light" onClick={event => {
+                event.preventDefault()
+                navigate("/my_account")
+            }}>
+                My Account
+            </button>
             {localStorage.getItem("dentside_user") ? (
                 <button
                     className="usersidebar-item btn btn-light"
-                    onClick={() => {
+                    onClick={event => {
+                        event.preventDefault()
                         localStorage.removeItem("dentside_user");
                         navigate("/", { replace: true });
                     }}

@@ -4,11 +4,14 @@ import { AllPosts } from "../components/posts/AllPosts"
 import { NavBar } from "../components/navbar/NavBar"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../services/postService"
-import { getCurrentUser } from "../services/userService"
+import { getUserById } from "../services/userService"
 import { MyPosts } from "../components/posts/MyPosts"
 import { ViewPost } from "../components/posts/ViewPost"
 import { CreatePost } from "../components/posts/CreatePost"
 import { EditPost } from "../components/posts/EditPost"
+import { MyAccount } from "../components/users/my_account/MyAccount"
+import { UserAccount } from "../components/users/user_account/UserAccount"
+import { UserPosts } from "../components/posts/UserPosts"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
@@ -30,7 +33,7 @@ export const ApplicationViews = () => {
 
         setCurrentUserId(dentsideUserId.id)
 
-        getCurrentUser(dentsideUserId.id).then(userObj => {
+        getUserById(dentsideUserId.id).then(userObj => {
             setCurrentUser(userObj)
         })
     }, [])
@@ -59,9 +62,16 @@ export const ApplicationViews = () => {
                     <Route path=":postId" element={<ViewPost />} />
                 </Route>
                 <Route path="/my_posts" element={<MyPosts myPosts={myPosts} currentUser={currentUser} updateData={updateData} />} />
+                <Route path="/user_posts">
+                    <Route path=":userId" element={<UserPosts allPosts={allPosts} currentUser={currentUser} updateData={updateData} />} />
+                </Route>
                 <Route path="/new_post" element={<CreatePost currentUser={currentUser} updateData={updateData} />} />
                 <Route path="/edit_post" >
                     <Route path=":postId" element={<EditPost currentUser={currentUser} updateData={updateData} />} />
+                </Route>
+                <Route path="/my_account" element={<MyAccount currentUser={currentUser} />} />
+                <Route path="/user_account" >
+                    <Route path=":userId" element={<UserAccount />} />
                 </Route>
             </Route>
         </Routes>
