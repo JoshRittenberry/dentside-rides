@@ -58,7 +58,7 @@ export const ApplicationViews = () => {
             >
                 <Route index element={<Home currentUser={currentUser} />} />
                 <Route path="/posts">
-                    <Route index element={<AllPosts allPosts={allPosts} currentUser={currentUser} updateData={updateData} />} />
+                    <Route index element={<AllPosts allPosts={allPosts} setAllPosts={setAllPosts} currentUser={currentUser} updateData={updateData} />} />
                     <Route path=":postId" element={<ViewPost />} />
                 </Route>
                 <Route path="/my_posts" element={<MyPosts myPosts={myPosts} currentUser={currentUser} updateData={updateData} />} />

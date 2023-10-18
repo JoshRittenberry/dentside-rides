@@ -22,7 +22,6 @@ export const FilterPostsBTN = ({ posts, filteredPosts, setFilteredPosts }) => {
     }, [])
 
     useEffect(() => {
-        console.log("hello")
         setDropdownButtonText()
         if (filter > 0) {
             setFilteredPosts(posts.filter(post => post.postTopicId === filter))
