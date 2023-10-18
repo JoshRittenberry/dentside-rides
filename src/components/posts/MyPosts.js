@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { AllPostsItem } from "./AllPostsItem"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FilterPostsBTN } from "./FilterPostsBTN"
 
 export const MyPosts = ({ myPosts, currentUser, updateData }) => {
