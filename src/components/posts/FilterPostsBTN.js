@@ -29,7 +29,7 @@ export const FilterPostsBTN = ({ posts, filteredPosts, setFilteredPosts }) => {
         } else if (filter === 0) {
             setFilteredPosts(posts)
         }
-    }, [filter])
+    }, [posts, filter])
 
     return (
 
