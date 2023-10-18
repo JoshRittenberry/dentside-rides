@@ -11,6 +11,7 @@ import { CreatePost } from "../components/posts/CreatePost"
 import { EditPost } from "../components/posts/EditPost"
 
 export const ApplicationViews = () => {
+    const [currentUserId, setCurrentUserId] = useState(0)
     const [currentUser, setCurrentUser] = useState({})
     const [allPosts, setAllPosts] = useState([])
     const [myPosts, setMyPosts] = useState([])
@@ -24,7 +25,12 @@ export const ApplicationViews = () => {
     }
 
     useEffect(() => {
-        getCurrentUser().then(userObj => {
+        const localDentsideUser = localStorage.getItem("dentside_user")
+        const dentsideUserId = JSON.parse(localDentsideUser)
+
+        setCurrentUserId(dentsideUserId.id)
+
+        getCurrentUser(dentsideUserId.id).then(userObj => {
             setCurrentUser(userObj)
         })
     }, [])

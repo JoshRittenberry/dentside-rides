@@ -1,0 +1,22 @@
+.container-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center; */
+    text-align: center;
+}
+
+.login-logo {
+    width: 30%;
+}
+
+.form-control {
+    margin: auto;
+    margin-top: 1%;
+    width: 40%;
+}
+
+.form-group {
+    margin: auto;
+    margin-top: 1%;
+}

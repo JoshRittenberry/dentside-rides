@@ -17,7 +17,17 @@ export const UserSideBar = ({ currentUser }) => {
                 My Posts
             </button>
             <button className="usersidebar-item btn btn-light">My Account</button>
-            <button className="usersidebar-item btn btn-light">Logout</button>
+            {localStorage.getItem("dentside_user") ? (
+                <button
+                    className="usersidebar-item btn btn-light"
+                    onClick={() => {
+                        localStorage.removeItem("dentside_user");
+                        navigate("/", { replace: true });
+                    }}
+                >
+                    Logout
+                </button>
+            ) : null}
             <div className="usersidebar-item">
                 Member Since: {currentUser.joinDate}
             </div>
