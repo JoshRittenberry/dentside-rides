@@ -6,14 +6,13 @@ import { deletePost, reactToPost } from "../../services/postService"
 export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
 
     const [postLikes, setPostLikes] = useState(0)
+    const [postLikeObj, setPostLikeObj] = useState({})
     const [userIsPostOwner, setUserIsPostOwner] = useState(false)
     const [userHasReacted, setUserHasReacted] = useState(false)
 
     const navigate = useNavigate()
 
     const postTopicClassName = "post-topic-item post-topic-" + postObj.postTopicId
-    let postLikeIcon = <i className="fa-solid fa-arrow-up"></i>
-    let postDislikeIcon = <i className="fa-solid fa-arrow-down"></i>
 
     const calculatePostLikes = () => {
         const likesArray = postObj.postLikes
@@ -34,39 +33,36 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
         const userReaction = postObj.postLikes.find(postLike => postLike.userId === currentUser.id)
         if (userReaction) {
             setUserHasReacted(true)
-            if (userReaction.status) {
-                postLikeIcon = <i class="fa-solid fa-car"></i>
-            } else if (!userReaction.status) {
-                postDislikeIcon = <i class="fa-solid fa-car-burst"></i>
-            }
-        } else {
+            setPostLikeObj(userReaction)
+        } else if (!userReaction) {
             setUserHasReacted(false)
+            setPostLikeObj({})
         }
     }
 
-    // const handlePostLikeIcon = () => {
-    //     if (userHasReacted) {
-    //         return (
-    //             <i class="fa-solid fa-car"></i>
-    //         )
-    //     } else {
-    //         return (
-    //             <i className="fa-solid fa-arrow-up"></i>
-    //         )
-    //     }
-    // }
+    const handlePostLikeIcon = () => {
+        if (userHasReacted && postLikeObj.status) {
+            return (
+                <i class="fa-solid fa-car"></i>
+            )
+        } else {
+            return (
+                <i className="fa-solid fa-arrow-up"></i>
+            )
+        }
+    }
 
-    // const handlePostDislikeIcon = () => {
-    //     if (userHasReacted) {
-    //         return (
-    //             <i class="fa-solid fa-car-burst"></i>
-    //         )
-    //     } else {
-    //         return (
-    //             <i className="fa-solid fa-arrow-down"></i>
-    //         )
-    //     }
-    // }
+    const handlePostDislikeIcon = () => {
+        if (userHasReacted && !postLikeObj.status) {
+            return (
+                <i class="fa-solid fa-car-burst"></i>
+            )
+        } else {
+            return (
+                <i className="fa-solid fa-arrow-down"></i>
+            )
+        }
+    }
 
     useEffect(() => {
         setPostLikes(calculatePostLikes())
@@ -88,7 +84,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
                             updateData()
                         })
                     }}>
-                        {postLikeIcon}
+                        {handlePostLikeIcon()}
                     </button>
                 </div>
                 
@@ -101,7 +97,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
                             updateData()
                         })
                     }}>
-                        {postDislikeIcon}
+                        {handlePostDislikeIcon()}
                     </button>
                 </div>
             </aside>
