@@ -23,7 +23,7 @@ export const UserPosts = ({ allPosts, currentUser, updateData }) => {
 
     useEffect(() => {
         setUserPosts(allPosts.filter(post => post.userId === userAccountId))
-    }, [userAccountId])
+    }, [userAccountId, allPosts])
 
 
     return (
@@ -32,12 +32,7 @@ export const UserPosts = ({ allPosts, currentUser, updateData }) => {
             <div className="posts-container">
                 {/* All Posts Header */}
                 <header className="posts-header">
-                    <h1>Posts</h1>
-                    <button className="btn btn-light" onClick={event => {
-                        navigate("/new_post")
-                    }}>
-                        Create Post
-                    </button>
+                    <h1>{userAccount.username}'s Posts</h1>
                     <FilterPostsBTN posts={userPosts} filteredPosts={filteredPosts} setFilteredPosts={setFilteredPosts} />
                 </header>
 

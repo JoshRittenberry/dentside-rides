@@ -3,9 +3,10 @@ import { useEffect, useState } from "react"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { getUserById } from "../../services/userService"
 import { Link, useParams } from "react-router-dom"
-import { getPostById } from "../../services/postService"
+import { getPostById, reactToPost } from "../../services/postService"
+import { eventWrapper } from "@testing-library/user-event/dist/utils"
 
-export const ViewPost = () => {
+export const ViewPost = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
     const [post, setPost] = useState({})
     const [postLikes, setPostLikes] = useState(0)
@@ -56,7 +57,7 @@ export const ViewPost = () => {
             setPost(postObj)
             setPostLikes(calculatePostLikes(postObj.postLikes))
         })
-    }, [])
+    }, [post])
 
     return (
         <>
@@ -65,7 +66,12 @@ export const ViewPost = () => {
                 <header className="view-post-header">
                     <aside className="view-post-likes-container">
                         <div className="view-post-likes-item">
-                            <button className="post-like-btn">
+                            <button className="post-like-btn" onClick={event => {
+                                event.preventDefault()
+                                reactToPost(currentUser.id, post.id, post.postLikes, true).then(() => {
+                                    updateData()
+                                })
+                            }}>
                                 <i className="fa-solid fa-arrow-up"></i>
                             </button>
                         </div>
@@ -73,7 +79,12 @@ export const ViewPost = () => {
                         <div className="view-post-likes-item">{postLikes}</div>
 
                         <div className="view-post-likes-item">
-                            <button className="post-dislike-btn">
+                            <button className="post-dislike-btn" onClick={event => {
+                                event.preventDefault()
+                                reactToPost(currentUser.id, post.id, post.postLikes, false).then(() => {
+                                    updateData()
+                                })
+                            }}>
                                 <i className="fa-solid fa-arrow-down"></i>
                             </button>
                         </div>

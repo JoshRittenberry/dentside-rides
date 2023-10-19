@@ -6,7 +6,7 @@ export const Home = ({ currentUser }) => {
         <>
             <UserSideBar currentUser={currentUser} />
             <div>
-                <h1>Welocme to Dentside Rides</h1>
+                <h1>Welcome to Dentside Rides</h1>
             </div>
         </>
     )

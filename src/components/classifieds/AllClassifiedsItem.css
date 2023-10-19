@@ -3,7 +3,7 @@
     flex: column;
     background: #ebf4ff;
     border-radius: 20px;
-    width: 15%;
+    width: 17%;
     height: 35vh;
     margin: auto;
     margin-top: 1%;
@@ -21,10 +21,9 @@
 
 .classified-img {
     width: 300px;
-    height: 300px;
+    /* height: 300px; */
     margin: auto;
     border-radius: 25px;
-    background-color: white;
     padding: 1%;
     display: flex;
     justify-content: center;
@@ -33,6 +32,7 @@
 
 .classified-img img {
     width: 100%;
+    border-radius: 25px;
 }
 
 .classified-info {
