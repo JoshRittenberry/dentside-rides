@@ -10,6 +10,8 @@ export const ViewPost = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
     const [post, setPost] = useState({})
     const [postLikes, setPostLikes] = useState(0)
+    const [postLikeObj, setPostLikeObj] = useState({})
+    const [userHasReacted, setUserHasReacted] = useState(false)
     const [userIsPostOwner, setUserIsPostOwner] = useState(false)
 
     const postId = useParams()
@@ -36,6 +38,41 @@ export const ViewPost = ({ updateData }) => {
         return number
     }
 
+    const checkForUserReaction = () => {
+        const userReaction = post.postLikes.find(postLike => postLike.userId === currentUser.id)
+        if (userReaction) {
+            setUserHasReacted(true)
+            setPostLikeObj(userReaction)
+        } else if (!userReaction) {
+            setUserHasReacted(false)
+            setPostLikeObj({})
+        }
+    }
+
+    const handlePostLikeIcon = () => {
+        if (userHasReacted && postLikeObj.status) {
+            return (
+                <i class="fa-solid fa-car"></i>
+            )
+        } else {
+            return (
+                <i className="fa-solid fa-arrow-up"></i>
+            )
+        }
+    }
+
+    const handlePostDislikeIcon = () => {
+        if (userHasReacted && !postLikeObj.status) {
+            return (
+                <i class="fa-solid fa-car-burst"></i>
+            )
+        } else {
+            return (
+                <i className="fa-solid fa-arrow-down"></i>
+            )
+        }
+    }
+
     const postAuthorButtons = () => {
         if (currentUser.id === post.userId) {
             return (
@@ -57,6 +94,8 @@ export const ViewPost = ({ updateData }) => {
             setPost(postObj)
             setPostLikes(calculatePostLikes(postObj.postLikes))
         })
+
+        checkForUserReaction()
     }, [post])
 
     return (
@@ -72,7 +111,7 @@ export const ViewPost = ({ updateData }) => {
                                     updateData()
                                 })
                             }}>
-                                <i className="fa-solid fa-arrow-up"></i>
+                                {handlePostLikeIcon()}
                             </button>
                         </div>
 
@@ -85,7 +124,7 @@ export const ViewPost = ({ updateData }) => {
                                     updateData()
                                 })
                             }}>
-                                <i className="fa-solid fa-arrow-down"></i>
+                                {handlePostDislikeIcon()}
                             </button>
                         </div>
                     </aside>

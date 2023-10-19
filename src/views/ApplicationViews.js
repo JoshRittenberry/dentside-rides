@@ -14,6 +14,7 @@ import { UserAccount } from "../components/users/user_account/UserAccount"
 import { UserPosts } from "../components/posts/UserPosts"
 import { AllClassifieds } from "../components/classifieds/AllClassifieds"
 import { getAllClassifieds } from "../services/classifiedService"
+import { CreateClassified } from "../components/classifieds/CreateClassified"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
@@ -88,6 +89,7 @@ export const ApplicationViews = () => {
                     <Route index element={<AllClassifieds allClassifieds={allClassifieds} currentUser={currentUser} updateData={updateData} />} />
                     {/* <Route path=":classifiedId" element={<ViewClassified />} /> */}
                 </Route>
+                <Route path="/new_classified" element={<CreateClassified currentUser={currentUser} allClassifieds={allClassifieds} updateData={updateData} />} />
             </Route>
         </Routes>
     )
