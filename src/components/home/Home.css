@@ -1,0 +1,14 @@
+.home-container { 
+    width: 88%;
+    float: right;
+    margin: 1em;
+    height: 89vh;
+}
+
+.home-posts-list {
+    margin: 1%;
+}
+
+.home-classifieds-list {
+    display: flex;
+}

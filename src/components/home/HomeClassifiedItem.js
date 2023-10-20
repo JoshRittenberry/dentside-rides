@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./AllClassifiedsItem.css"
+import "./HomeClassifiedItem.css"
 import { Link, useNavigate } from "react-router-dom"
 import { deleteClassified } from "../../services/classifiedService"
 

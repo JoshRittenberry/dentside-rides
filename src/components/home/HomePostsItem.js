@@ -79,7 +79,7 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
             <div className="home-post">
                 <img src={postObj.user?.imageUrl} />
                 <Link to={`/posts/${postObj.id}`}>
-                    <h6>{postObj.title}</h6>
+                    <h5>{postObj.title}</h5>
                 </Link>
 
                 <div className={postTopicClassName}>{postObj.postTopic.name}</div>
@@ -91,20 +91,27 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
                 <div className="home-post-btn-container">
                     {userIsPostOwner && (
                         <>
-                            <button className="home-post-btn btn btn-light" onClick={event => {
-                                event.preventDefault()
-                                deletePost(postObj.id).then(() => {
-                                    updateData()
-                                })
-                            }}>
-                                Delete
-                            </button>
-                            <button className="home-post-btn btn btn-light" onClick={event => {
-                                event.preventDefault()
-                                navigate(`/edit_post/${postObj.id}`)
-                            }}>
-                                Edit
-                            </button>
+                            <div className="dropdown">
+                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ...
+                                </button>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" onClick={event => {
+                                        event.preventDefault()
+                                        navigate(`/edit_post/${postObj.id}`)
+                                    }}>
+                                        Edit
+                                    </a></li>
+                                    <li><a className="dropdown-item" onClick={event => {
+                                        event.preventDefault()
+                                        deletePost(postObj.id).then(() => {
+                                            updateData()
+                                        })
+                                    }}>
+                                        Delete
+                                    </a></li>
+                                </ul>
+                            </div>
                         </>
                     )}
                 </div>

@@ -20,21 +20,14 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.view-classified-likes-container {
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-}
-
 .view-classified-profile-picture {
     text-align: center;
+    width: 150px;
+    margin: 1em;
 }
 
 .view-classified-profile-picture img {
-    width: 60%;
+    width: 90%;
     border-radius: 25px;
 }
 
