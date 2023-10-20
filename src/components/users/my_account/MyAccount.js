@@ -9,7 +9,7 @@ export const MyAccount = ({ currentUser }) => {
             <h1 className="account-name">{currentUser.username}</h1>
             <div className="account-container">
                 <div className="account-picture">
-                    <img src="https://i.ibb.co/jznVcXy/240-F-516275801-f3-Fsp17x6-HQK0x-Qg-DQEELo-Tu-ERO4-Ss-WV.jpg" />
+                    <img src={currentUser.imageUrl} />
                 </div>
 
                 <div className="account-info">

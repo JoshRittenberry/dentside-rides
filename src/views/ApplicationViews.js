@@ -69,7 +69,7 @@ export const ApplicationViews = () => {
                     </>
                 }
             >
-                <Route index element={<Home currentUser={currentUser} />} />
+                <Route index element={<Home currentUser={currentUser} allPosts={allPosts} allClassifieds={allClassifieds} updateData={updateData} />} />
                 <Route path="/posts">
                     <Route index element={<AllPosts allPosts={allPosts} setAllPosts={setAllPosts} currentUser={currentUser} updateData={updateData} />} />
                     <Route path=":postId" element={<ViewPost updateData={updateData} />} />
@@ -88,7 +88,7 @@ export const ApplicationViews = () => {
                 </Route>
                 <Route path="/classifieds">
                     <Route index element={<AllClassifieds allClassifieds={allClassifieds} currentUser={currentUser} updateData={updateData} />} />
-                    <Route path=":classifiedId" element={<ViewClassified />} />
+                    <Route path=":classifiedId" element={<ViewClassified updateData={updateData} />} />
                 </Route>
                 <Route path="/new_classified" element={<CreateClassified currentUser={currentUser} allClassifieds={allClassifieds} updateData={updateData} />} />
             </Route>

@@ -4,7 +4,6 @@ import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { getUserById } from "../../services/userService"
 import { Link, useParams } from "react-router-dom"
 import { getPostById, reactToPost } from "../../services/postService"
-import { eventWrapper } from "@testing-library/user-event/dist/utils"
 
 export const ViewPost = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
@@ -52,7 +51,7 @@ export const ViewPost = ({ updateData }) => {
     const handlePostLikeIcon = () => {
         if (userHasReacted && postLikeObj.status) {
             return (
-                <i class="fa-solid fa-car"></i>
+                <i className="fa-solid fa-car"></i>
             )
         } else {
             return (
@@ -64,7 +63,7 @@ export const ViewPost = ({ updateData }) => {
     const handlePostDislikeIcon = () => {
         if (userHasReacted && !postLikeObj.status) {
             return (
-                <i class="fa-solid fa-car-burst"></i>
+                <i className="fa-solid fa-car-burst"></i>
             )
         } else {
             return (
@@ -85,7 +84,10 @@ export const ViewPost = ({ updateData }) => {
     }
 
     useEffect(() => {
-        getUserById().then(userObj => {
+        const localDentsideUser = localStorage.getItem("dentside_user")
+        const dentsideUserId = JSON.parse(localDentsideUser)
+
+        getUserById(dentsideUserId.id).then(userObj => {
             setCurrentUser(userObj)
         })
 

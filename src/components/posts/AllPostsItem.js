@@ -43,7 +43,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
     const handlePostLikeIcon = () => {
         if (userHasReacted && postLikeObj.status) {
             return (
-                <i class="fa-solid fa-car"></i>
+                <i className="fa-solid fa-car"></i>
             )
         } else {
             return (
@@ -55,7 +55,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
     const handlePostDislikeIcon = () => {
         if (userHasReacted && !postLikeObj.status) {
             return (
-                <i class="fa-solid fa-car-burst"></i>
+                <i className="fa-solid fa-car-burst"></i>
             )
         } else {
             return (

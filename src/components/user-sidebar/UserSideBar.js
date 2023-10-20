@@ -7,7 +7,7 @@ export const UserSideBar = ({ currentUser }) => {
     return (
         <div className="usersidebar">
             <div className="usersidebar-picture">
-                <img src="https://i.ibb.co/jznVcXy/240-F-516275801-f3-Fsp17x6-HQK0x-Qg-DQEELo-Tu-ERO4-Ss-WV.jpg" />
+                <img src={currentUser.imageUrl} />
             </div>
             <h3 className="usersidebar-item">{currentUser.username}</h3>
             <button className="usersidebar-item btn btn-light" onClick={event => {
