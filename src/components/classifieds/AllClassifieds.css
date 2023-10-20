@@ -23,5 +23,11 @@
 }
 
 .classifieds-list {
+    /* width: 10%; */
+    /* background-color: green; */
     margin: 1%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

@@ -18,6 +18,11 @@ export const UserSideBar = ({ currentUser }) => {
             </button>
             <button className="usersidebar-item btn btn-light" onClick={event => {
                 event.preventDefault()
+            }}>
+                My Classifieds
+            </button>
+            <button className="usersidebar-item btn btn-light" onClick={event => {
+                event.preventDefault()
                 navigate("/my_account")
             }}>
                 My Account

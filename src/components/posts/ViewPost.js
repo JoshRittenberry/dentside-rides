@@ -39,7 +39,7 @@ export const ViewPost = ({ updateData }) => {
     }
 
     const checkForUserReaction = () => {
-        const userReaction = post.postLikes.find(postLike => postLike.userId === currentUser.id)
+        const userReaction = post.postLikes?.find(postLike => postLike.userId === currentUser.id)
         if (userReaction) {
             setUserHasReacted(true)
             setPostLikeObj(userReaction)

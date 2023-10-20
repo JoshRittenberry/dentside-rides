@@ -37,10 +37,8 @@ export const AllClassifiedsItem = ({ currentUser, classifiedObj, updateData }) =
                     <Link to={`/classifieds/${classifiedObj.id}`}>
                         <h4>{classifiedObj.title}</h4>
                     </Link>
-                    <div>
+                    <div className="classified-info-footer">
                         <h6>${classifiedObj.price}</h6>
-                    </div>
-                    <div>
                         <h6>{classifiedObj.location}</h6>
                     </div>
                 </div>

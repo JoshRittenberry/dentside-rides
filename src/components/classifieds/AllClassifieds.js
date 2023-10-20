@@ -1,8 +1,12 @@
+import "./AllClassifieds.css"
 import { useNavigate } from "react-router-dom"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { AllClassifiedsItem } from "./AllClassifiedsItem"
+import { FilterClassifiedsBTN } from "./FilterClassifiedsBTN"
+import { useState } from "react"
 
 export const AllClassifieds = ({ allClassifieds, currentUser, updateData }) => {
+    const [filteredClassifieds, setFilteredClassifieds] = useState([])
     const navigate = useNavigate()
 
     return (
@@ -17,7 +21,7 @@ export const AllClassifieds = ({ allClassifieds, currentUser, updateData }) => {
                     }}>
                         Create Classified
                     </button>
-                    {/* <FilterClassifiedsBTN classifieds={allClassifieds} filteredClassifieds={filteredClassifieds} setFilteredClassifieds={setFilteredClassifieds} /> */}
+                    <FilterClassifiedsBTN classifieds={allClassifieds} filteredClassifieds={filteredClassifieds} setFilteredClassifieds={setFilteredClassifieds} />
 
                     {/* I want this but gawt dang its being a pain in my ass */}
                     {/* <SortClassifiedsBTN allClassifieds={allClassifieds} setAllClassifieds={setAllClassifieds} /> */}
@@ -25,7 +29,7 @@ export const AllClassifieds = ({ allClassifieds, currentUser, updateData }) => {
 
                 {/* All Classifieds List Container */}
                 <section className="classifieds-list">
-                    {allClassifieds.map(classifiedObj => {
+                    {filteredClassifieds.map(classifiedObj => {
                         return (
                             <AllClassifiedsItem currentUser={currentUser} classifiedObj={classifiedObj} updateData={updateData} key={classifiedObj.id} />
                         )

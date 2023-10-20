@@ -3,9 +3,9 @@
     flex: column;
     background: #ebf4ff;
     border-radius: 20px;
-    width: 17%;
-    height: 35vh;
-    margin: auto;
+    width: 20%;
+    height: 400px;
+    margin: 1em;
     margin-top: 1%;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -21,7 +21,7 @@
 
 .classified-img {
     width: 300px;
-    /* height: 300px; */
+    height: 300px;
     margin: auto;
     border-radius: 25px;
     padding: 1%;
@@ -30,13 +30,13 @@
     align-items: center;
 }
 
-.classified-img img {
-    width: 100%;
-    border-radius: 25px;
-}
-
 .classified-info {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.classified-info-footer {
+    display: flex;
     justify-content: space-between;
 }
