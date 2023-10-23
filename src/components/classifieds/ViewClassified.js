@@ -1,17 +1,18 @@
 import "./ViewClassified.css"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
-import { getClassifiedById } from "../../services/classifiedService"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { deleteClassified, getClassifiedById } from "../../services/classifiedService"
 import { getUserById } from "../../services/userService"
 import { ClassifiedImageCarousel } from "./ClassifiedImageCarousel"
 
-export const ViewClassified = () => {
+export const ViewClassified = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
     const [classified, setClassified] = useState({})
     const [classifiedImages, setClassifiedImages] = useState([])
 
     const classifiedId = useParams()
+    const navigate = useNavigate()
     let classifiedItemTypeName = "classified-topic-item classified-topic-" + classified.itemTypeId
 
     const authorProfilePicture = () => {
@@ -26,8 +27,22 @@ export const ViewClassified = () => {
         if (currentUser.id === classified.userId) {
             return (
                 <div>
-                    <button className="view-post-btn btn btn-light">Edit</button>
-                    <button className="view-post-btn btn btn-light">Delete</button>
+                    <button className="view-post-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate(`/edit_classified/${classified.id}`)
+                    }}>
+                        Edit
+                    </button>
+
+                    <button className="view-post-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        deleteClassified(classified.id).then(() => {
+                            updateData()
+                            navigate("/classifieds")
+                        })
+                    }}>
+                        Delete
+                    </button>
                 </div>
             )
         }
