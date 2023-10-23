@@ -20,6 +20,14 @@ export const MyAccount = ({ currentUser }) => {
                     }}>
                         My Posts
                     </button>
+
+                    <button className="account-item btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate("/my_classifieds")
+                    }}>
+                        My Classifieds
+                    </button>
+
                     {localStorage.getItem("dentside_user") ? (
                         <button
                             className="account-item btn btn-light"

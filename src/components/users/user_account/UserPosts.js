@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { UserSideBar } from "../user-sidebar/UserSideBar"
+import { UserSideBar } from "../../user-sidebar/UserSideBar"
 import { useEffect, useState } from "react"
-import { getUserById } from "../../services/userService"
-import { AllPostsItem } from "./AllPostsItem"
-import { FilterPostsBTN } from "./FilterPostsBTN"
+import { getUserById } from "../../../services/userService"
+import { AllPostsItem } from "../../posts/AllPostsItem"
+import { FilterPostsBTN } from "../../posts/FilterPostsBTN"
 
 export const UserPosts = ({ allPosts, currentUser, updateData }) => {
     const [userAccountId, setUserAccountId] = useState(0)
@@ -24,7 +24,6 @@ export const UserPosts = ({ allPosts, currentUser, updateData }) => {
     useEffect(() => {
         setUserPosts(allPosts.filter(post => post.userId === userAccountId))
     }, [userAccountId, allPosts])
-
 
     return (
         <>

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { UserSideBar } from "../user-sidebar/UserSideBar"
-import { AllPostsItem } from "./AllPostsItem"
+import { UserSideBar } from "../../user-sidebar/UserSideBar"
+import { AllPostsItem } from "../../posts/AllPostsItem"
 import { useState } from "react"
-import { FilterPostsBTN } from "./FilterPostsBTN"
+import { FilterPostsBTN } from "../../posts/FilterPostsBTN"
 
 export const MyPosts = ({ myPosts, currentUser, updateData }) => {
     const [filteredPosts, setFilteredPosts] = useState([])

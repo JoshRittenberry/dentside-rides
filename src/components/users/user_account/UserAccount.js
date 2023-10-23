@@ -33,6 +33,14 @@ export const UserAccount = () => {
                     }}>
                         {userAccount.username}'s Posts
                     </button>
+
+                    <button className="account-item btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate(`/user_classifieds/${userAccountId}`)
+                    }}>
+                        {userAccount.username}'s Classifieds
+                    </button>
+
                     <div className="account-item">
                         Member Since: {userAccount.joinDate}
                     </div>

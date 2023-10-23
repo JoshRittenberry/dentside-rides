@@ -5,25 +5,28 @@ import { NavBar } from "../components/navbar/NavBar"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../services/postService"
 import { getUserById } from "../services/userService"
-import { MyPosts } from "../components/posts/MyPosts"
 import { ViewPost } from "../components/posts/ViewPost"
 import { CreatePost } from "../components/posts/CreatePost"
 import { EditPost } from "../components/posts/EditPost"
 import { MyAccount } from "../components/users/my_account/MyAccount"
 import { UserAccount } from "../components/users/user_account/UserAccount"
-import { UserPosts } from "../components/posts/UserPosts"
+import { UserPosts } from "../components/users/user_account/UserPosts"
 import { AllClassifieds } from "../components/classifieds/AllClassifieds"
 import { getAllClassifieds } from "../services/classifiedService"
 import { CreateClassified } from "../components/classifieds/CreateClassified"
 import { ViewClassified } from "../components/classifieds/ViewClassified"
 import { EditClassified } from "../components/classifieds/EditClassified"
+import { MyPosts } from "../components/users/my_account/MyPosts"
+import { MyClassifieds } from "../components/users/my_account/MyClassifieds"
+import { UserClassifieds } from "../components/users/user_account/UserClassifieds"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
     const [currentUser, setCurrentUser] = useState({})
     const [allPosts, setAllPosts] = useState([])
-    const [myPosts, setMyPosts] = useState([])
     const [allClassifieds, setAllClassifieds] = useState([])
+    const [myPosts, setMyPosts] = useState([])
+    const [myClassifieds, setMyClassifieds] = useState([])
 
     // Exported Function to Update allPosts and myPosts
     const updateData = () => {
@@ -56,12 +59,13 @@ export const ApplicationViews = () => {
 
         getAllClassifieds().then(array => {
             setAllClassifieds(array)
+            setMyClassifieds(array.filter(classified => classified.userId === currentUser.id))
         })
     }, [currentUser])
 
     return (
         <Routes>
-            <Route 
+            <Route
                 path="/"
                 element={
                     <>
@@ -91,9 +95,13 @@ export const ApplicationViews = () => {
                     <Route index element={<AllClassifieds allClassifieds={allClassifieds} currentUser={currentUser} updateData={updateData} />} />
                     <Route path=":classifiedId" element={<ViewClassified updateData={updateData} />} />
                 </Route>
+                <Route path="/my_classifieds" element={<MyClassifieds myClassifieds={myClassifieds} currentUser={currentUser} updateData={updateData} />} />
+                <Route path="/user_classifieds">
+                    <Route path=":userId" element={<UserClassifieds allClassifieds={allClassifieds} currentUser={currentUser} updateData={updateData} />} />
+                </Route>
                 <Route path="/new_classified" element={<CreateClassified currentUser={currentUser} allClassifieds={allClassifieds} updateData={updateData} />} />
                 <Route path="/edit_classified" >
-                    <Route path=":classifiedId" element={<EditClassified currentUser={currentUser} updateData={updateData} />} /> 
+                    <Route path=":classifiedId" element={<EditClassified currentUser={currentUser} updateData={updateData} />} />
                 </Route>
             </Route>
         </Routes>
