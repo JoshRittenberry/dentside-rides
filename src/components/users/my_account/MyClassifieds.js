@@ -14,7 +14,7 @@ export const MyClassifieds = ({ myClassifieds, currentUser, updateData }) => {
             <div className="classifieds-container">
                 {/* All Classifieds Header */}
                 <header className="classifieds-header">
-                    <h1>Classifieds</h1>
+                    <h1>My Classifieds</h1>
                     <button className="btn btn-light" onClick={event => {
                         navigate("/new_classified")
                     }}>

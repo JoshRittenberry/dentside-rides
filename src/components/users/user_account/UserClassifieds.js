@@ -23,6 +23,10 @@ export const UserClassifieds = ({ allClassifieds, currentUser, updateData }) => 
 
     useEffect(() => {
         setUserClassifieds(allClassifieds.filter(classified => classified.userId === userAccountId))
+
+        if (userAccountId === currentUser.id) {
+            navigate("/my_classifieds")
+        }
     }, [userAccountId, allClassifieds])
 
     return (

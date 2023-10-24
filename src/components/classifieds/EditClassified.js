@@ -60,7 +60,7 @@ export const EditClassified = ({ currentUser, updateData }) => {
                 setNewClassified(classifiedObj)
                 setClassifiedImages(classifiedObj.id)
             } else {
-                navigate("/posts")
+                navigate("/my_classifieds")
             }
         })
 

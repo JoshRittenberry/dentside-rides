@@ -22,6 +22,8 @@ import { UserClassifieds } from "../components/users/user_account/UserClassified
 import { AllEvents } from "../components/events/AllEvents"
 import { getAllEvents } from "../services/eventService"
 import { ViewEvent } from "../components/events/ViewEvent"
+import { MyEvents } from "../components/users/my_account/MyEvents"
+import { UserEvents } from "../components/users/user_account/UserEvents"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
@@ -72,7 +74,7 @@ export const ApplicationViews = () => {
         getAllEvents().then(array => {
             const sortedByDateArray = array.sort((a,b) => new Date(a.eventStartDate) - new Date(b.eventStartDate))
             setAllEvents(sortedByDateArray)
-            setMyEvents(sortedByDateArray.filter(event => event.userId === currentUserId))
+            setMyEvents(sortedByDateArray.filter(event => event.userId === currentUser.id))
         })
     }, [currentUser])
 
@@ -123,6 +125,10 @@ export const ApplicationViews = () => {
                 <Route path="/events">
                     <Route index element={<AllEvents allEvents={allEvents} setAllEvents={setAllEvents} currentUser={currentUser} updateData={updateData} />} />
                     <Route path=":eventId" element={<ViewEvent currentUser={currentUser} updateData={updateData} />} /> 
+                </Route>
+                <Route path="/my_events" element={<MyEvents myEvents={myEvents} currentUser={currentUser} updateData={updateData} />}/>
+                <Route path="/user_events">
+                    <Route path=":userId" element={<UserEvents allEvents={allEvents} currentUser={currentUser} updateData={updateData} />} />
                 </Route>
 
                 {/* Accounts */}

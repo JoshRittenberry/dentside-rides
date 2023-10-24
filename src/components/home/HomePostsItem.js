@@ -78,6 +78,7 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
         <div className="home-post-container">
             <div className="home-post">
                 <img src={postObj.user?.imageUrl} />
+
                 <Link to={`/posts/${postObj.id}`}>
                     <h5>{postObj.title}</h5>
                 </Link>

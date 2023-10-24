@@ -14,7 +14,7 @@ export const MyPosts = ({ myPosts, currentUser, updateData }) => {
             <div className="posts-container">
                 {/* All Posts Header */}
                 <header className="posts-header">
-                    <h1>Posts</h1>
+                    <h1>My Posts</h1>
                     <button className="btn btn-light" onClick={event => {
                         navigate("/new_post")
                     }}>

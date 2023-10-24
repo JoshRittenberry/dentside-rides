@@ -23,6 +23,10 @@ export const UserPosts = ({ allPosts, currentUser, updateData }) => {
 
     useEffect(() => {
         setUserPosts(allPosts.filter(post => post.userId === userAccountId))
+
+        if (userAccountId === currentUser.id) {
+            navigate("/my_posts")
+        }
     }, [userAccountId, allPosts])
 
     return (
