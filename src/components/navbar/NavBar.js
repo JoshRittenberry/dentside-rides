@@ -31,6 +31,14 @@ export const NavBar = () => {
             }}>
                 Classifieds
             </button>
+
+            {/* All Events */}
+            <button className="navbar-item btn btn-light" onClick={event => {
+                event.preventDefault()
+                navigate("/events")
+            }}>
+                Events
+            </button>
         </nav>
     )
 }

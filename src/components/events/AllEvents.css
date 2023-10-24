@@ -1,0 +1,33 @@
+.events-container {
+    margin: auto;
+    height: 93vh;
+    overflow-y: auto;
+}
+
+.events-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 95%; */
+    /* margin: 1%; */
+    background-color: white;
+}
+
+.events-header button,
+.events-header h1 {
+    margin: 1%;
+}
+
+.events-list {
+    /* width: 10%; */
+    /* background-color: green; */
+    margin: 1%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
