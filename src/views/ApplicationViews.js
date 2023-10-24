@@ -21,6 +21,7 @@ import { MyClassifieds } from "../components/users/my_account/MyClassifieds"
 import { UserClassifieds } from "../components/users/user_account/UserClassifieds"
 import { AllEvents } from "../components/events/AllEvents"
 import { getAllEvents } from "../services/eventService"
+import { ViewEvent } from "../components/events/ViewEvent"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
@@ -88,7 +89,7 @@ export const ApplicationViews = () => {
             >
                 
                 {/* Home */}
-                <Route index element={<Home currentUser={currentUser} allPosts={allPosts} allClassifieds={allClassifieds} updateData={updateData} />} />
+                <Route index element={<Home currentUser={currentUser} allPosts={allPosts} allClassifieds={allClassifieds} allEvents={allEvents} updateData={updateData} />} />
                 
                 {/* Posts */}
                 <Route path="/posts">
@@ -121,6 +122,7 @@ export const ApplicationViews = () => {
                 {/* Events */}
                 <Route path="/events">
                     <Route index element={<AllEvents allEvents={allEvents} setAllEvents={setAllEvents} currentUser={currentUser} updateData={updateData} />} />
+                    <Route path=":eventId" element={<ViewEvent currentUser={currentUser} updateData={updateData} />} /> 
                 </Route>
 
                 {/* Accounts */}

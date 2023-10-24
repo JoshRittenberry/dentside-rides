@@ -9,6 +9,26 @@
     margin: 1%;
 }
 
+.home-bottom {
+    display: flex;
+    justify-content: space-around;
+}
+
+.home-classifieds-container {
+    width: 50%;
+}
+
 .home-classifieds-list {
     display: flex;
+    justify-content: space-around;
+}
+
+.home-events-container {
+    width: 50%;
+}
+
+.home-events-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
