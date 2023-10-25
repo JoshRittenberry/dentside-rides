@@ -1,7 +1,7 @@
 .home-event-container {
     display: flex;
     flex-direction: row;
-    background: #ebf4ff;
+    background: #c4deff;
     border-radius: 20px;
     height: 7vh;
     width: 95%;
@@ -19,7 +19,7 @@
 
 .home-event-date {
     display: flex;
-    background: #ebf4ff;
+    background: #c4deff;
     border-radius: 20px;
     height: 75%;
     width: 30%;

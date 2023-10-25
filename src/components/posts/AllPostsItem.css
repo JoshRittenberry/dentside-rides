@@ -1,7 +1,8 @@
 .post-container {
     display: flex;
     flex: column;
-    background: #ebf4ff;
+    /* background: #ebf4ff; */
+    background: #c4deff;
     border-radius: 20px;
     height: 18vh;
     /* width: 95%; */

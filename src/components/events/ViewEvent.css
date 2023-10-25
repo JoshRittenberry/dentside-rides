@@ -15,7 +15,7 @@
     margin: 1%;
     height: 17vh;
     /* background-color: white; */
-    background-color: #ebf4ff;
+    background-color: #c4deff;
     border-radius: 25px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -54,7 +54,7 @@
 }
 
 .view-event-body-container {
-    background-color: #ebf4ff;
+    background-color: #c4deff;
     border-radius: 25px;
     margin: 1%;
     height: 70vh;

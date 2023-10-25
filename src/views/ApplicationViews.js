@@ -38,12 +38,21 @@ export const ApplicationViews = () => {
     // Exported Function to Update allPosts and myPosts
     const updateData = () => {
         getAllPosts().then(array => {
-            setAllPosts(array)
-            setMyPosts(array.filter(post => post.userId === currentUser.id))
+            const sortedByDateArray = array.sort((a, b) => new Date(b.postDate) - new Date(a.postDate))
+            setAllPosts(sortedByDateArray)
+            setMyPosts(sortedByDateArray.filter(post => post.userId === currentUser.id))
         })
 
         getAllClassifieds().then(array => {
-            setAllClassifieds(array)
+            const sortedByDateArray = array.sort((a, b) => new Date(b.classifiedDate) - new Date(a.classifiedDate))
+            setAllClassifieds(sortedByDateArray)
+            setMyClassifieds(sortedByDateArray.filter(classified => classified.userId === currentUser.id))
+        })
+
+        getAllEvents().then(array => {
+            const sortedByDateArray = array.sort((a, b) => new Date(a.eventStartDate) - new Date(b.eventStartDate))
+            setAllEvents(sortedByDateArray)
+            setMyEvents(sortedByDateArray.filter(event => event.userId === currentUser.id))
         })
     }
 
@@ -59,23 +68,7 @@ export const ApplicationViews = () => {
     }, [])
 
     useEffect(() => {
-        getAllPosts().then(array => {
-            const sortedByDateArray = array.sort((a,b) => new Date(b.postDate) - new Date(a.postDate))
-            setAllPosts(sortedByDateArray)
-            setMyPosts(sortedByDateArray.filter(post => post.userId === currentUser.id))
-        })
-
-        getAllClassifieds().then(array => {
-            const sortedByDateArray = array.sort((a,b) => new Date(b.classifiedDate) - new Date(a.classifiedDate))
-            setAllClassifieds(sortedByDateArray)
-            setMyClassifieds(sortedByDateArray.filter(classified => classified.userId === currentUser.id))
-        })
-
-        getAllEvents().then(array => {
-            const sortedByDateArray = array.sort((a,b) => new Date(a.eventStartDate) - new Date(b.eventStartDate))
-            setAllEvents(sortedByDateArray)
-            setMyEvents(sortedByDateArray.filter(event => event.userId === currentUser.id))
-        })
+        updateData()
     }, [currentUser])
 
     return (
