@@ -23,14 +23,14 @@ export const ViewEvent = ({ currentUser, updateData}) => {
         if (currentUser.id === event.userId) {
             return (
                 <div>
-                    <button className="view-post-btn btn btn-light" onClick={event => {
+                    <button className="view-event-btn btn btn-light" onClick={event => {
                         event.preventDefault()
 
                     }}>
                         Edit
                     </button>
 
-                    <button className="view-post-btn btn btn-light" onClick={event => {
+                    <button className="view-event-btn btn btn-light" onClick={event => {
                         event.preventDefault()
 
                     }}>

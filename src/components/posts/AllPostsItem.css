@@ -1,8 +1,8 @@
 .post-container {
     display: flex;
     flex: column;
-    /* background: #ebf4ff; */
-    background: #c4deff;
+    background: #ebf4ff;
+    /* background: #c4deff; */
     border-radius: 20px;
     height: 18vh;
     /* width: 95%; */
@@ -24,6 +24,14 @@
 .post-dislike-btn {
     background: none;
     border: none;
+}
+
+.post-like-btn:hover,
+.post-dislike-btn:hover {
+    background-color: #003478;
+    color: white;
+    border: none;
+    border-radius: 100%;
 }
 
 .post {

@@ -27,14 +27,14 @@ export const ViewClassified = ({ updateData }) => {
         if (currentUser.id === classified.userId) {
             return (
                 <div>
-                    <button className="view-post-btn btn btn-light" onClick={event => {
+                    <button className="view-classified-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         navigate(`/edit_classified/${classified.id}`)
                     }}>
                         Edit
                     </button>
 
-                    <button className="view-post-btn btn btn-light" onClick={event => {
+                    <button className="view-classified-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         deleteClassified(classified.id).then(() => {
                             updateData()

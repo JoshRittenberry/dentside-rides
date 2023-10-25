@@ -2,8 +2,8 @@ import "./ViewPost.css"
 import { useEffect, useState } from "react"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { getUserById } from "../../services/userService"
-import { Link, useParams } from "react-router-dom"
-import { getPostById, reactToPost } from "../../services/postService"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { deletePost, getPostById, reactToPost } from "../../services/postService"
 
 export const ViewPost = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
@@ -13,6 +13,7 @@ export const ViewPost = ({ updateData }) => {
     const [userHasReacted, setUserHasReacted] = useState(false)
     const [userIsPostOwner, setUserIsPostOwner] = useState(false)
 
+    const navigate = useNavigate()
     const postId = useParams()
     let postTopicClassName = "post-topic-item post-topic-" + post.postTopicId
 
@@ -76,8 +77,17 @@ export const ViewPost = ({ updateData }) => {
         if (currentUser.id === post.userId) {
             return (
                 <div>
-                    <button className="view-post-btn btn btn-light">Edit</button>
-                    <button className="view-post-btn btn btn-light">Delete</button>
+                    <button className="view-post-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate(`/edit_post/${post.id}`)
+                    }}>Edit</button>
+                    <button className="view-post-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate(`/my_posts`)
+                        deletePost(post.id).then(() => {
+                            updateData()
+                        })
+                    }}>Delete</button>
                 </div>
             )
         }

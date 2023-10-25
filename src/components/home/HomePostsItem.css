@@ -1,7 +1,7 @@
 .home-post-container {
     display: flex;
     flex: column;
-    background: #c4deff;
+    background: #ebf4ff;
     border-radius: 20px;
     height: 6vh;
     /* width: 95%; */
@@ -74,8 +74,6 @@
     width: 500px;
 }
 
-.home-post-btn {
-    height: 25px;
-    padding: 0px;
-    width: 75px;
+.home-post-btn:hover {
+    background-color: #c4deff;
 }

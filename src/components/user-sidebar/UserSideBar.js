@@ -1,18 +1,9 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import "./UserSideBar.css"
-import { useEffect, useState } from "react"
-import { getAllClassifieds } from "../../services/classifiedService"
+import { MerchAd } from "./MerchAd"
 
 export const UserSideBar = ({ currentUser }) => {
-    const [merch, setMerch] = useState([])
     const navigate = useNavigate()
-
-    useEffect(() => {
-        getAllClassifieds().then(classifiedsArray => {
-            const merchItems = classifiedsArray.filter(classified => classified.itemTypeId === 1)
-            setMerch(merchItems)
-        })
-    }, [])
 
     return (
         <div className="usersidebar">
@@ -46,26 +37,11 @@ export const UserSideBar = ({ currentUser }) => {
             </button>
 
             {/* Trying out a MERCH Ad */}
-            <div id="merch-carousel" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active" data-bs-interval="1">
-                        <img src="..." className="d-block w-100" alt="..." />
-                    </div>
-                    {merch.map(merchObj => {
-                        return (
-                            <div className="carousel-item" data-bs-interval="5000">
-                                <img src={merchObj.classifiedImages[0].url} className="d-block w-100" onClick={() => {
-                                    navigate(`/classifieds/${merchObj.id}`)
-                                }}/>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
+            <MerchAd />
 
             {localStorage.getItem("dentside_user") ? (
                 <button
-                    className="usersidebar-item btn btn-light"
+                    className="usersidebar-item btn btn-danger"
                     onClick={event => {
                         event.preventDefault()
                         localStorage.removeItem("dentside_user");

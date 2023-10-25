@@ -15,7 +15,7 @@
     margin: 1%;
     height: 17vh;
     /* background-color: white; */
-    background-color: #c4deff;
+    background-color: #ebf4ff;
     border-radius: 25px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -57,13 +57,17 @@
     margin-left: 40px;
 }
 
+.view-post-btn:hover {
+    background-color: #c4deff;
+}
+
 .view-post-info {
     display: flex;
     justify-content: space-between;
 }
 
 .view-post-body-container {
-    background-color: #c4deff;
+    background-color: #ebf4ff;
     border-radius: 25px;
     margin: 1%;
     height: 70vh;

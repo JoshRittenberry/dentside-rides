@@ -30,7 +30,7 @@ export const MyAccount = ({ currentUser }) => {
 
                     {localStorage.getItem("dentside_user") ? (
                         <button
-                            className="account-item btn btn-light"
+                            className="account-item btn btn-danger"
                             onClick={event => {
                                 event.preventDefault()
                                 localStorage.removeItem("dentside_user");

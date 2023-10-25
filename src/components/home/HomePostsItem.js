@@ -93,7 +93,7 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
                     {userIsPostOwner && (
                         <>
                             <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button className="btn btn-light dropdown-toggle home-post-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     ...
                                 </button>
                                 <ul className="dropdown-menu">

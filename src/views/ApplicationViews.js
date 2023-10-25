@@ -24,6 +24,7 @@ import { getAllEvents } from "../services/eventService"
 import { ViewEvent } from "../components/events/ViewEvent"
 import { MyEvents } from "../components/users/my_account/MyEvents"
 import { UserEvents } from "../components/users/user_account/UserEvents"
+import { UserSideBar } from "../components/user-sidebar/UserSideBar"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
