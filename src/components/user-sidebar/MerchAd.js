@@ -41,28 +41,12 @@ export const MerchAd = () => {
         window.location.reload(false)
     }
 
-    // return (
-    //     <div id="merch-carousel" className="carousel slide" data-bs-ride="carousel">
-    //         <div className="carousel-inner">
-    //             {merch.map((merchObj, index) => {
-    //                 return (
-    //                     <div className={`carousel-item ${index === 0 ? "active" : ""}`} data-bs-interval="500" key={merchObj.id}>
-    //                         <img src={merchObj.classifiedImages[0].url} className="d-block w-100" onClick={() => {
-    //                             navigate(`/classifieds/${merchObj.id}`)
-    //                         }} />
-    //                     </div>
-    //                 )
-    //             })}
-    //         </div>
-    //     </div>
-    // )
-
     return (
         <Carousel id="merch-carousel"
             activeIndex={activeIndex}
             next={next}
             previous={previous}
-            interval={2000}
+            interval={4000}
             ride="carousel"
         >
             {

@@ -1,9 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom"
-import "./UserAccount.css"
 import { useEffect, useState } from "react"
 import { getUserById } from "../../../services/userService"
 
-export const UserAccount = () => {
+export const UserAccount = ({ currentUser }) => {
     const [userAccountId, setUserAccountId] = useState(0)
     const [userAccount, setUserAccount] = useState({})
 
@@ -16,6 +15,12 @@ export const UserAccount = () => {
             setUserAccount(userObj)
         })
     }, [])
+
+    useEffect(() => {
+        if (userAccount.id == currentUser.id) {
+            navigate("/my_account")
+        }
+    }, [userAccount])
 
     return (
         <>

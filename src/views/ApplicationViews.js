@@ -128,7 +128,7 @@ export const ApplicationViews = () => {
                 {/* Accounts */}
                 <Route path="/my_account" element={<MyAccount currentUser={currentUser} />} />
                 <Route path="/user_account" >
-                    <Route path=":userId" element={<UserAccount />} />
+                    <Route path=":userId" element={<UserAccount currentUser={currentUser} />} />
                 </Route>
 
             </Route>

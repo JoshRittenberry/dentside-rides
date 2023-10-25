@@ -4,10 +4,15 @@
     background: #ebf4ff;
     border-radius: 20px;
     height: 6vh;
-    /* width: 95%; */
+    width: 99%;
     margin: auto;
     margin-top: 1%;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.home-post-container:hover {
+    background-color: #c4deff;
+    width: 100%;
 }
 
 .home-post {
@@ -20,17 +25,43 @@
     height: 95%;
 }
 
-.home-post img {
-    width: 3%;
+.home-post-profile-picture-container {
+    width: 5%;
+}
+
+.home-post-profile-picture {
+    width: 60%;
     border-radius: 100%;
 }
 
+.home-post-title {
+    width: 45%;
+}
+
 .home-post-topic-item {
-    width: 250px;
+    width: 15%;
     text-align: center;
     border-radius: 10px;
     margin: 1%;
     height: 25px;
+}
+
+.home-post-btn-container {
+    text-align: center;
+    width: 10%;
+}
+
+.home-post-btn {
+    background-color: #003478;
+    color: white;
+}
+
+.home-post-btn:hover {
+    background-color: #ebf4ff;
+}
+
+.home-post-date {
+    width: 10%;
 }
 
 .home-post-topic-1 {
@@ -59,21 +90,4 @@
 
 .home-post-topic-7 {
     background-color: #E74C3C;
-}
-
-.home-post-body {
-    background-color: white;
-    height: 10vh;
-}
-
-.home-post-btn-container {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    align-items: center;
-    width: 500px;
-}
-
-.home-post-btn:hover {
-    background-color: #c4deff;
 }

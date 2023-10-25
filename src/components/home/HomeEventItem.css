@@ -10,9 +10,17 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.home-event-container:hover {
+    background-color: #c4deff;
+    width: 100%;
+}
+
 .home-event-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     margin: auto;
-    margin-left: 1%;
+    margin-left: 1.5%;
     width: 70%;
     height: 75%;
 }

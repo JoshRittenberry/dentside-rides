@@ -28,6 +28,13 @@ export const MyAccount = ({ currentUser }) => {
                         My Classifieds
                     </button>
 
+                    <button className="account-item btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate("/my_events")
+                    }}>
+                        My Events
+                    </button>
+
                     {localStorage.getItem("dentside_user") ? (
                         <button
                             className="account-item btn btn-danger"

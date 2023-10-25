@@ -66,7 +66,7 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
 
     useEffect(() => {
         setPostLikes(calculatePostLikes())
-        
+
         if (currentUser.id === postObj.userId) {
             setUserIsPostOwner(true)
         }
@@ -75,52 +75,49 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
     }, [postObj])
 
     return (
-        <div className="home-post-container">
-            <div className="home-post">
-                <img src={postObj.user?.imageUrl} />
+        <Link to={`/posts/${postObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+            <div className="home-post-container">
+                <div className="home-post">
+                    <div className="home-post-profile-picture-container">
+                        <Link to={`/user_account/${postObj.user.id}`}>
+                            <img className="home-post-profile-picture" src={postObj.user?.imageUrl} />
+                        </Link>
+                    </div>
 
-                <Link to={`/posts/${postObj.id}`}>
-                    <h5>{postObj.title}</h5>
-                </Link>
+                    <h5 className="home-post-title">{postObj.title}</h5>
 
-                <div className={postTopicClassName}>{postObj.postTopic.name}</div>
+                    <div className={postTopicClassName}>{postObj.postTopic.name}</div>
 
-                <Link to={`/user_account/${postObj.user.id}`}>
-                    <div>{postObj.user.username}</div>
-                </Link>
-
-                <div className="home-post-btn-container">
-                    {userIsPostOwner && (
-                        <>
-                            <div className="dropdown">
-                                <button className="btn btn-light dropdown-toggle home-post-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    ...
-                                </button>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" onClick={event => {
-                                        event.preventDefault()
-                                        navigate(`/edit_post/${postObj.id}`)
-                                    }}>
-                                        Edit
-                                    </a></li>
-                                    <li><a className="dropdown-item" onClick={event => {
-                                        event.preventDefault()
-                                        deletePost(postObj.id).then(() => {
-                                            updateData()
-                                        })
-                                    }}>
-                                        Delete
-                                    </a></li>
-                                </ul>
-                            </div>
-                        </>
-                    )}
+                    <div className="home-post-btn-container">
+                        {userIsPostOwner && (
+                            <>
+                                <div className="dropdown">
+                                    <button className="btn btn-light dropdown-toggle home-post-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Post Options
+                                    </button>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" onClick={event => {
+                                            event.preventDefault()
+                                            navigate(`/edit_post/${postObj.id}`)
+                                        }}>
+                                            Edit
+                                        </a></li>
+                                        <li><a className="dropdown-item" onClick={event => {
+                                            event.preventDefault()
+                                            deletePost(postObj.id).then(() => {
+                                                updateData()
+                                            })
+                                        }}>
+                                            Delete
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                    <div className="home-post-date">{postObj.postDate}</div>
                 </div>
-
-                <div>{postObj.postDate}</div>
-                
             </div>
-
-        </div>
+        </Link>
     )
 }

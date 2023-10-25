@@ -26,31 +26,31 @@ export const HomeEventItem = ({ currentUser, eventObj, updateData }) => {
     }, [currentUser, eventObj])
 
     return (
-        <div className="home-event-container">
-            {/* Maybe we'll add this */}
-            {/* <div className="home-event-rsvp-container">
-                <button>
-                    RSVP
-                </button>
-            </div> */}
+        <Link to={`/events/${eventObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+            <div className="home-event-container">
+                {/* Maybe we'll add this */}
+                {/* <div className="home-event-rsvp-container">
+                    <button>
+                        RSVP
+                    </button>
+                </div> */}
 
-            <div className="home-event-info">
-                <Link to={`/events/${eventObj.id}`}>
-                    <h5 className="home-event-title">{eventObj.title}</h5>
-                </Link>
+                <div className="home-event-info">
+                        <h5 className="home-event-title">{eventObj.title}</h5>
 
-                <div className="home-event-location"><strong>Event Location:</strong> {eventObj.location}</div>
-            </div>
-
-            <div className="home-event-date">
-                <div className="home-event-date-month">
-                    {getMonthAbbreviation()}
+                    <div className="home-event-location"><strong>Event Location:</strong> {eventObj.location}</div>
                 </div>
 
-                <div className="home-event-date-day">
-                    {getDayNumber()}
+                <div className="home-event-date">
+                    <div className="home-event-date-month">
+                        {getMonthAbbreviation()}
+                    </div>
+
+                    <div className="home-event-date-day">
+                        {getDayNumber()}
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
