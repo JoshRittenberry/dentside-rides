@@ -12,8 +12,8 @@ export const Home = ({ currentUser, allPosts, allClassifieds, allEvents, updateD
 
     const getNewestPosts = () => {
         const sortedPosts = allPosts.sort((a, b) => new Date(b.postDate) - new Date(a.postDate))
-        const newestFourPosts = sortedPosts.slice(0, 4)
-        setNewestPosts(newestFourPosts)
+        const newestFivePosts = sortedPosts.slice(0, 5)
+        setNewestPosts(newestFivePosts)
     }
 
     const getNewestClassifieds = () => {
@@ -24,7 +24,7 @@ export const Home = ({ currentUser, allPosts, allClassifieds, allEvents, updateD
 
     const getUpcomingEvents = () => {
         const sortedEvents = allEvents.sort((a, b) => new Date(a.eventStartDate) - new Date(b.eventStartDate))
-        const upcomingFourEvents = sortedEvents.slice(0, 5)
+        const upcomingFourEvents = sortedEvents.slice(0, 4)
         setUpcomingEvents(upcomingFourEvents)
     }
     

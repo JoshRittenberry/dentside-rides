@@ -11,11 +11,11 @@
 
 .home-bottom {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .home-classifieds-container {
-    width: 50%;
+    width: 40%;
 }
 
 .home-classifieds-list {
@@ -24,11 +24,12 @@
 }
 
 .home-events-container {
-    width: 50%;
+    width: 60%;
 }
 
 .home-events-list {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    height: 37vh;
 }

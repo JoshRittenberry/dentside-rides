@@ -4,10 +4,21 @@
     background: #ebf4ff;
     border-radius: 20px;
     width: 20%;
-    height: 400px;
+    height: 43vh;
     margin: 1em;
     margin-top: 1%;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.event-container:hover {
+    background-color: #c4deff;
+    width: 21%;
+    height: 45vh;
+
+    .event-img {
+        width: 325px;
+        height: 325px;
+    }
 }
 
 .event {
@@ -36,7 +47,7 @@
     justify-content: space-between;
 }
 
-.event-info-footer {
+.event-footer {
     display: flex;
     justify-content: space-between;
 }

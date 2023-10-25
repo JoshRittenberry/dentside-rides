@@ -154,8 +154,8 @@ export const ViewPost = ({ updateData }) => {
                         </div>
                         <div className={postTopicClassName}>{post.postTopic?.name}</div>
                         <div className="view-post-info">
-                            <Link to={`/user_account/${post.user?.id}`}>
-                                <div>{post.user?.username}</div>
+                            <Link to={`/user_account/${post.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                                <div className="view-post-author-profile">{post.user?.username}</div>
                             </Link>
                             <div>{post.postDate}</div>
                         </div>

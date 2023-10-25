@@ -66,7 +66,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
 
     useEffect(() => {
         setPostLikes(calculatePostLikes())
-        
+
         if (currentUser.id === postObj.userId) {
             setUserIsPostOwner(true)
         }
@@ -75,73 +75,73 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
     }, [postObj])
 
     return (
-        <div className="post-container">
-            <aside className="post-likes-container">
-                <div className="post-likes-item">
-                    <button className="post-like-btn" onClick={event => {
-                        event.preventDefault()
-                        reactToPost(currentUser.id, postObj.id, postObj.postLikes, true).then(() => {
-                            updateData()
-                        })
-                    }}>
-                        {handlePostLikeIcon()}
-                    </button>
-                </div>
-                
-                <div className="post-likes-item">{postLikes}</div>
-                
-                <div className="post-likes-item">
-                    <button className="post-dislike-btn" onClick={event => {
-                        event.preventDefault()
-                        reactToPost(currentUser.id, postObj.id, postObj.postLikes, false).then(() => {
-                            updateData()
-                        })
-                    }}>
-                        {handlePostDislikeIcon()}
-                    </button>
-                </div>
-            </aside>
+        <Link to={`/posts/${postObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+            <div className="post-container">
+                <aside className="post-likes-container">
+                    <div className="post-likes-item">
+                        <button className="post-like-btn" onClick={event => {
+                            event.preventDefault()
+                            reactToPost(currentUser.id, postObj.id, postObj.postLikes, true).then(() => {
+                                updateData()
+                            })
+                        }}>
+                            {handlePostLikeIcon()}
+                        </button>
+                    </div>
 
-            <div className="post">
-                <header className="post-header">
-                    <Link to={`/user_account/${postObj.user.id}`}>
-                        <div>{postObj.user.username}</div>
-                    </Link>
-                    <div>{postObj.postDate}</div>
-                </header>
+                    <div className="post-likes-item">{postLikes}</div>
 
-                <div className="post-info">
-                    <Link to={`/posts/${postObj.id}`}>
+                    <div className="post-likes-item">
+                        <button className="post-dislike-btn" onClick={event => {
+                            event.preventDefault()
+                            reactToPost(currentUser.id, postObj.id, postObj.postLikes, false).then(() => {
+                                updateData()
+                            })
+                        }}>
+                            {handlePostDislikeIcon()}
+                        </button>
+                    </div>
+                </aside>
+
+                <div className="post">
+                    <header className="post-header">
+                        <Link to={`/user_account/${postObj.user.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                            <div className="post-author-profile">{postObj.user.username}</div>
+                        </Link>
+                        <div>{postObj.postDate}</div>
+                    </header>
+
+                    <div className="post-info">
                         <h4>{postObj.title}</h4>
-                    </Link>
-                    <div className="post-btn-container">
-                        <div className={postTopicClassName}>{postObj.postTopic.name}</div>
-                        {userIsPostOwner && (
-                            <>
-                                <button className="post-btn btn btn-light" onClick={event => {
-                                    event.preventDefault()
-                                    deletePost(postObj.id).then(() => {
-                                        updateData()
-                                    })
-                                }}>
-                                    Delete
-                                </button>
-                                <button className="post-btn btn btn-light" onClick={event => {
-                                    event.preventDefault()
-                                    navigate(`/edit_post/${postObj.id}`)
-                                }}>
-                                    Edit
-                                </button>
-                            </>
-                        )}
+                        <div className="post-btn-container">
+                            <div className={postTopicClassName}>{postObj.postTopic.name}</div>
+                            {userIsPostOwner && (
+                                <>
+                                    <button className="post-btn btn btn-light" onClick={event => {
+                                        event.preventDefault()
+                                        deletePost(postObj.id).then(() => {
+                                            updateData()
+                                        })
+                                    }}>
+                                        Delete
+                                    </button>
+                                    <button className="post-btn btn btn-light" onClick={event => {
+                                        event.preventDefault()
+                                        navigate(`/edit_post/${postObj.id}`)
+                                    }}>
+                                        Edit
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="post-body">
+                        {postObj.body}
                     </div>
                 </div>
 
-                <div className="post-body">
-                    {postObj.body}
-                </div>
             </div>
-
-        </div>
+        </Link>
     )
 }

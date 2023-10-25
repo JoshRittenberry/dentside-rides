@@ -31,18 +31,18 @@ export const HomeClassifiedItem = ({ currentUser, classifiedObj, updateData }) =
 
     return (
         <div className="home-classified-container">
-            <div className="home-classified">
-                <img className="home-classified-img" src={classifiedImage} />
-                <div className="home-classified-info">
-                    <Link to={`/classifieds/${classifiedObj.id}`}>
+                <Link to={`/classifieds/${classifiedObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                <div className="home-classified">
+                    <img className="home-classified-img" src={classifiedImage} />
+                    <div className="home-classified-info">
                         <h4>{classifiedObj.title}</h4>
-                    </Link>
-                    <div className="home-classified-info-footer">
-                        <h6>${classifiedObj.price}</h6>
-                        <h6>{classifiedObj.location}</h6>
+                        <div className="home-classified-info-footer">
+                            <h6>${classifiedObj.price}</h6>
+                            <h6>{classifiedObj.location}</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

@@ -32,11 +32,15 @@
 
 #merch-carousel {
     margin: auto;
-    width: 75%;
+    width: 90%;
 }
 
 #merch-carousel img {
     width: 100%;
     height: 100%;
     border-radius: 20px;
+}
+
+#merch-carousel:hover {
+    width: 95%;
 }

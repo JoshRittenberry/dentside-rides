@@ -2,19 +2,28 @@ import "./AllEventsItem.css"
 import { Link } from "react-router-dom"
 
 export const AllEventsItem = ({ currentUser, eventObj, updateData, key }) => {
+    const eventImage = () => {
+        if (eventObj.eventImageUrl != "") {
+            return eventObj.eventImageUrl
+        }
+    }
+
     return (
         <div className="event-container">
             <div className="event">
-                <img className="event-img" src="https://i0.wp.com/thinkfirstcommunication.com/wp-content/uploads/2022/05/placeholder-1-1.png?fit=1200%2C800&ssl=1" />
-                <div className="event-info">
-                    <Link to={`/events/${eventObj.id}`}>
+                <Link to={`/events/${eventObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    <div className="event-img-container">
+                        <img className="event-img" src={eventImage()} />
+                    </div>
+
+                    <div className="event-info">
                         <h4>{eventObj.title}</h4>
-                    </Link>
-                    <div className="event-info-footer">
+                    </div>
+                    <div className="event-footer">
                         <h6>{eventObj.location}</h6>
                         <h6>{eventObj.eventStartDate}</h6>
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     )

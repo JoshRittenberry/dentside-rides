@@ -35,6 +35,10 @@
     margin: 1em;
 }
 
+.view-post-author-profile:hover {
+    color: white;
+}
+
 .view-post-profile-picture img {
     width: 95%;
     border-radius: 25px;
