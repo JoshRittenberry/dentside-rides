@@ -1,3 +1,4 @@
+import "./ClassifiedImageCarousel.css"
 import { useEffect, useState } from "react"
 
 export const ClassifiedImageCarousel = ({ newClassifiedImages }) => {
@@ -9,13 +10,13 @@ export const ClassifiedImageCarousel = ({ newClassifiedImages }) => {
     }, [newClassifiedImages])
 
     return (
-        <div id="create-classified-carousel" className="carousel carousel-dark slide">
+        <div id="classified-carousel" className="carousel carousel-dark slide">
             <div className="carousel-indicators">
                 {imageArray.map((image, index) => (
                     <button
                         key={index}
                         type="button"
-                        data-bs-target="#create-classified-carousel"
+                        data-bs-target="#classified-carousel"
                         data-bs-slide-to={index}
                         className={index === 0 ? 'active' : ''}
                         aria-label={`Slide ${index + 1}`}
@@ -29,11 +30,11 @@ export const ClassifiedImageCarousel = ({ newClassifiedImages }) => {
                     </div>
                 ))}
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#create-classified-carousel" data-bs-slide="prev">
+            <button className="carousel-control-prev" type="button" data-bs-target="#classified-carousel" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#create-classified-carousel" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#classified-carousel" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>

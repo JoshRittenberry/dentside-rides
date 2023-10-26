@@ -10,6 +10,7 @@ export const ViewClassified = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
     const [classified, setClassified] = useState({})
     const [classifiedImages, setClassifiedImages] = useState([])
+    const [useCarousel, setUseCarousel] = useState(false)
 
     const classifiedId = useParams()
     const navigate = useNavigate()
@@ -54,7 +55,6 @@ export const ViewClassified = ({ updateData }) => {
         return date.toLocaleDateString(undefined, options);
     }
 
-
     useEffect(() => {
         const localDentsideUser = localStorage.getItem("dentside_user")
         const dentsideUserId = JSON.parse(localDentsideUser)
@@ -66,6 +66,9 @@ export const ViewClassified = ({ updateData }) => {
         getClassifiedById(classifiedId.classifiedId).then(classifiedObj => {
             setClassified(classifiedObj)
             setClassifiedImages(classifiedObj.classifiedImages)
+            if (classifiedObj.classifiedImages?.length > 2) {
+                setUseCarousel(true)
+            }
         })
     }, [])
 
@@ -87,9 +90,7 @@ export const ViewClassified = ({ updateData }) => {
                         </div>
                         <div className={classifiedItemTypeName}>${classified.price}</div>
                         <div className="view-classified-info">
-                            <Link to={`/user_account/${classified.user?.id}`}>
-                                <div>{classified.user?.username}</div>
-                            </Link>
+                            <div>{classified.location}</div>
                             <div>{formatDate(classified.classifiedDate)}</div>
                         </div>
                     </div>
@@ -97,7 +98,14 @@ export const ViewClassified = ({ updateData }) => {
 
                 <section className="view-classified-body-container">
                     <div className="view-classified-body">{classified.body}</div>
-                    <ClassifiedImageCarousel newClassifiedImages={classifiedImages} />
+                    <div className="view-classified-images-container">
+                        {useCarousel && <ClassifiedImageCarousel newClassifiedImages={classifiedImages} />}
+                        {!useCarousel && (
+                            <div className="view-classified-image-container">
+                                <img className="view-classified-image" src={classifiedImages[0]?.url} />
+                            </div>
+                        )}
+                    </div>
                 </section>
             </div>
         </>
