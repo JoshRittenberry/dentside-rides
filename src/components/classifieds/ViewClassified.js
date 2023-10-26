@@ -48,6 +48,13 @@ export const ViewClassified = ({ updateData }) => {
         }
     }
 
+    const formatDate = (classifiedDate) => {
+        const date = new Date(classifiedDate);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
+
     useEffect(() => {
         const localDentsideUser = localStorage.getItem("dentside_user")
         const dentsideUserId = JSON.parse(localDentsideUser)
@@ -68,9 +75,9 @@ export const ViewClassified = ({ updateData }) => {
             <div className="view-classified-container">
                 <header className="view-classified-header">
                     {/* Author Profile Picture */}
-                    <Link to={`/user_account/${classified.user?.id}`}>
-                        <div className="view-classified-profile-picture">
-                            <img src={authorProfilePicture()} />
+                    <Link to={`/user_account/${classified.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        <div className="view-classified-profile-picture-container">
+                            <img className="view-classified-profile-picture" src={authorProfilePicture()} />
                         </div>
                     </Link>
                     <div className="view-classified-header-text">
@@ -83,7 +90,7 @@ export const ViewClassified = ({ updateData }) => {
                             <Link to={`/user_account/${classified.user?.id}`}>
                                 <div>{classified.user?.username}</div>
                             </Link>
-                            <div>{classified.classifiedDate}</div>
+                            <div>{formatDate(classified.classifiedDate)}</div>
                         </div>
                     </div>
                 </header>
