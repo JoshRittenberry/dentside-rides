@@ -1,10 +1,10 @@
 import "./CreateEvent.css"
 import { useEffect, useState } from "react"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
-import { useNavigate } from "react-router-dom"
-import { getAllEventTypes, uploadEvent } from "../../services/eventService"
+import { useNavigate, useParams } from "react-router-dom"
+import { getAllEventTypes, getEventOnlyById, uploadEventChanges } from "../../services/eventService"
 
-export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
+export const EditEvent = ({ currentUser, allEvents, updateData }) => {
     const [eventTypes, setEventTypes] = useState([])
     const [eventTypeText, setEventTypeText] = useState("Set Event Type")
     const [newEvent, setNewEvent] = useState({
@@ -20,6 +20,7 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
     })
 
     const navigate = useNavigate()
+    const eventId = useParams()
 
     const setEventItemDropdownText = () => {
         if (newEvent.eventTypeId != 0) {
@@ -32,10 +33,13 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
     }
 
     useEffect(() => {
-        const newEventCopy = { ...newEvent }
-        newEventCopy.userId = currentUser.id
-
-        setNewEvent(newEventCopy)
+        getEventOnlyById(eventId.eventId).then(eventObj => {
+            if (currentUser.id === eventObj.userId) {
+                setNewEvent(eventObj)
+            } else {
+                navigate("/my_events")
+            }
+        })
 
         getAllEventTypes().then(eventTypesArray => {
             setEventTypes(eventTypesArray)
@@ -185,7 +189,7 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
                         if (newEvent.eventStartDate == "" || newEvent.eventEndDate == "") {
                             alert("Please select an Event Start and End Date")
                         } else {
-                            uploadEvent(newEvent).then(() => {
+                            uploadEventChanges(newEvent).then(() => {
                                 updateData()
                                 navigate("/my_events")
                             })

@@ -57,6 +57,11 @@
     justify-content: space-between;
 }
 
+.view-event-flex-container {
+    display: flex;
+    
+}
+
 .view-event-body-container {
     background-color: #ebf4ff;
     border-radius: 25px;
@@ -70,8 +75,19 @@
 
 .view-event-body {
     background-color: white;
-    width: 68%;
+    width: 60%;
     height: 100%;
     border-radius: 25px;
     padding: 1%;
+}
+
+.view-event-image-container {
+    width: 40%;
+    text-align: center;
+}
+
+.view-event-image {
+    margin-top: 3em;
+    width: 500px;
+    height: 500px;
 }

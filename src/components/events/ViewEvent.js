@@ -23,15 +23,13 @@ export const ViewEvent = ({ currentUser, updateData}) => {
         if (currentUser.id === event.userId) {
             return (
                 <div>
-                    <button className="view-event-btn btn btn-light" onClick={event => {
-                        event.preventDefault()
-
+                    <button className="view-event-btn btn btn-light" onClick={() => {
+                        navigate(`/edit_event/${event.id}`)
                     }}>
                         Edit
                     </button>
 
-                    <button className="view-event-btn btn btn-light" onClick={event => {
-                        event.preventDefault()
+                    <button className="view-event-btn btn btn-light" onClick={() => {
 
                     }}>
                         Delete
@@ -75,7 +73,12 @@ export const ViewEvent = ({ currentUser, updateData}) => {
 
                 <section className="view-event-body-container">
                     <div className="view-event-body">{event.body}</div>
+                    
+                    <section className="view-event-image-container">
+                        <img className="view-event-image" src={event.eventImageUrl}/>
+                    </section>
                 </section>
+
             </div>
         </>
     )

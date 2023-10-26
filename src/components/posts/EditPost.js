@@ -110,7 +110,7 @@ export const EditPost = ({ currentUser, updateData }) => {
                         Save Changes
                     </button>
                     <button className="create-post-btn btn btn-light" onClick={() => {
-
+                        navigate("/my_posts")
                     }}>
                         Cancel
                     </button>
