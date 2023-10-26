@@ -31,8 +31,8 @@ export const HomeClassifiedItem = ({ currentUser, classifiedObj, updateData }) =
 
     return (
         <div className="home-classified-container">
+            <div className="home-classified">
                 <Link to={`/classifieds/${classifiedObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                <div className="home-classified">
                     <img className="home-classified-img" src={classifiedImage} />
                     <div className="home-classified-info">
                         <h4>{classifiedObj.title}</h4>
@@ -41,8 +41,8 @@ export const HomeClassifiedItem = ({ currentUser, classifiedObj, updateData }) =
                             <h6>{classifiedObj.location}</h6>
                         </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         </div>
     )
 }
