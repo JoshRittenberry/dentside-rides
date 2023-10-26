@@ -36,7 +36,6 @@ export const MerchAd = () => {
     }, [])
 
     const navigateToClassified = (merchObjId) => {
-        console.log(`MerchAd item ${merchObjId} was clicked`)
         navigate(`/classifieds/${merchObjId}`)
         window.location.reload(false)
     }

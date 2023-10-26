@@ -24,7 +24,7 @@ import { getAllEvents } from "../services/eventService"
 import { ViewEvent } from "../components/events/ViewEvent"
 import { MyEvents } from "../components/users/my_account/MyEvents"
 import { UserEvents } from "../components/users/user_account/UserEvents"
-import { UserSideBar } from "../components/user-sidebar/UserSideBar"
+import { CreateEvent } from "../components/events/CreateEvent"
 
 export const ApplicationViews = () => {
     const [currentUserId, setCurrentUserId] = useState(0)
@@ -124,6 +124,7 @@ export const ApplicationViews = () => {
                 <Route path="/user_events">
                     <Route path=":userId" element={<UserEvents allEvents={allEvents} currentUser={currentUser} updateData={updateData} />} />
                 </Route>
+                <Route path="/new_event" element={<CreateEvent currentUser={currentUser} allEvents={allEvents} updateData={updateData} />} />
 
                 {/* Accounts */}
                 <Route path="/my_account" element={<MyAccount currentUser={currentUser} />} />

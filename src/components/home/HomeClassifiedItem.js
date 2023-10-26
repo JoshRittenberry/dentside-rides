@@ -13,10 +13,8 @@ export const HomeClassifiedItem = ({ currentUser, classifiedObj, updateData }) =
 
     const getClassifiedImage = () => {
         if (classifiedObj.classifiedImages[0].url) {
-            console.log("it found a url")
             setClassifiedImage(classifiedObj.classifiedImages[0].url)
         } else if (!classifiedObj.classifiedImages[0].url) {
-            console.log("it did not find a url")
             setClassifiedImage("https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=")
         }
     }

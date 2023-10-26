@@ -5,8 +5,6 @@ export const NavBar = () => {
     const navigate = useNavigate()
     const {pathname} = useLocation()
 
-    console.log(pathname)
-
     const isActive = (button) => {
         if (pathname === button) {
             return (

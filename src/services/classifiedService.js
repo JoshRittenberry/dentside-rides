@@ -84,7 +84,7 @@ export const uploadClassifiedChanges = (classified, classifiedImages) => {
                             body: JSON.stringify(imgObjCopy)
                         });
                     } else {
-                        console.log("THERE WAS AN ERROR")
+                        console.log("THERE WAS AN ERROR AT classifiedService uploadClassifiedChanges()")
                     }
                 } else if (imgObj.id > 0 && imgObj.url == "") {
                     return fetch(`http://localhost:8088/classifiedImages/${imgObj.id}`, {
