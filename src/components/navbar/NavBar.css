@@ -17,3 +17,7 @@
 .navbar-item {
     margin-right: 5%;
 }
+
+.navbar-btn-active {
+    background-color: #c6c7c8;
+}

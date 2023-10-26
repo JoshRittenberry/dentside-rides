@@ -93,6 +93,13 @@ export const ViewPost = ({ updateData }) => {
         }
     }
 
+    const formatDate = (postDate) => {
+        const date = new Date(postDate);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
+
     useEffect(() => {
         const localDentsideUser = localStorage.getItem("dentside_user")
         const dentsideUserId = JSON.parse(localDentsideUser)
@@ -157,7 +164,7 @@ export const ViewPost = ({ updateData }) => {
                             <Link to={`/user_account/${post.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                                 <div className="view-post-author-profile">{post.user?.username}</div>
                             </Link>
-                            <div>{post.postDate}</div>
+                            <div>{formatDate(post.postDate)}</div>
                         </div>
                     </div>
                 </header>

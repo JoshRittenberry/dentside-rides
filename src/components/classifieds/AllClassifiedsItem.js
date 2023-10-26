@@ -14,8 +14,8 @@ export const AllClassifiedsItem = ({ currentUser, classifiedObj, updateData }) =
     const getClassifiedImage = () => {
         if (classifiedObj.classifiedImages[0].url) {
             console.log("it found a url")
-            setClassifiedImage(classifiedObj.classifiedImages[0].url) 
-        } else if (!classifiedObj.classifiedImages[0].url){
+            setClassifiedImage(classifiedObj.classifiedImages[0].url)
+        } else if (!classifiedObj.classifiedImages[0].url) {
             console.log("it did not find a url")
             setClassifiedImage("https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=")
         }
@@ -32,16 +32,16 @@ export const AllClassifiedsItem = ({ currentUser, classifiedObj, updateData }) =
     return (
         <div className="classified-container">
             <div className="classified">
-                <img className="classified-img" src={classifiedImage}/>
-                <div className="classified-info">
-                    <Link to={`/classifieds/${classifiedObj.id}`}>
+                <Link to={`/classifieds/${classifiedObj.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    <img className="classified-img" src={classifiedImage} />
+                    <div className="classified-info">
                         <h4>{classifiedObj.title}</h4>
-                    </Link>
-                    <div className="classified-info-footer">
-                        <h6>${classifiedObj.price}</h6>
-                        <h6>{classifiedObj.location}</h6>
+                        <div className="classified-info-footer">
+                            <h6>${classifiedObj.price}</h6>
+                            <h6>{classifiedObj.location}</h6>
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     )

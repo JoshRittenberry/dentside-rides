@@ -64,6 +64,12 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
         }
     }
 
+    const formatDate = (postDate) => {
+        const date = new Date(postDate);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
     useEffect(() => {
         setPostLikes(calculatePostLikes())
 
@@ -108,7 +114,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
                         <Link to={`/user_account/${postObj.user.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                             <div className="post-author-profile">{postObj.user.username}</div>
                         </Link>
-                        <div>{postObj.postDate}</div>
+                        <div>{formatDate(postObj.postDate)}</div>
                     </header>
 
                     <div className="post-info">

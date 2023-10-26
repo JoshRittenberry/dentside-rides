@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import "./HomePostsItem.css"
 import { Link, useNavigate } from "react-router-dom"
-import { deletePost, reactToPost } from "../../services/postService"
+import { deletePost } from "../../services/postService"
 
 export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
 
@@ -40,28 +40,10 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
         }
     }
 
-    const handlePostLikeIcon = () => {
-        if (userHasReacted && postLikeObj.status) {
-            return (
-                <i className="fa-solid fa-car"></i>
-            )
-        } else {
-            return (
-                <i className="fa-solid fa-arrow-up"></i>
-            )
-        }
-    }
-
-    const handlePostDislikeIcon = () => {
-        if (userHasReacted && !postLikeObj.status) {
-            return (
-                <i className="fa-solid fa-car-burst"></i>
-            )
-        } else {
-            return (
-                <i className="fa-solid fa-arrow-down"></i>
-            )
-        }
+    const formatDate = (postDate) => {
+        const date = new Date(postDate);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
     }
 
     useEffect(() => {
@@ -115,7 +97,7 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
                             </>
                         )}
                     </div>
-                    <div className="home-post-date">{postObj.postDate}</div>
+                    <div className="home-post-date">{formatDate(postObj.postDate)}</div>
                 </div>
             </div>
         </Link>
