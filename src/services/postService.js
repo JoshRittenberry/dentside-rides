@@ -41,3 +41,40 @@ export const deletePost = (postId) => {
         method: "DELETE",
     })
 }
+
+export const reactToPost = (userId, postId, postLikesArray, status) => {
+    const postLike = {
+        "userId": userId,
+        "postId": postId,
+        "status": status,
+    }
+
+    const existingPostLike = postLikesArray.find(postLike => postLike.userId === userId)
+
+    if (existingPostLike) {
+        if (existingPostLike.status != status) {
+            return fetch(`http://localhost:8088/postLikes/${existingPostLike.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(postLike)
+            }) 
+        } else if (existingPostLike.status == status) {
+            return fetch(`http://localhost:8088/postLikes/${existingPostLike.id}`, {
+                method: "DELETE",
+            })
+        }
+
+    } else if (!existingPostLike) {
+        return fetch(`http://localhost:8088/postLikes`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postLike)
+        })
+    }
+
+
+}

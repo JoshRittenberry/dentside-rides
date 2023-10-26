@@ -1,0 +1,35 @@
+.home-container { 
+    width: 88%;
+    float: right;
+    margin: 1em;
+    height: 89vh;
+}
+
+.home-posts-list {
+    margin: 1%;
+}
+
+.home-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-classifieds-container {
+    width: 40%;
+}
+
+.home-classifieds-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.home-events-container {
+    width: 60%;
+}
+
+.home-events-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 37vh;
+}

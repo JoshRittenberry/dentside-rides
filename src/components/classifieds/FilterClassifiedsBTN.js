@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react"
-import { getAllPostTopics } from "../../services/postService"
+import { getAllItemTypes } from "../../services/classifiedService"
 
-export const FilterPostsBTN = ({ posts, filteredPosts, setFilteredPosts }) => {
-    const [postTopics, setPostTopics] = useState([])
+export const FilterClassifiedsBTN = ({ classifieds, filteredClassifieds, setFilteredClassifieds }) => {
+    const [itemTypes, setItemTypes] = useState([])
     const [filter, setFilter] = useState(0)
-    const [buttonText, setButtonText] = useState("Filter Posts by Topic")
+    const [buttonText, setButtonText] = useState("Filter Classifieds by Topic")
 
     const setDropdownButtonText = () => {
-        const chosenFilter = postTopics?.find(topic => topic.id === filter)
+        const chosenFilter = itemTypes?.find(itemType => itemType.id === filter)
         if (chosenFilter) {
             setButtonText(chosenFilter.name)
         } else {
-            setButtonText("Filter Posts by Topic")
+            setButtonText("Filter Classifieds by Item Type")
         }
     }
 
     useEffect(() => {
-        getAllPostTopics().then(postTopicsArray => {
-            setPostTopics(postTopicsArray)
+        getAllItemTypes().then(itemTypesArray => {
+            setItemTypes(itemTypesArray)
         })
     }, [])
 
     useEffect(() => {
         setDropdownButtonText()
         if (filter > 0) {
-            setFilteredPosts(posts.filter(post => post.postTopicId === filter))
+            setFilteredClassifieds(classifieds.filter(classified => classified.itemTypeId === filter))
         } else if (filter === 0) {
-            setFilteredPosts(posts)
+            setFilteredClassifieds(classifieds)
         }
-    }, [posts, filter])
+    }, [classifieds, filter])
 
     return (
 
@@ -40,15 +40,15 @@ export const FilterPostsBTN = ({ posts, filteredPosts, setFilteredPosts }) => {
                 <li><a className="dropdown-item" id="0" onClick={event => {
                     setFilter(parseInt(event.target.id))
                 }}>
-                    All Posts
+                    All Classifieds
                 </a></li>
 
-                {postTopics.map(topic => {
+                {itemTypes.map(itemType => {
                     return (
-                        <li key={topic.id}><a className="dropdown-item" id={topic.id} onClick={event => {
+                        <li key={itemType.id}><a className="dropdown-item" id={itemType.id} onClick={event => {
                             setFilter(parseInt(event.target.id))
                         }}>
-                            {topic.name}
+                            {itemType.name}
                         </a></li>
                     )
                 })}

@@ -9,7 +9,7 @@ export const MyAccount = ({ currentUser }) => {
             <h1 className="account-name">{currentUser.username}</h1>
             <div className="account-container">
                 <div className="account-picture">
-                    <img src="https://i.ibb.co/jznVcXy/240-F-516275801-f3-Fsp17x6-HQK0x-Qg-DQEELo-Tu-ERO4-Ss-WV.jpg" />
+                    <img src={currentUser.imageUrl} />
                 </div>
 
                 <div className="account-info">
@@ -20,9 +20,24 @@ export const MyAccount = ({ currentUser }) => {
                     }}>
                         My Posts
                     </button>
+
+                    <button className="account-item btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate("/my_classifieds")
+                    }}>
+                        My Classifieds
+                    </button>
+
+                    <button className="account-item btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate("/my_events")
+                    }}>
+                        My Events
+                    </button>
+
                     {localStorage.getItem("dentside_user") ? (
                         <button
-                            className="account-item btn btn-light"
+                            className="account-item btn btn-danger"
                             onClick={event => {
                                 event.preventDefault()
                                 localStorage.removeItem("dentside_user");

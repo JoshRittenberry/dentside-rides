@@ -2,15 +2,18 @@ import "./ViewPost.css"
 import { useEffect, useState } from "react"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { getUserById } from "../../services/userService"
-import { Link, useParams } from "react-router-dom"
-import { getPostById } from "../../services/postService"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { deletePost, getPostById, reactToPost } from "../../services/postService"
 
-export const ViewPost = () => {
+export const ViewPost = ({ updateData }) => {
     const [currentUser, setCurrentUser] = useState({})
     const [post, setPost] = useState({})
     const [postLikes, setPostLikes] = useState(0)
+    const [postLikeObj, setPostLikeObj] = useState({})
+    const [userHasReacted, setUserHasReacted] = useState(false)
     const [userIsPostOwner, setUserIsPostOwner] = useState(false)
 
+    const navigate = useNavigate()
     const postId = useParams()
     let postTopicClassName = "post-topic-item post-topic-" + post.postTopicId
 
@@ -35,19 +38,73 @@ export const ViewPost = () => {
         return number
     }
 
+    const checkForUserReaction = () => {
+        const userReaction = post.postLikes?.find(postLike => postLike.userId === currentUser.id)
+        if (userReaction) {
+            setUserHasReacted(true)
+            setPostLikeObj(userReaction)
+        } else if (!userReaction) {
+            setUserHasReacted(false)
+            setPostLikeObj({})
+        }
+    }
+
+    const handlePostLikeIcon = () => {
+        if (userHasReacted && postLikeObj.status) {
+            return (
+                <i className="fa-solid fa-car"></i>
+            )
+        } else {
+            return (
+                <i className="fa-solid fa-arrow-up"></i>
+            )
+        }
+    }
+
+    const handlePostDislikeIcon = () => {
+        if (userHasReacted && !postLikeObj.status) {
+            return (
+                <i className="fa-solid fa-car-burst"></i>
+            )
+        } else {
+            return (
+                <i className="fa-solid fa-arrow-down"></i>
+            )
+        }
+    }
+
     const postAuthorButtons = () => {
         if (currentUser.id === post.userId) {
             return (
                 <div>
-                    <button className="view-post-btn btn btn-light">Edit</button>
-                    <button className="view-post-btn btn btn-light">Delete</button>
+                    <button className="view-post-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate(`/edit_post/${post.id}`)
+                    }}>Edit</button>
+                    <button className="view-post-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        navigate(`/my_posts`)
+                        deletePost(post.id).then(() => {
+                            updateData()
+                        })
+                    }}>Delete</button>
                 </div>
             )
         }
     }
 
+    const formatDate = (postDate) => {
+        const date = new Date(postDate);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString(undefined, options);
+    }
+
+
     useEffect(() => {
-        getUserById().then(userObj => {
+        const localDentsideUser = localStorage.getItem("dentside_user")
+        const dentsideUserId = JSON.parse(localDentsideUser)
+
+        getUserById(dentsideUserId.id).then(userObj => {
             setCurrentUser(userObj)
         })
 
@@ -56,7 +113,9 @@ export const ViewPost = () => {
             setPost(postObj)
             setPostLikes(calculatePostLikes(postObj.postLikes))
         })
-    }, [])
+
+        checkForUserReaction()
+    }, [post])
 
     return (
         <>
@@ -65,16 +124,26 @@ export const ViewPost = () => {
                 <header className="view-post-header">
                     <aside className="view-post-likes-container">
                         <div className="view-post-likes-item">
-                            <button className="post-like-btn">
-                                <i className="fa-solid fa-arrow-up"></i>
+                            <button className="post-like-btn" onClick={event => {
+                                event.preventDefault()
+                                reactToPost(currentUser.id, post.id, post.postLikes, true).then(() => {
+                                    updateData()
+                                })
+                            }}>
+                                {handlePostLikeIcon()}
                             </button>
                         </div>
 
                         <div className="view-post-likes-item">{postLikes}</div>
 
                         <div className="view-post-likes-item">
-                            <button className="post-dislike-btn">
-                                <i className="fa-solid fa-arrow-down"></i>
+                            <button className="post-dislike-btn" onClick={event => {
+                                event.preventDefault()
+                                reactToPost(currentUser.id, post.id, post.postLikes, false).then(() => {
+                                    updateData()
+                                })
+                            }}>
+                                {handlePostDislikeIcon()}
                             </button>
                         </div>
                     </aside>
@@ -92,10 +161,10 @@ export const ViewPost = () => {
                         </div>
                         <div className={postTopicClassName}>{post.postTopic?.name}</div>
                         <div className="view-post-info">
-                            <Link to={`/user_account/${post.user?.id}`}>
-                                <div>{post.user?.username}</div>
+                            <Link to={`/user_account/${post.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                                <div className="view-post-author-profile">{post.user?.username}</div>
                             </Link>
-                            <div>{post.postDate}</div>
+                            <div>{formatDate(post.postDate)}</div>
                         </div>
                     </div>
                 </header>

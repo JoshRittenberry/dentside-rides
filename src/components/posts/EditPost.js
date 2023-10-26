@@ -30,6 +30,9 @@ export const EditPost = ({ currentUser, updateData }) => {
 
         getPostOnlyById(postId.postId).then(postObj => {
             setPost(postObj)
+            if (postObj.userId != currentUser.id) {
+                navigate("/my_posts")
+            }
         })
     }, [currentUser])
 
@@ -107,7 +110,7 @@ export const EditPost = ({ currentUser, updateData }) => {
                         Save Changes
                     </button>
                     <button className="create-post-btn btn btn-light" onClick={() => {
-
+                        navigate("/my_posts")
                     }}>
                         Cancel
                     </button>

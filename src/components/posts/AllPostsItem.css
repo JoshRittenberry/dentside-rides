@@ -2,12 +2,18 @@
     display: flex;
     flex: column;
     background: #ebf4ff;
+    /* background: #c4deff; */
     border-radius: 20px;
     height: 18vh;
-    /* width: 95%; */
+    width: 99%;
     margin: auto;
     margin-top: 1%;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.post-container:hover {
+    background-color: #c4deff;
+    width: 100%;
 }
 
 .post-likes-container {
@@ -25,6 +31,14 @@
     border: none;
 }
 
+.post-like-btn:hover,
+.post-dislike-btn:hover {
+    background-color: #003478;
+    color: white;
+    border: none;
+    border-radius: 100%;
+}
+
 .post {
     display: flex;
     flex-direction: column;
@@ -37,6 +51,10 @@
 .post-info {
     display: flex;
     justify-content: space-between;
+}
+
+.post-author-profile:hover {
+    color: white;
 }
 
 .post-topic-item {

@@ -3,9 +3,10 @@ import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { AllPostsItem } from "./AllPostsItem"
 import { useNavigate } from "react-router-dom"
 import { FilterPostsBTN } from "./FilterPostsBTN"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { SortPostsBTN } from "./SortPostsBTN"
 
-export const AllPosts = ({ allPosts, currentUser, updateData }) => {
+export const AllPosts = ({ allPosts, setAllPosts, currentUser, updateData }) => {
     const [filteredPosts, setFilteredPosts] = useState([])
     const navigate = useNavigate()
 
@@ -22,6 +23,9 @@ export const AllPosts = ({ allPosts, currentUser, updateData }) => {
                         Create Post
                     </button>
                     <FilterPostsBTN posts={allPosts} filteredPosts={filteredPosts} setFilteredPosts={setFilteredPosts}/>
+
+                    {/* I want this but gawt dang its being a pain in my ass */}
+                    {/* <SortPostsBTN allPosts={allPosts} setAllPosts={setAllPosts} /> */}
                 </header>
 
                 {/* All Posts List Container */}

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { UserSideBar } from "../user-sidebar/UserSideBar"
-import { AllPostsItem } from "./AllPostsItem"
-import { useEffect, useState } from "react"
-import { FilterPostsBTN } from "./FilterPostsBTN"
+import { UserSideBar } from "../../user-sidebar/UserSideBar"
+import { AllPostsItem } from "../../posts/AllPostsItem"
+import { useState } from "react"
+import { FilterPostsBTN } from "../../posts/FilterPostsBTN"
 
 export const MyPosts = ({ myPosts, currentUser, updateData }) => {
     const [filteredPosts, setFilteredPosts] = useState([])
@@ -14,7 +14,7 @@ export const MyPosts = ({ myPosts, currentUser, updateData }) => {
             <div className="posts-container">
                 {/* All Posts Header */}
                 <header className="posts-header">
-                    <h1>Posts</h1>
+                    <h1>My Posts</h1>
                     <button className="btn btn-light" onClick={event => {
                         navigate("/new_post")
                     }}>

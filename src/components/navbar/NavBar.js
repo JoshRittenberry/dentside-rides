@@ -1,8 +1,19 @@
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
 export const NavBar = () => {
     const navigate = useNavigate()
+    const {pathname} = useLocation()
+
+    const isActive = (button) => {
+        if (pathname === button) {
+            return (
+                `navbar-btn-active`
+            )
+        } else {
+            return
+        }
+    }
 
     return (
         <nav className="navbar">
@@ -11,17 +22,33 @@ export const NavBar = () => {
             </div>
 
             {/* Home Button */}
-            <button className="navbar-item btn btn-light" onClick={event => {
+            <button className={`navbar-item btn btn-light ${isActive("/")}`} onClick={event => {
                 event.preventDefault()
                 navigate("/")
             }}>Home</button>
 
             {/* All Posts */}
-            <button className="navbar-item btn btn-light" onClick={event => {
+            <button className={`navbar-item btn btn-light ${isActive("/posts")}`} onClick={event => {
                 event.preventDefault()
                 navigate("/posts")
             }}>
                 Posts
+            </button>
+
+            {/* All Classifieds */}
+            <button className={`navbar-item btn btn-light ${isActive("/classifieds")}`} onClick={event => {
+                event.preventDefault()
+                navigate("/classifieds")
+            }}>
+                Classifieds
+            </button>
+
+            {/* All Events */}
+            <button className={`navbar-item btn btn-light ${isActive("/events")}`} onClick={event => {
+                event.preventDefault()
+                navigate("/events")
+            }}>
+                Events
             </button>
         </nav>
     )
