@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = () => {
+export const NavBar = ({ allPosts, allClassifieds, allEvents, allUsers }) => {
     const navigate = useNavigate()
     const {pathname} = useLocation()
 

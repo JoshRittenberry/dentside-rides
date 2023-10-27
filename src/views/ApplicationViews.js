@@ -4,7 +4,7 @@ import { AllPosts } from "../components/posts/AllPosts"
 import { NavBar } from "../components/navbar/NavBar"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../services/postService"
-import { getUserById } from "../services/userService"
+import { getAllUsersOnly, getUserById } from "../services/userService"
 import { ViewPost } from "../components/posts/ViewPost"
 import { CreatePost } from "../components/posts/CreatePost"
 import { EditPost } from "../components/posts/EditPost"
@@ -36,6 +36,7 @@ export const ApplicationViews = () => {
     const [allPosts, setAllPosts] = useState([])
     const [allClassifieds, setAllClassifieds] = useState([])
     const [allEvents, setAllEvents] = useState([])
+    const [allUsers, setAllUsers] = useState([])
     const [myPosts, setMyPosts] = useState([])
     const [myClassifieds, setMyClassifieds] = useState([])
     const [myEvents, setMyEvents] = useState([])
@@ -62,6 +63,10 @@ export const ApplicationViews = () => {
             const sortedByDateArray = array.sort((a, b) => new Date(a.eventStartDate) - new Date(b.eventStartDate))
             setAllEvents(sortedByDateArray)
             setMyEvents(sortedByDateArray.filter(event => event.userId === currentUser.id))
+        })
+
+        getAllUsersOnly().then(array => {
+            setAllUsers(array)
         })
     }
 
@@ -95,7 +100,7 @@ export const ApplicationViews = () => {
                 path="/"
                 element={
                     <>
-                        <NavBar />
+                        <NavBar allPosts={allPosts} allClassifieds={allClassifieds} allEvents={allEvents} allUsers={allUsers} />
                         {showUserSideBar && (
                             <UserSideBar currentUser={currentUser} />
                         )}
