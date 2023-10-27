@@ -54,7 +54,7 @@ export const ViewEvent = ({ currentUser, updateData}) => {
             <div className="view-event-container">
                 <header className="view-event-header">
                     {/* Author Profile Picture */}
-                    <Link to={`/user_account/${event.user?.id}`}>
+                    <Link to={`/user_account/${event.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                         <div className="view-event-profile-picture">
                             <img src={authorProfilePicture()} />
                         </div>
@@ -66,8 +66,8 @@ export const ViewEvent = ({ currentUser, updateData}) => {
                         </div>
                         <div className="view-event-location">{event.location}</div>
                         <div className="view-event-info">
-                            <Link to={`/user_account/${event.user?.id}`}>
-                                <div>{event.user?.username}</div>
+                            <Link to={`/user_account/${event.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                                <div className="view-event-author-profile">{event.user?.username}</div>
                             </Link>
                             <div>{event.eventDate}</div>
                         </div>

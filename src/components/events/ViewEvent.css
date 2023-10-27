@@ -26,6 +26,10 @@
     margin: 1em;
 }
 
+.view-event-author-profile:hover {
+    color: white;
+}
+
 .view-event-profile-picture img {
     width: 90%;
     border-radius: 25px;
