@@ -2,7 +2,7 @@ import "./ViewEvent.css"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { useEffect, useState } from "react"
-import { getEventById } from "../../services/eventService"
+import { deleteEvent, getEventById } from "../../services/eventService"
 
 export const ViewEvent = ({ currentUser, updateData}) => {
     const [event, setEvent] = useState({})
@@ -30,7 +30,10 @@ export const ViewEvent = ({ currentUser, updateData}) => {
                     </button>
 
                     <button className="view-event-btn btn btn-light" onClick={() => {
-
+                        deleteEvent(event.id).then(() => {
+                            updateData()
+                            navigate("/my_events")
+                        })
                     }}>
                         Delete
                     </button>

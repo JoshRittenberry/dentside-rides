@@ -55,3 +55,9 @@ export const uploadEventChanges = (event) => {
         body: JSON.stringify(eventObj)
     })
 }
+
+export const deleteEvent = (id) => {
+    return fetch(`http://localhost:8088/events/${id}`, {
+        method: "DELETE",
+    })
+}
