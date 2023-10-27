@@ -76,12 +76,12 @@ export const ViewPost = ({ updateData }) => {
     const postAuthorButtons = () => {
         if (currentUser.id === post.userId) {
             return (
-                <div>
+                <div className="view-post-btn-container">
                     <button className="view-post-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         navigate(`/edit_post/${post.id}`)
                     }}>Edit</button>
-                    <button className="view-post-btn btn btn-light" onClick={event => {
+                    <button className="view-post-btn-danger btn btn-danger" onClick={event => {
                         event.preventDefault()
                         navigate(`/my_posts`)
                         deletePost(post.id).then(() => {

@@ -15,7 +15,7 @@ export const MyPosts = ({ myPosts, currentUser, updateData }) => {
                 {/* All Posts Header */}
                 <header className="posts-header">
                     <h1>My Posts</h1>
-                    <button className="btn btn-light" onClick={event => {
+                    <button className="btn btn-light home-post-btn" onClick={event => {
                         navigate("/new_post")
                     }}>
                         Create Post

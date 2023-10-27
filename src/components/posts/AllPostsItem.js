@@ -123,7 +123,7 @@ export const AllPostsItem = ({ currentUser, postObj, updateData }) => {
                             <div className={postTopicClassName}>{postObj.postTopic.name}</div>
                             {userIsPostOwner && (
                                 <>
-                                    <button className="post-btn btn btn-light" onClick={event => {
+                                    <button className="btn btn-danger post-btn-danger" onClick={event => {
                                         event.preventDefault()
                                         deletePost(postObj.id).then(() => {
                                             updateData()

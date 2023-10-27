@@ -106,8 +106,20 @@
     width: 500px;
 }
 
-.post-btn {
+.post-btn, 
+.post-btn-danger{
     height: 25px;
     padding: 0px;
     width: 75px;
+}
+
+.post-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+}
+
+.post-btn:hover {
+    background-color: #ebf4ff;
+    border: #ebf4ff;
 }

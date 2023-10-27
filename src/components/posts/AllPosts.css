@@ -10,11 +10,13 @@
     z-index: 1;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    /* width: 95%; */
-    /* margin: 1%; */
     background-color: white;
+}
+
+.posts-header h2 {
+    flex-grow: 2;
 }
 
 .posts-header button,
@@ -24,4 +26,13 @@
 
 .posts-list {
     margin: 1%;
+}
+
+.filter-post-btn {
+    background-color: #003478;
+    color: white;
+}
+
+.filter-post-btn:hover {
+    background-color: #ebf4ff;
 }
