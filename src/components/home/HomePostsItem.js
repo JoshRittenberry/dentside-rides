@@ -46,6 +46,35 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
         return date.toLocaleDateString(undefined, options);
     }
 
+    const Tooltip = ({ children, text }) => {
+        const [visible, setVisible] = useState(false);
+
+        return (
+            <div style={{ position: 'relative' }}
+                onMouseEnter={() => setVisible(true)}
+                onMouseLeave={() => setVisible(false)}
+            >
+                {children}
+                {visible && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        padding: '8px',
+                        borderRadius: '4px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        zIndex: 10,
+                        marginTop: '4px'
+                    }}>
+                        {text}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
     useEffect(() => {
         setPostLikes(calculatePostLikes())
 
@@ -62,7 +91,7 @@ export const HomePostsItem = ({ currentUser, postObj, updateData }) => {
                 <div className="home-post">
                     <div className="home-post-profile-picture-container">
                         <Link to={`/user_account/${postObj.user.id}`}>
-                            <img className="home-post-profile-picture" src={postObj.user?.imageUrl} />
+                            <Tooltip text={postObj.user?.username}><img className="home-post-profile-picture" src={postObj.user?.imageUrl} /></Tooltip>
                         </Link>
                     </div>
 

@@ -99,6 +99,34 @@ export const ViewPost = ({ updateData }) => {
         return date.toLocaleDateString(undefined, options);
     }
 
+    const Tooltip = ({ children, text }) => {
+        const [visible, setVisible] = useState(false);
+
+        return (
+            <div style={{ position: 'relative' }}
+                onMouseEnter={() => setVisible(true)}
+                onMouseLeave={() => setVisible(false)}
+            >
+                {children}
+                {visible && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        padding: '8px',
+                        borderRadius: '4px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        zIndex: 10,
+                        marginTop: '4px'
+                    }}>
+                        {text}
+                    </div>
+                )}
+            </div>
+        );
+    }
 
     useEffect(() => {
         const localDentsideUser = localStorage.getItem("dentside_user")
@@ -149,7 +177,9 @@ export const ViewPost = ({ updateData }) => {
                 {/* Author Profile Picture */}
                 <Link to={`/user_account/${post.user?.id}`}>
                     <div className="view-post-profile-picture">
-                        <img src={authorProfilePicture()} />
+                        <Tooltip text={post.user?.username}>
+                            <img src={authorProfilePicture()} />
+                        </Tooltip>
                     </div>
                 </Link>
                 <div className="view-post-header-text">

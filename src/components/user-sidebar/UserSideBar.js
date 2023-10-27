@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./UserSideBar.css"
 import { MerchAd } from "./MerchAd"
 import { useEffect, useState } from "react"
@@ -6,6 +6,35 @@ import { useEffect, useState } from "react"
 export const UserSideBar = ({ currentUser }) => {
     const [userJoinYear, setUserJoinYear] = useState("")
     const navigate = useNavigate()
+
+    const Tooltip = ({ children, text }) => {
+        const [visible, setVisible] = useState(false);
+
+        return (
+            <div style={{ position: 'relative' }}
+                onMouseEnter={() => setVisible(true)}
+                onMouseLeave={() => setVisible(false)}
+            >
+                {children}
+                {visible && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        padding: '8px',
+                        borderRadius: '4px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        zIndex: 10,
+                        marginTop: '4px'
+                    }}>
+                        {text}
+                    </div>
+                )}
+            </div>
+        );
+    }
 
     useEffect(() => {
         const dateString = "2021-03-05";
@@ -16,7 +45,11 @@ export const UserSideBar = ({ currentUser }) => {
     return (
         <div className="usersidebar">
             <div className="usersidebar-picture">
-                <img src={currentUser.imageUrl} />
+                <Tooltip text={currentUser.username}>
+                    <Link to="/my_account">
+                        <img src={currentUser.imageUrl} />
+                    </Link>
+                </Tooltip>
             </div>
             <h3 className="usersidebar-item">{currentUser.username}</h3>
             <button className="usersidebar-item btn btn-light" onClick={event => {

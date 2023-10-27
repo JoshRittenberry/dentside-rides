@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
 export const NavBar = () => {
@@ -18,7 +18,9 @@ export const NavBar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <img src="https://i.ibb.co/Z82H6NW/F100-1812-FGEN-42.png" />
+                <Link to="/">
+                    <img src="https://i.ibb.co/Z82H6NW/F100-1812-FGEN-42.png" />
+                </Link>
             </div>
 
             {/* Home Button */}

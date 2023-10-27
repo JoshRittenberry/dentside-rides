@@ -42,6 +42,35 @@ export const ViewEvent = ({ currentUser, updateData }) => {
         }
     }
 
+    const Tooltip = ({ children, text }) => {
+        const [visible, setVisible] = useState(false);
+
+        return (
+            <div style={{ position: 'relative' }}
+                onMouseEnter={() => setVisible(true)}
+                onMouseLeave={() => setVisible(false)}
+            >
+                {children}
+                {visible && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        padding: '8px',
+                        borderRadius: '4px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        zIndex: 10,
+                        marginTop: '4px'
+                    }}>
+                        {text}
+                    </div>
+                )}
+            </div>
+        );
+    }
+
     useEffect(() => {
         getEventById(eventId.eventId).then(eventObj => {
             setEvent(eventObj)
@@ -54,7 +83,7 @@ export const ViewEvent = ({ currentUser, updateData }) => {
                 {/* Author Profile Picture */}
                 <Link to={`/user_account/${event.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                     <div className="view-event-profile-picture">
-                        <img src={authorProfilePicture()} />
+                        <Tooltip text={event.user?.username}><img src={authorProfilePicture()} /></Tooltip>
                     </div>
                 </Link>
                 <div className="view-event-header-text">
