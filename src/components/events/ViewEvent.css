@@ -48,6 +48,28 @@
     margin-left: 40px;
 }
 
+.view-event-btn-container {
+    display: flex;
+    width: 20%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-event-btn,
+.view-event-btn-danger {
+    width: 35%;
+    /* height: 50%; */
+    text-align: center;
+}
+
+.view-event-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+    margin-left: 40px;
+}
+
 .view-event-btn:hover {
     background-color: #c4deff;
 }

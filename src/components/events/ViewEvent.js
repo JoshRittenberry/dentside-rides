@@ -22,14 +22,14 @@ export const ViewEvent = ({ currentUser, updateData}) => {
     const eventAuthorButtons = () => {
         if (currentUser.id === event.userId) {
             return (
-                <div>
+                <div className="view-event-btn-container">
                     <button className="view-event-btn btn btn-light" onClick={() => {
                         navigate(`/edit_event/${event.id}`)
                     }}>
                         Edit
                     </button>
 
-                    <button className="view-event-btn btn btn-light" onClick={() => {
+                    <button className="view-event-btn-danger btn btn-danger" onClick={() => {
                         deleteEvent(event.id).then(() => {
                             updateData()
                             navigate("/my_events")

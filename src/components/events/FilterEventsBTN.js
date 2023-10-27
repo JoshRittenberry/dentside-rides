@@ -4,14 +4,14 @@ import { getAllEventTypes } from "../../services/eventService"
 export const FilterEventsBTN = ({ events, filteredEvents, setFilteredEvents }) => {
     const [eventTypes, setEventTypes] = useState([])
     const [filter, setFilter] = useState(0)
-    const [buttonText, setButtonText] = useState("Filter Classifieds by Topic")
+    const [buttonText, setButtonText] = useState("Filter Events by Event Type")
 
     const setDropdownButtonText = () => {
         const chosenFilter = eventTypes?.find(eventType => eventType.id === filter)
         if (chosenFilter) {
             setButtonText(chosenFilter.name)
         } else {
-            setButtonText("Filter Classifieds by Item Type")
+            setButtonText("Filter Events by Event Type")
         }
     }
 
@@ -33,14 +33,14 @@ export const FilterEventsBTN = ({ events, filteredEvents, setFilteredEvents }) =
     return (
 
         <div className="dropdown">
-            <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button className="btn btn-light dropdown-toggle filter-event-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {buttonText}
             </button>
             <ul className="dropdown-menu dropdown-menu">
                 <li><a className="dropdown-item" id="0" onClick={event => {
                     setFilter(parseInt(event.target.id))
                 }}>
-                    All Classifieds
+                    All Events
                 </a></li>
 
                 {eventTypes.map(eventType => {

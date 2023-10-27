@@ -179,8 +179,8 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
                 </div>
 
                 {/* Buttons on the bottom */}
-                <div className="create-classified-btn-container">
-                    <button className="create-classified-btn btn btn-light" onClick={event => {
+                <div className="create-event-btn-container">
+                    <button className="create-event-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         if (newEvent.eventStartDate == "" || newEvent.eventEndDate == "") {
                             alert("Please select an Event Start and End Date")
@@ -191,9 +191,9 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
                             })
                         }
                     }}>
-                        Save Classified
+                        Save Event
                     </button>
-                    <button className="create-classified-btn btn btn-light" onClick={() => {
+                    <button className="create-event-btn-danger btn btn-danger" onClick={() => {
                         navigate("/my_events")
                     }}>
                         Cancel
