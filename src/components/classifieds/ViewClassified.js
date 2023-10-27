@@ -73,8 +73,6 @@ export const ViewClassified = ({ updateData }) => {
     }, [])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="view-classified-container">
                 <header className="view-classified-header">
                     {/* Author Profile Picture */}
@@ -108,6 +106,5 @@ export const ViewClassified = ({ updateData }) => {
                     </div>
                 </section>
             </div>
-        </>
     )
 }

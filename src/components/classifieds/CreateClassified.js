@@ -69,8 +69,6 @@ export const CreateClassified = ({ currentUser, allClassifieds, updateData }) =>
     }, [newClassified])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="create-classified-container">
                 <h1>Create Classified</h1>
 
@@ -175,6 +173,5 @@ export const CreateClassified = ({ currentUser, allClassifieds, updateData }) =>
                     </button>
                 </div>
             </div>
-        </>
     )
 }

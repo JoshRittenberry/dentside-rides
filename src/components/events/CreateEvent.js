@@ -47,8 +47,6 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
     }, [newEvent])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="create-event-container">
                 <h1>Create Event</h1>
                 <div className="create-event-flex-container">
@@ -200,6 +198,5 @@ export const CreateEvent = ({ currentUser, allEvents, updateData }) => {
                     </button>
                 </div>
             </div>
-        </>
     )
 }

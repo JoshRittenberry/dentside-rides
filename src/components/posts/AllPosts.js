@@ -11,8 +11,6 @@ export const AllPosts = ({ allPosts, setAllPosts, currentUser, updateData }) => 
     const navigate = useNavigate()
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="posts-container">
                 {/* All Posts Header */}
                 <header className="posts-header">
@@ -38,6 +36,5 @@ export const AllPosts = ({ allPosts, setAllPosts, currentUser, updateData }) => 
                     })}
                 </section>
             </div>
-        </>
     )
 }

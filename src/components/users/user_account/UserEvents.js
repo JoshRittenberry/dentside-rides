@@ -10,7 +10,7 @@ export const UserEvents = ({ allEvents, currentUser, updateData }) => {
     const [userAccount, setUserAccount] = useState({})
     const [userEvents, setUserEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
-    
+
     const id = useParams()
     const navigate = useNavigate()
 
@@ -30,33 +30,30 @@ export const UserEvents = ({ allEvents, currentUser, updateData }) => {
     }, [userAccountId, allEvents])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
-            <div className="events-container">
-                {/* All Events Header */}
-                <header className="events-header">
-                    <h1>Events</h1>
-                    <button className="btn btn-light" onClick={event => {
-                        navigate("/new_event")
-                    }}>
-                        Create Event
-                    </button>
+        <div className="events-container">
+            {/* All Events Header */}
+            <header className="events-header">
+                <h1>Events</h1>
+                <button className="btn btn-light" onClick={event => {
+                    navigate("/new_event")
+                }}>
+                    Create Event
+                </button>
 
-                    <FilterEventsBTN events={userEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} />
+                <FilterEventsBTN events={userEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} />
 
-                    {/* I want this but gawt dang its being a pain in my ass */}
-                    {/* <SortEventsBTN allEvents={allEvents} setAllEvents={setAllEvents} /> */}
-                </header>
+                {/* I want this but gawt dang its being a pain in my ass */}
+                {/* <SortEventsBTN allEvents={allEvents} setAllEvents={setAllEvents} /> */}
+            </header>
 
-                {/* All Events List Container */}
-                <section className="events-list">
-                    {filteredEvents.map(eventObj => {
-                        return (
-                            <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
-                        )
-                    })}
-                </section>
-            </div>
-        </>
+            {/* All Events List Container */}
+            <section className="events-list">
+                {filteredEvents.map(eventObj => {
+                    return (
+                        <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
+                    )
+                })}
+            </section>
+        </div>
     )
 }

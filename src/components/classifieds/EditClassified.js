@@ -75,8 +75,6 @@ export const EditClassified = ({ currentUser, updateData }) => {
     }, [newClassified])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="create-classified-container">
                 <h1>Create Classified</h1>
 
@@ -181,6 +179,5 @@ export const EditClassified = ({ currentUser, updateData }) => {
                     </button>
                 </div>
             </div>
-        </>
     )
 }

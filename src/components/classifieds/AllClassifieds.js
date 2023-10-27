@@ -1,6 +1,5 @@
 import "./AllClassifieds.css"
 import { useNavigate } from "react-router-dom"
-import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { AllClassifiedsItem } from "./AllClassifiedsItem"
 import { FilterClassifiedsBTN } from "./FilterClassifiedsBTN"
 import { useState } from "react"
@@ -11,7 +10,6 @@ export const AllClassifieds = ({ allClassifieds, currentUser, updateData }) => {
 
     return (
         <>
-            <UserSideBar currentUser={currentUser} />
             <div className="classifieds-container">
                 {/* All Classifieds Header */}
                 <header className="classifieds-header">

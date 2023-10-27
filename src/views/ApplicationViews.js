@@ -41,6 +41,8 @@ export const ApplicationViews = () => {
     const [myEvents, setMyEvents] = useState([])
 
     const {pathname} = useLocation()
+    const myAccountString = "/my_account"
+    const userAccountString = "/user_account"
 
     // Exported Function to Update allPosts and myPosts
     const updateData = () => {
@@ -80,7 +82,7 @@ export const ApplicationViews = () => {
 
     useEffect(() => {
         setLocation(pathname)
-        if (pathname == "/my_account" || pathname == `/user_account/`) {
+        if (pathname.toLowerCase().includes(myAccountString.toLowerCase()) || pathname.toLowerCase().includes(userAccountString.toLowerCase())) {
             setShowUserSideBar(false)
         } else {
             setShowUserSideBar(true)

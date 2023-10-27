@@ -10,8 +10,6 @@ export const AllEvents = ({ allEvents, setAllEvents, currentUser, updateData}) =
     const navigate = useNavigate()
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="events-container">
                 {/* All Posts Header */}
                 <header className="events-header">
@@ -36,6 +34,5 @@ export const AllEvents = ({ allEvents, setAllEvents, currentUser, updateData}) =
                     })}
                 </section>
             </div>
-        </>
     )
 }

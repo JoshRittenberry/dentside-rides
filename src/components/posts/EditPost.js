@@ -41,8 +41,6 @@ export const EditPost = ({ currentUser, updateData }) => {
     }, [post])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="create-post-container">
                 <h1>Edit Post</h1>
                 <form className="create-post-form">
@@ -116,6 +114,5 @@ export const EditPost = ({ currentUser, updateData }) => {
                     </button>
                 </div>
             </div>
-        </>
     )
 }

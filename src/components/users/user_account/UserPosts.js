@@ -30,24 +30,21 @@ export const UserPosts = ({ allPosts, currentUser, updateData }) => {
     }, [userAccountId, allPosts])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
-            <div className="posts-container">
-                {/* All Posts Header */}
-                <header className="posts-header">
-                    <h1>{userAccount.username}'s Posts</h1>
-                    <FilterPostsBTN posts={userPosts} filteredPosts={filteredPosts} setFilteredPosts={setFilteredPosts} />
-                </header>
+        <div className="posts-container">
+            {/* All Posts Header */}
+            <header className="posts-header">
+                <h1>{userAccount.username}'s Posts</h1>
+                <FilterPostsBTN posts={userPosts} filteredPosts={filteredPosts} setFilteredPosts={setFilteredPosts} />
+            </header>
 
-                {/* All Posts List Container */}
-                <section className="posts-list">
-                    {filteredPosts.map(postObj => {
-                        return (
-                            <AllPostsItem currentUser={currentUser} postObj={postObj} updateData={updateData} key={postObj.id} />
-                        )
-                    })}
-                </section>
-            </div>
-        </>
+            {/* All Posts List Container */}
+            <section className="posts-list">
+                {filteredPosts.map(postObj => {
+                    return (
+                        <AllPostsItem currentUser={currentUser} postObj={postObj} updateData={updateData} key={postObj.id} />
+                    )
+                })}
+            </section>
+        </div>
     )
 }
