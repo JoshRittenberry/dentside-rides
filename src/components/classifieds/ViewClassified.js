@@ -27,7 +27,7 @@ export const ViewClassified = ({ updateData }) => {
     const classifiedAuthorButtons = () => {
         if (currentUser.id === classified.userId) {
             return (
-                <div>
+                <div className="view-classified-btn-container">
                     <button className="view-classified-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         navigate(`/edit_classified/${classified.id}`)
@@ -35,7 +35,7 @@ export const ViewClassified = ({ updateData }) => {
                         Edit
                     </button>
 
-                    <button className="view-classified-btn btn btn-light" onClick={event => {
+                    <button className="view-classified-btn-danger btn btn-danger" onClick={event => {
                         event.preventDefault()
                         deleteClassified(classified.id).then(() => {
                             updateData()

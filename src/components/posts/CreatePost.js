@@ -125,7 +125,7 @@ export const CreatePost = ({ currentUser, updateData }) => {
                     }}>
                         Save Post
                     </button>
-                    <button className="create-post-btn btn btn-light" onClick={() => {
+                    <button className="create-post-btn-danger btn btn-danger" onClick={() => {
                         navigate("/my_posts")
                     }}>
                         Cancel

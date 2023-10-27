@@ -105,3 +105,20 @@ fieldset {
     display: flex;
     justify-content: space-around;
 }
+
+.create-post-btn,
+.create-post-btn-danger {
+    width: 10%;
+}
+
+.create-post-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+}
+
+.create-post-btn:hover {
+    background-color: white;
+    border: white;
+    color: black;
+}

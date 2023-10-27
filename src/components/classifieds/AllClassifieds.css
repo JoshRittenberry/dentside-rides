@@ -10,7 +10,7 @@
     z-index: 1;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     /* width: 95%; */
     /* margin: 1%; */
@@ -31,4 +31,25 @@
     align-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.filter-classified-btn {
+    background-color: #003478;
+    color: white;
+}
+
+.filter-classified-btn:hover {
+    background-color: #ebf4ff;
+    border: #ebf4ff;
+}
+
+.create-classified-btn {
+    background-color: #003478;
+    color: white;
+}
+
+.create-classified-btn:hover {
+    background-color: #ebf4ff;
+    border: #ebf4ff;
+    color: black;
 }

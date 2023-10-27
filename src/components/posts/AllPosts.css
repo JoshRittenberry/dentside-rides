@@ -15,10 +15,6 @@
     background-color: white;
 }
 
-.posts-header h2 {
-    flex-grow: 2;
-}
-
 .posts-header button,
 .posts-header h1 {
     margin: 1%;

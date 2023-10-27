@@ -15,7 +15,7 @@ export const MyClassifieds = ({ myClassifieds, currentUser, updateData }) => {
                 {/* All Classifieds Header */}
                 <header className="classifieds-header">
                     <h1>My Classifieds</h1>
-                    <button className="btn btn-light" onClick={event => {
+                    <button className="btn btn-light create-classified-btn" onClick={event => {
                         navigate("/new_classified")
                     }}>
                         Create Classified

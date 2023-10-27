@@ -168,7 +168,7 @@ export const CreateClassified = ({ currentUser, allClassifieds, updateData }) =>
                     }}>
                         Save Classified
                     </button>
-                    <button className="create-classified-btn btn btn-light" onClick={() => {
+                    <button className="create-classified-btn-danger btn btn-danger" onClick={() => {
 
                     }}>
                         Cancel

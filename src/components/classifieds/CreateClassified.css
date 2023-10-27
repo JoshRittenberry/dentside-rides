@@ -122,6 +122,23 @@
     justify-content: space-around;
 }
 
+.create-classified-btn,
+.create-classified-btn-danger {
+    width: 10%;
+}
+
+.create-classified-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+}
+
+.create-classified-btn:hover {
+    background-color: white;
+    border: white;
+    color: black;
+}
+
 .carousel-item img {
     /* width: 500px; */
     /* height: 500px; */
