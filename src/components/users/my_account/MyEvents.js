@@ -13,7 +13,7 @@ export const MyEvents = ({ myEvents, currentUser, updateData }) => {
             {/* All Posts Header */}
             <header className="events-header">
                 <h1>My Events</h1>
-                <button className="btn btn-light" onClick={event => {
+                <button className="btn btn-light create-event-btn" onClick={event => {
                     navigate("/new_event")
                 }}>
                     Create Event

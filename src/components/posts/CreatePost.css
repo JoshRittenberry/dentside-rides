@@ -38,6 +38,8 @@ fieldset {
 /* BRO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 .create-post-title-container {
     float: left;
+    background-color: yellow;
+    width: 75%;
 }
 
 .create-post-topic-container {
@@ -46,7 +48,7 @@ fieldset {
 
 .create-post-title {
     float: left;
-    width: 60%;
+    width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: 1px solid #e1e1e1;

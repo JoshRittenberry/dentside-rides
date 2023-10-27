@@ -1,3 +1,12 @@
+.view-account {
+    background-color: #c4deff;
+    height: 75vh;
+    margin: 4%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 25px;
+}
+
 .account-name {
     text-align: center;
     margin: 1%;
@@ -5,18 +14,31 @@
 
 .account-container {
     display: flex;
+    justify-content: space-around;
     justify-content: center;
+    width: 95%;
+    height: 85%;
+    margin: auto;
 }
 
-.account-picture img {
-    width: 40%;
+.account-picture-container {
+    width: 500px;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.account-picture-container img {
+    width: 100%;
     border-radius: 100%;
 }
 
 .account-info {
+    width: 15%;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 1%;
 }

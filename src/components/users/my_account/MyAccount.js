@@ -5,15 +5,14 @@ export const MyAccount = ({ currentUser }) => {
     const navigate = useNavigate()
 
     return (
-        <>
+        <div className="view-account">
             <h1 className="account-name">{currentUser.username}</h1>
             <div className="account-container">
-                <div className="account-picture">
+                <div className="account-picture-container">
                     <img src={currentUser.imageUrl} />
                 </div>
 
                 <div className="account-info">
-                    <h3 className="account-item">{currentUser.username}</h3>
                     <button className="account-item btn btn-light" onClick={event => {
                         event.preventDefault()
                         navigate("/my_posts")
@@ -51,9 +50,7 @@ export const MyAccount = ({ currentUser }) => {
                         Member Since: {currentUser.joinDate}
                     </div>
                 </div>
-
             </div>
-
-        </>
+        </div>
     )
 }

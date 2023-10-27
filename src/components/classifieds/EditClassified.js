@@ -36,19 +36,19 @@ export const EditClassified = ({ currentUser, updateData }) => {
     const setClassifiedImages = (classifiedObjId) => {
         getClassifiedById(classifiedObjId).then(classified => {
             let index = 0
-    
-            let arrayOfObjects = new Array(6).fill({}).map(() => ({
+
+            let arrayOfObjects = new Array(5).fill({}).map(() => ({
                 id: 0,
                 classifiedId: classified.id,
                 url: "",
             }));
-    
+
             classified.classifiedImages.map(imageObj => {
                 arrayOfObjects[index].id = imageObj.id
                 arrayOfObjects[index].url = imageObj.url
                 index++
             })
-    
+
             setNewClassifiedImages(arrayOfObjects)
         })
 
@@ -75,109 +75,122 @@ export const EditClassified = ({ currentUser, updateData }) => {
     }, [newClassified])
 
     return (
-            <div className="create-classified-container">
-                <h1>Create Classified</h1>
+        <div className="create-classified-container">
+            <h1>Create Classified</h1>
 
-                <div className="create-classified-flex-container">
-                    {/* Classified Details on the left */}
-                    <form className="create-classified-form">
-                        <section className="create-classified-form-header">
-                            <input
-                                className="create-classified-title"
-                                type="text"
-                                placeholder="Classified Title"
-                                value={newClassified.title}
-                                onChange={event => {
-                                    event.preventDefault()
-                                    const newClassifiedCopy = { ...newClassified }
-                                    newClassifiedCopy.title = event.target.value
-                                    setNewClassified(newClassifiedCopy)
-                                }}
-                            />
-                            <input
-                                className="create-classified-price"
-                                type="number"
-                                min={0}
-                                placeholder="Price"
-                                value={newClassified.price}
-                                onChange={event => {
-                                    event.preventDefault()
-                                    if (event.target.value < 0) {
-                                        const newClassifiedCopy = { ...newClassified }
-                                        newClassifiedCopy.price = 0
-                                        setNewClassified(newClassifiedCopy)
-                                    } else {
-                                        const newClassifiedCopy = { ...newClassified }
-                                        newClassifiedCopy.price = event.target.value
-                                        setNewClassified(newClassifiedCopy)
-                                    }
-                                }}
-                            />
-                            <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {itemTypeText}
-                                </button>
-                                <ul className="dropdown-menu dropdown-menu-end">
-                                    {itemTypes.map(itemType => {
-                                        return (
-                                            <li key={itemType.id}><a className="dropdown-item" id={itemType.id} onClick={event => {
-                                                event.preventDefault()
-                                                const newClassifiedCopy = { ...newClassified }
-                                                newClassifiedCopy.itemTypeId = parseInt(event.target.id)
-                                                setNewClassified(newClassifiedCopy)
-                                            }}>
-                                                {itemType.name}
-                                            </a></li>
-                                        )
-                                    })}
-                                </ul>
-                            </div>
-                        </section>
-
-                        <textarea
-                            className="create-classified-body"
+            <div className="create-classified-flex-container">
+                {/* Classified Details on the left */}
+                <form className="create-classified-form">
+                    <section className="create-classified-form-header">
+                        <input
+                            className="create-classified-title"
                             type="text"
-                            placeholder="Classified Body"
-                            value={newClassified.body}
+                            placeholder="Classified Title"
+                            value={newClassified.title}
                             onChange={event => {
                                 event.preventDefault()
                                 const newClassifiedCopy = { ...newClassified }
-                                newClassifiedCopy.body = event.target.value
+                                newClassifiedCopy.title = event.target.value
                                 setNewClassified(newClassifiedCopy)
                             }}
                         />
+                        <input
+                            className="create-classified-price"
+                            type="number"
+                            min={0}
+                            placeholder="Price"
+                            value={newClassified.price}
+                            onChange={event => {
+                                event.preventDefault()
+                                if (event.target.value < 0) {
+                                    const newClassifiedCopy = { ...newClassified }
+                                    newClassifiedCopy.price = 0
+                                    setNewClassified(newClassifiedCopy)
+                                } else {
+                                    const newClassifiedCopy = { ...newClassified }
+                                    newClassifiedCopy.price = event.target.value
+                                    setNewClassified(newClassifiedCopy)
+                                }
+                            }}
+                        />
+                        <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {itemTypeText}
+                            </button>
+                            <ul className="dropdown-menu dropdown-menu-end">
+                                {itemTypes.map(itemType => {
+                                    return (
+                                        <li key={itemType.id}><a className="dropdown-item" id={itemType.id} onClick={event => {
+                                            event.preventDefault()
+                                            const newClassifiedCopy = { ...newClassified }
+                                            newClassifiedCopy.itemTypeId = parseInt(event.target.id)
+                                            setNewClassified(newClassifiedCopy)
+                                        }}>
+                                            {itemType.name}
+                                        </a></li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    </section>
 
-                        <CreateClassifiedImageInputs newClassifiedImages={newClassifiedImages} setNewClassifiedImages={setNewClassifiedImages} />
+                    <textarea
+                        className="create-classified-body"
+                        type="text"
+                        placeholder="Classified Body"
+                        value={newClassified.body}
+                        onChange={event => {
+                            event.preventDefault()
+                            const newClassifiedCopy = { ...newClassified }
+                            newClassifiedCopy.body = event.target.value
+                            setNewClassified(newClassifiedCopy)
+                        }}
+                    />
 
-                    </form>
+                    <input
+                        className="create-classified-location"
+                        type="text"
+                        placeholder="Classified Location"
+                        value={newClassified.location}
+                        onChange={event => {
+                            event.preventDefault()
+                            const newClassifiedCopy = { ...newClassified }
+                            newClassifiedCopy.location = event.target.value
+                            setNewClassified(newClassifiedCopy)
+                        }}
+                    />
 
-                    {/* Classified Pictures on the right */}
-                    <form className="create-classified-form">
-                        <h1>Classified Images</h1>
+                    <CreateClassifiedImageInputs newClassifiedImages={newClassifiedImages} setNewClassifiedImages={setNewClassifiedImages} />
 
-                        <section className="create-">
-                            <ClassifiedImageCarousel newClassifiedImages={newClassifiedImages} />
-                        </section>
-                    </form>
-                </div>
+                </form>
 
-                {/* Buttons on the bottom */}
-                <div className="create-classified-btn-container">
-                    <button className="create-classified-btn btn btn-light" onClick={event => {
-                        event.preventDefault()
-                        uploadClassifiedChanges(newClassified, newClassifiedImages).then(() => {
-                            updateData()
-                            navigate("/classifieds")
-                        })
-                    }}>
-                        Save Classified
-                    </button>
-                    <button className="create-classified-btn btn btn-light" onClick={() => {
+                {/* Classified Pictures on the right */}
+                <form className="create-classified-form">
+                    <h1>Classified Images</h1>
 
-                    }}>
-                        Cancel
-                    </button>
-                </div>
+                    <section className="create-classified-image-container">
+                        <ClassifiedImageCarousel newClassifiedImages={newClassifiedImages} />
+                    </section>
+                </form>
             </div>
+
+            {/* Buttons on the bottom */}
+            <div className="create-classified-btn-container">
+                <button className="create-classified-btn btn btn-light" onClick={event => {
+                    event.preventDefault()
+                    uploadClassifiedChanges(newClassified, newClassifiedImages).then(() => {
+                        updateData()
+                        navigate("/classifieds")
+                    })
+                }}>
+                    Save Classified
+                </button>
+                <button className="create-classified-btn btn btn-light" onClick={() => {
+
+                }}>
+                    Cancel
+                </button>
+            </div>
+        </div>
     )
 }
