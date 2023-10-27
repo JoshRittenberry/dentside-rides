@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { useState } from "react"
 import { AllEventsItem } from "./AllEventsItem"
+import { FilterEventsBTN } from "./FilterEventsBTN"
 
 export const AllEvents = ({ allEvents, setAllEvents, currentUser, updateData}) => {
     const [filteredEvents, setFilteredEvents] = useState([])
@@ -20,7 +21,7 @@ export const AllEvents = ({ allEvents, setAllEvents, currentUser, updateData}) =
                     }}>
                         Create Event
                     </button>
-                    {/* <FilterPostsBTN events={allPosts} filteredPosts={filteredPosts} setFilteredPosts={setFilteredPosts} /> */}
+                    <FilterEventsBTN events={allEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} />
 
                     {/* I want this but gawt dang its being a pain in my ass */}
                     {/* <SortPostsBTN allPosts={allPosts} setAllPosts={setAllPosts} /> */}
@@ -28,7 +29,7 @@ export const AllEvents = ({ allEvents, setAllEvents, currentUser, updateData}) =
 
                 {/* All Posts List Container */}
                 <section className="events-list">
-                    {allEvents.map(eventObj => {
+                    {filteredEvents.map(eventObj => {
                         return (
                             <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
                         )

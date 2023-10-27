@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { UserSideBar } from "../../user-sidebar/UserSideBar"
 import { AllEventsItem } from "../../events/AllEventsItem"
 import { getUserById } from "../../../services/userService"
+import { FilterEventsBTN } from "../../events/FilterEventsBTN"
 
 export const UserEvents = ({ allEvents, currentUser, updateData }) => {
     const [userAccountId, setUserAccountId] = useState(0)
@@ -40,7 +41,8 @@ export const UserEvents = ({ allEvents, currentUser, updateData }) => {
                     }}>
                         Create Event
                     </button>
-                    {/* <FilterEventsBTN events={allEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} /> */}
+
+                    <FilterEventsBTN events={userEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} />
 
                     {/* I want this but gawt dang its being a pain in my ass */}
                     {/* <SortEventsBTN allEvents={allEvents} setAllEvents={setAllEvents} /> */}
@@ -48,7 +50,7 @@ export const UserEvents = ({ allEvents, currentUser, updateData }) => {
 
                 {/* All Events List Container */}
                 <section className="events-list">
-                    {userEvents.map(eventObj => {
+                    {filteredEvents.map(eventObj => {
                         return (
                             <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
                         )
