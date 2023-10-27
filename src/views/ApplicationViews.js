@@ -1,4 +1,4 @@
-import { Outlet, Routes, Route } from "react-router-dom"
+import { Outlet, Routes, Route, useLocation } from "react-router-dom"
 import { Home } from "../components/home/Home"
 import { AllPosts } from "../components/posts/AllPosts"
 import { NavBar } from "../components/navbar/NavBar"
@@ -26,8 +26,11 @@ import { MyEvents } from "../components/users/my_account/MyEvents"
 import { UserEvents } from "../components/users/user_account/UserEvents"
 import { CreateEvent } from "../components/events/CreateEvent"
 import { EditEvent } from "../components/events/EditEvent"
+import { UserSideBar } from "../components/user-sidebar/UserSideBar"
 
 export const ApplicationViews = () => {
+    const [location, setLocation] = useState("")
+    const [showUserSideBar, setShowUserSideBar] = useState(true)
     const [currentUserId, setCurrentUserId] = useState(0)
     const [currentUser, setCurrentUser] = useState({})
     const [allPosts, setAllPosts] = useState([])
@@ -36,6 +39,8 @@ export const ApplicationViews = () => {
     const [myPosts, setMyPosts] = useState([])
     const [myClassifieds, setMyClassifieds] = useState([])
     const [myEvents, setMyEvents] = useState([])
+
+    const {pathname} = useLocation()
 
     // Exported Function to Update allPosts and myPosts
     const updateData = () => {
@@ -73,6 +78,15 @@ export const ApplicationViews = () => {
         updateData()
     }, [currentUser])
 
+    useEffect(() => {
+        setLocation(pathname)
+        if (pathname == "/my_account" || pathname == `/user_account/`) {
+            setShowUserSideBar(false)
+        } else {
+            setShowUserSideBar(true)
+        }
+    }, [pathname])
+
     return (
         <Routes>
             <Route
@@ -80,6 +94,9 @@ export const ApplicationViews = () => {
                 element={
                     <>
                         <NavBar />
+                        {showUserSideBar && (
+                            <UserSideBar currentUser={currentUser} />
+                        )}
                         <Outlet />
                     </>
                 }

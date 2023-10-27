@@ -1,9 +1,17 @@
 import { useNavigate } from "react-router-dom"
 import "./UserSideBar.css"
 import { MerchAd } from "./MerchAd"
+import { useEffect, useState } from "react"
 
 export const UserSideBar = ({ currentUser }) => {
+    const [userJoinYear, setUserJoinYear] = useState("")
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const dateString = "2021-03-05";
+        const year = dateString.split("-")[0];
+        setUserJoinYear(year)
+    }, [currentUser])
 
     return (
         <div className="usersidebar">
@@ -52,7 +60,7 @@ export const UserSideBar = ({ currentUser }) => {
                 </button>
             ) : null}
             <div className="usersidebar-item">
-                Member Since: {currentUser.joinDate}
+                Member Since: {userJoinYear}
             </div>
         </div>
     )
