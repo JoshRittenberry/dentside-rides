@@ -1,22 +1,88 @@
-.container-login {
+/* Main container */
+main {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    /* align-items: center; */
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f6f7f9;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Image */
+.login-logo {
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+/* Form styles */
+.form-login {
+    background-color: #ffffff;
+    padding: 40px 60px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
     text-align: center;
 }
 
-.login-logo {
-    width: 30%;
+.form-login h1,
+.form-login h2 {
+    margin: 0;
+    color: #333;
+    font-weight: bold;
 }
 
+.form-login h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.form-login h2 {
+    margin-bottom: 40px;
+    font-size: 1.5em;
+}
+
+/* Input fields */
 .form-control {
-    margin: auto;
-    margin-top: 1%;
-    width: 40%;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+    transition: border 0.3s;
 }
 
-.form-group {
-    margin: auto;
-    margin-top: 1%;
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Checkbox */
+#isStaff {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Register button */
+.login-btn {
+    width: 100%;
+    padding: 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
 }
