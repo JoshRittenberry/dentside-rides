@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dentside-rides/static/css/main.0bba6ba3.css",
+    "main.js": "/dentside-rides/static/js/main.26227a42.js",
+    "index.html": "/dentside-rides/index.html",
+    "main.0bba6ba3.css.map": "/dentside-rides/static/css/main.0bba6ba3.css.map",
+    "main.26227a42.js.map": "/dentside-rides/static/js/main.26227a42.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0bba6ba3.css",
+    "static/js/main.26227a42.js"
+  ]
+}
