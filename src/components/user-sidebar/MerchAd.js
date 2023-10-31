@@ -37,7 +37,9 @@ export const MerchAd = () => {
 
     const navigateToClassified = (merchObjId) => {
         navigate(`/classifieds/${merchObjId}`)
-        window.location.reload(false)
+
+        // I don't remember why I had this here... it seems that after deployment this is causing my localStorage to be cleared based on the useEffect in App.js
+        // window.location.reload(false)
     }
 
     return (
