@@ -1,10 +1,10 @@
-import { Outlet, Routes, Route } from "react-router-dom"
+import { Outlet, Routes, Route, useLocation } from "react-router-dom"
 import { Home } from "../components/home/Home"
 import { AllPosts } from "../components/posts/AllPosts"
 import { NavBar } from "../components/navbar/NavBar"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../services/postService"
-import { getUserById } from "../services/userService"
+import { getAllUsersOnly, getUserById } from "../services/userService"
 import { ViewPost } from "../components/posts/ViewPost"
 import { CreatePost } from "../components/posts/CreatePost"
 import { EditPost } from "../components/posts/EditPost"
@@ -26,16 +26,24 @@ import { MyEvents } from "../components/users/my_account/MyEvents"
 import { UserEvents } from "../components/users/user_account/UserEvents"
 import { CreateEvent } from "../components/events/CreateEvent"
 import { EditEvent } from "../components/events/EditEvent"
+import { UserSideBar } from "../components/user-sidebar/UserSideBar"
 
 export const ApplicationViews = () => {
+    const [location, setLocation] = useState("")
+    const [showUserSideBar, setShowUserSideBar] = useState(true)
     const [currentUserId, setCurrentUserId] = useState(0)
     const [currentUser, setCurrentUser] = useState({})
     const [allPosts, setAllPosts] = useState([])
     const [allClassifieds, setAllClassifieds] = useState([])
     const [allEvents, setAllEvents] = useState([])
+    const [allUsers, setAllUsers] = useState([])
     const [myPosts, setMyPosts] = useState([])
     const [myClassifieds, setMyClassifieds] = useState([])
     const [myEvents, setMyEvents] = useState([])
+
+    const {pathname} = useLocation()
+    const myAccountString = "/my_account"
+    const userAccountString = "/user_account"
 
     // Exported Function to Update allPosts and myPosts
     const updateData = () => {
@@ -56,6 +64,10 @@ export const ApplicationViews = () => {
             setAllEvents(sortedByDateArray)
             setMyEvents(sortedByDateArray.filter(event => event.userId === currentUser.id))
         })
+
+        getAllUsersOnly().then(array => {
+            setAllUsers(array)
+        })
     }
 
     useEffect(() => {
@@ -73,13 +85,25 @@ export const ApplicationViews = () => {
         updateData()
     }, [currentUser])
 
+    useEffect(() => {
+        setLocation(pathname)
+        if (pathname.toLowerCase().includes(myAccountString.toLowerCase()) || pathname.toLowerCase().includes(userAccountString.toLowerCase())) {
+            setShowUserSideBar(false)
+        } else {
+            setShowUserSideBar(true)
+        }
+    }, [pathname])
+
     return (
         <Routes>
             <Route
                 path="/"
                 element={
                     <>
-                        <NavBar />
+                        <NavBar allPosts={allPosts} allClassifieds={allClassifieds} allEvents={allEvents} allUsers={allUsers} />
+                        {showUserSideBar && (
+                            <UserSideBar currentUser={currentUser} />
+                        )}
                         <Outlet />
                     </>
                 }

@@ -38,6 +38,8 @@ fieldset {
 /* BRO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 .create-post-title-container {
     float: left;
+    background-color: yellow;
+    width: 75%;
 }
 
 .create-post-topic-container {
@@ -46,7 +48,7 @@ fieldset {
 
 .create-post-title {
     float: left;
-    width: 60%;
+    width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     border: 1px solid #e1e1e1;
@@ -104,4 +106,21 @@ fieldset {
 .create-post-btn-container {
     display: flex;
     justify-content: space-around;
+}
+
+.create-post-btn,
+.create-post-btn-danger {
+    width: 10%;
+}
+
+.create-post-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+}
+
+.create-post-btn:hover {
+    background-color: white;
+    border: white;
+    color: black;
 }

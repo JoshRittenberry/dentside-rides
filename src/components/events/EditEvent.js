@@ -51,8 +51,6 @@ export const EditEvent = ({ currentUser, allEvents, updateData }) => {
     }, [newEvent])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="create-event-container">
                 <h1>Create Event</h1>
                 <div className="create-event-flex-container">
@@ -183,8 +181,8 @@ export const EditEvent = ({ currentUser, allEvents, updateData }) => {
                 </div>
 
                 {/* Buttons on the bottom */}
-                <div className="create-classified-btn-container">
-                    <button className="create-classified-btn btn btn-light" onClick={event => {
+                <div className="create-event-btn-container">
+                    <button className="create-event-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         if (newEvent.eventStartDate == "" || newEvent.eventEndDate == "") {
                             alert("Please select an Event Start and End Date")
@@ -197,13 +195,12 @@ export const EditEvent = ({ currentUser, allEvents, updateData }) => {
                     }}>
                         Save Classified
                     </button>
-                    <button className="create-classified-btn btn btn-light" onClick={() => {
+                    <button className="create-event-btn-danger btn btn-danger" onClick={() => {
                         navigate("/my_events")
                     }}>
                         Cancel
                     </button>
                 </div>
             </div>
-        </>
     )
 }

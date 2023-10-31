@@ -7,11 +7,12 @@
 }
 
 .navbar-logo {
+    margin-left: 3%;
     margin-right: 5%;
 }
 
 .navbar-logo img {
-    width: 100px;
+    width: 75px;
 }
 
 .navbar-item {
@@ -20,4 +21,5 @@
 
 .navbar-btn-active {
     background-color: #c6c7c8;
+    border: #c6c7c8;
 }

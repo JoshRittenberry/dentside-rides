@@ -27,7 +27,7 @@ export const Home = ({ currentUser, allPosts, allClassifieds, allEvents, updateD
         const upcomingFourEvents = sortedEvents.slice(0, 4)
         setUpcomingEvents(upcomingFourEvents)
     }
-    
+
     useEffect(() => {
         getNewestPosts()
         getNewestClassifieds()
@@ -35,40 +35,37 @@ export const Home = ({ currentUser, allPosts, allClassifieds, allEvents, updateD
     }, [currentUser, allPosts, allClassifieds, allEvents])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
-            <div className="home-container">
-                <section className="home-posts-list">
-                    <h2>Newest Posts</h2>
-                    {newestPosts.map(postObj => {
-                        return (
-                            <HomePostsItem currentUser={currentUser} postObj={postObj} updateData={updateData} key={postObj.id} />
-                        )
-                    })}
-                </section>
-                <section className="home-bottom">
-                    <div className="home-classifieds-container">
-                        <h2>Newest Classifieds</h2>
-                        <div className="home-classifieds-list">
-                            {newestClassifieds.map(classifiedObj => {
-                                return (
-                                    <HomeClassifiedItem currentUser={currentUser} classifiedObj={classifiedObj} updateData={updateData} key={classifiedObj.id} />
-                                )
-                            })}
-                        </div>
+        <div className="home-container">
+            <section className="home-posts-list">
+                <h2>Newest Posts</h2>
+                {newestPosts.map(postObj => {
+                    return (
+                        <HomePostsItem currentUser={currentUser} postObj={postObj} updateData={updateData} key={postObj.id} />
+                    )
+                })}
+            </section>
+            <section className="home-bottom">
+                <div className="home-classifieds-container">
+                    <h2>Newest Classifieds</h2>
+                    <div className="home-classifieds-list">
+                        {newestClassifieds.map(classifiedObj => {
+                            return (
+                                <HomeClassifiedItem currentUser={currentUser} classifiedObj={classifiedObj} updateData={updateData} key={classifiedObj.id} />
+                            )
+                        })}
                     </div>
-                    <div className="home-events-container">
-                        <h2>Upcoming Events</h2>
-                        <div className="home-events-list">
-                            {upcomingEvents.map(eventObj => {
-                                return (
-                                    <HomeEventItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
-                                )
-                            })}
-                        </div>
+                </div>
+                <div className="home-events-container">
+                    <h2>Upcoming Events</h2>
+                    <div className="home-events-list">
+                        {upcomingEvents.map(eventObj => {
+                            return (
+                                <HomeEventItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
+                            )
+                        })}
                     </div>
-                </section>
-            </div>
-        </>
+                </div>
+            </section>
+        </div>
     )
 }

@@ -53,11 +53,13 @@
 
 .home-post-btn {
     background-color: #003478;
+    border: #003478;
     color: white;
 }
 
 .home-post-btn:hover {
     background-color: #ebf4ff;
+    border: #ebf4ff;
 }
 
 .home-post-date {

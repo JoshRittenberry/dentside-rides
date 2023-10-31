@@ -50,6 +50,28 @@
     margin-left: 40px;
 }
 
+.view-classified-btn-container {
+    display: flex;
+    width: 20%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-classified-btn,
+.view-classified-btn-danger {
+    width: 35%;
+    /* height: 50%; */
+    text-align: center;
+}
+
+.view-classified-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+    margin-left: 40px;
+}
+
 .view-classified-btn:hover {
     background-color: #c4deff;
 }

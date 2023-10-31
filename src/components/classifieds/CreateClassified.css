@@ -53,6 +53,17 @@
     transition: border-color 0.3s ease;
 }
 
+.create-classified-location {
+    width: 100%;
+    margin-top: 1em;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
 .create-classified-image-url {
     width: 100%;
     margin-top: 1em;
@@ -87,7 +98,9 @@
 
 .create-classified-title:focus,
 .create-classified-price:focus,
-.create-classified-body:focus {
+.create-classified-body:focus,
+.create-classified-location:focus,
+.create-classified-image-url:focus {
     border-color: #007bff;
     outline: none;
 }
@@ -122,7 +135,34 @@
     justify-content: space-around;
 }
 
+.create-classified-btn,
+.create-classified-btn-danger {
+    width: 10%;
+}
+
+.create-classified-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+}
+
+.create-classified-btn:hover {
+    background-color: white;
+    border: white;
+    color: black;
+}
+
+.create-classified-image-container {
+    /* margin-top: 10%; */
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    display: inline-block;
+    object-fit: cover;
+    object-position: center;
+}
+
 .carousel-item img {
-    /* width: 500px; */
-    /* height: 500px; */
+    width: 100%;
+    height: 100%;
 }

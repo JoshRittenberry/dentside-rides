@@ -57,7 +57,25 @@
     justify-content: space-between;
 }
 
+.view-post-btn-container {
+    display: flex;
+    width: 20%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-post-btn,
+.view-post-btn-danger {
+    width: 35%;
+    /* height: 50%; */
+    text-align: center;
+}
+
 .view-post-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
     margin-left: 40px;
 }
 

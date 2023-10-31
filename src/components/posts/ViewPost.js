@@ -76,12 +76,12 @@ export const ViewPost = ({ updateData }) => {
     const postAuthorButtons = () => {
         if (currentUser.id === post.userId) {
             return (
-                <div>
+                <div className="view-post-btn-container">
                     <button className="view-post-btn btn btn-light" onClick={event => {
                         event.preventDefault()
                         navigate(`/edit_post/${post.id}`)
                     }}>Edit</button>
-                    <button className="view-post-btn btn btn-light" onClick={event => {
+                    <button className="view-post-btn-danger btn btn-danger" onClick={event => {
                         event.preventDefault()
                         navigate(`/my_posts`)
                         deletePost(post.id).then(() => {
@@ -99,6 +99,34 @@ export const ViewPost = ({ updateData }) => {
         return date.toLocaleDateString(undefined, options);
     }
 
+    const Tooltip = ({ children, text }) => {
+        const [visible, setVisible] = useState(false);
+
+        return (
+            <div style={{ position: 'relative' }}
+                onMouseEnter={() => setVisible(true)}
+                onMouseLeave={() => setVisible(false)}
+            >
+                {children}
+                {visible && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        padding: '8px',
+                        borderRadius: '4px',
+                        backgroundColor: '#333',
+                        color: 'white',
+                        zIndex: 10,
+                        marginTop: '4px'
+                    }}>
+                        {text}
+                    </div>
+                )}
+            </div>
+        );
+    }
 
     useEffect(() => {
         const localDentsideUser = localStorage.getItem("dentside_user")
@@ -118,61 +146,60 @@ export const ViewPost = ({ updateData }) => {
     }, [post])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
-            <div className="view-post-container">
-                <header className="view-post-header">
-                    <aside className="view-post-likes-container">
-                        <div className="view-post-likes-item">
-                            <button className="post-like-btn" onClick={event => {
-                                event.preventDefault()
-                                reactToPost(currentUser.id, post.id, post.postLikes, true).then(() => {
-                                    updateData()
-                                })
-                            }}>
-                                {handlePostLikeIcon()}
-                            </button>
-                        </div>
-
-                        <div className="view-post-likes-item">{postLikes}</div>
-
-                        <div className="view-post-likes-item">
-                            <button className="post-dislike-btn" onClick={event => {
-                                event.preventDefault()
-                                reactToPost(currentUser.id, post.id, post.postLikes, false).then(() => {
-                                    updateData()
-                                })
-                            }}>
-                                {handlePostDislikeIcon()}
-                            </button>
-                        </div>
-                    </aside>
-
-                    {/* Author Profile Picture */}
-                    <Link to={`/user_account/${post.user?.id}`}>
-                        <div className="view-post-profile-picture">
-                            <img src={authorProfilePicture()} />
-                        </div>
-                    </Link>
-                    <div className="view-post-header-text">
-                        <div className="view-post-header-text-top">
-                            <h1 className="view-post-title">{post.title}</h1>
-                            {postAuthorButtons()}
-                        </div>
-                        <div className={postTopicClassName}>{post.postTopic?.name}</div>
-                        <div className="view-post-info">
-                            <Link to={`/user_account/${post.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                                <div className="view-post-author-profile">{post.user?.username}</div>
-                            </Link>
-                            <div>{formatDate(post.postDate)}</div>
-                        </div>
+        <div className="view-post-container">
+            <header className="view-post-header">
+                <aside className="view-post-likes-container">
+                    <div className="view-post-likes-item">
+                        <button className="post-like-btn" onClick={event => {
+                            event.preventDefault()
+                            reactToPost(currentUser.id, post.id, post.postLikes, true).then(() => {
+                                updateData()
+                            })
+                        }}>
+                            {handlePostLikeIcon()}
+                        </button>
                     </div>
-                </header>
 
-                <section className="view-post-body-container">
-                    <div className="view-post-body">{post.body}</div>
-                </section>
-            </div>
-        </>
+                    <div className="view-post-likes-item">{postLikes}</div>
+
+                    <div className="view-post-likes-item">
+                        <button className="post-dislike-btn" onClick={event => {
+                            event.preventDefault()
+                            reactToPost(currentUser.id, post.id, post.postLikes, false).then(() => {
+                                updateData()
+                            })
+                        }}>
+                            {handlePostDislikeIcon()}
+                        </button>
+                    </div>
+                </aside>
+
+                {/* Author Profile Picture */}
+                <Link to={`/user_account/${post.user?.id}`}>
+                    <div className="view-post-profile-picture">
+                        <Tooltip text={post.user?.username}>
+                            <img src={authorProfilePicture()} />
+                        </Tooltip>
+                    </div>
+                </Link>
+                <div className="view-post-header-text">
+                    <div className="view-post-header-text-top">
+                        <h1 className="view-post-title">{post.title}</h1>
+                        {postAuthorButtons()}
+                    </div>
+                    <div className={postTopicClassName}>{post.postTopic?.name}</div>
+                    <div className="view-post-info">
+                        <Link to={`/user_account/${post.user?.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                            <div className="view-post-author-profile">{post.user?.username}</div>
+                        </Link>
+                        <div>{formatDate(post.postDate)}</div>
+                    </div>
+                </div>
+            </header>
+
+            <section className="view-post-body-container">
+                <div className="view-post-body">{post.body}</div>
+            </section>
+        </div>
     )
 }

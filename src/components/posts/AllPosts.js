@@ -11,13 +11,12 @@ export const AllPosts = ({ allPosts, setAllPosts, currentUser, updateData }) => 
     const navigate = useNavigate()
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="posts-container">
                 {/* All Posts Header */}
                 <header className="posts-header">
                     <h1>Posts</h1>
-                    <button className="btn btn-light" onClick={event => {
+                    
+                    <button className="btn btn-light home-post-btn" onClick={event => {
                         navigate("/new_post")
                     }}>
                         Create Post
@@ -37,6 +36,5 @@ export const AllPosts = ({ allPosts, setAllPosts, currentUser, updateData }) => 
                     })}
                 </section>
             </div>
-        </>
     )
 }

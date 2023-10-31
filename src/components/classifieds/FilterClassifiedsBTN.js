@@ -33,7 +33,7 @@ export const FilterClassifiedsBTN = ({ classifieds, filteredClassifieds, setFilt
     return (
 
         <div className="dropdown">
-            <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button className="btn btn-light dropdown-toggle filter-classified-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {buttonText}
             </button>
             <ul className="dropdown-menu dropdown-menu">

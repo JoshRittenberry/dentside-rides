@@ -32,10 +32,10 @@ export const Login = () => {
     return (
         <main className="container-login">
             <section>
-                <img src="https://i.ibb.co/Z82H6NW/F100-1812-FGEN-42.png" className="login-logo"/>
+                <img src="https://i.ibb.co/Z82H6NW/F100-1812-FGEN-42.png" className="login-logo" />
                 <form className="form-login" onSubmit={handleLogin}>
                     <h1>Dentside Rides</h1>
-                    <h2>Please sign in</h2>
+                    <h2>Please Login</h2>
                     <fieldset>
                         <div className="form-group">
                             <input
@@ -52,7 +52,7 @@ export const Login = () => {
                     <fieldset>
                         <div className="form-group">
                             <button className="login-btn btn-info" type="submit">
-                                Sign in
+                                Login
                             </button>
                         </div>
                     </fieldset>

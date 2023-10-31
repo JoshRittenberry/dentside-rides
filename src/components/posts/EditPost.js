@@ -41,8 +41,6 @@ export const EditPost = ({ currentUser, updateData }) => {
     }, [post])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
             <div className="create-post-container">
                 <h1>Edit Post</h1>
                 <form className="create-post-form">
@@ -109,13 +107,12 @@ export const EditPost = ({ currentUser, updateData }) => {
                     }}>
                         Save Changes
                     </button>
-                    <button className="create-post-btn btn btn-light" onClick={() => {
+                    <button className="create-post-btn-danger btn btn-danger" onClick={() => {
                         navigate("/my_posts")
                     }}>
                         Cancel
                     </button>
                 </div>
             </div>
-        </>
     )
 }

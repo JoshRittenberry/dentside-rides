@@ -28,19 +28,22 @@ export const uploadClassified = (newClassified, newClassifiedImages) => {
         .then(newClassifiedResponse => {
             const classifiedId = newClassifiedResponse.id
 
-            const imageUploadPromises = newClassifiedImages.map(imgObj => {
-                if (imgObj.url) {
-                    const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
+            if (newClassifiedImages.length === 0) {
+                newClassifiedImages = [{
+                    classifiedId: classifiedId,
+                    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png',
+                }];
+            }
 
-                    return fetch(`http://localhost:8088/classifiedImages`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(imgObjCopy)
-                    });
-                }
-                return Promise.resolve()
+            const imageUploadPromises = newClassifiedImages.map(imgObj => {
+                const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
+                return fetch(`http://localhost:8088/classifiedImages`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(imgObjCopy)
+                });
             });
 
             return Promise.all(imageUploadPromises)

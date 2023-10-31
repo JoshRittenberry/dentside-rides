@@ -3,13 +3,14 @@ import { useEffect, useState } from "react"
 import { UserSideBar } from "../../user-sidebar/UserSideBar"
 import { AllEventsItem } from "../../events/AllEventsItem"
 import { getUserById } from "../../../services/userService"
+import { FilterEventsBTN } from "../../events/FilterEventsBTN"
 
 export const UserEvents = ({ allEvents, currentUser, updateData }) => {
     const [userAccountId, setUserAccountId] = useState(0)
     const [userAccount, setUserAccount] = useState({})
     const [userEvents, setUserEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
-    
+
     const id = useParams()
     const navigate = useNavigate()
 
@@ -29,32 +30,30 @@ export const UserEvents = ({ allEvents, currentUser, updateData }) => {
     }, [userAccountId, allEvents])
 
     return (
-        <>
-            <UserSideBar currentUser={currentUser} />
-            <div className="events-container">
-                {/* All Events Header */}
-                <header className="events-header">
-                    <h1>Events</h1>
-                    <button className="btn btn-light" onClick={event => {
-                        navigate("/new_event")
-                    }}>
-                        Create Event
-                    </button>
-                    {/* <FilterEventsBTN events={allEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} /> */}
+        <div className="events-container">
+            {/* All Events Header */}
+            <header className="events-header">
+                <h1>Events</h1>
+                <button className="btn btn-light" onClick={event => {
+                    navigate("/new_event")
+                }}>
+                    Create Event
+                </button>
 
-                    {/* I want this but gawt dang its being a pain in my ass */}
-                    {/* <SortEventsBTN allEvents={allEvents} setAllEvents={setAllEvents} /> */}
-                </header>
+                <FilterEventsBTN events={userEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} />
 
-                {/* All Events List Container */}
-                <section className="events-list">
-                    {userEvents.map(eventObj => {
-                        return (
-                            <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
-                        )
-                    })}
-                </section>
-            </div>
-        </>
+                {/* I want this but gawt dang its being a pain in my ass */}
+                {/* <SortEventsBTN allEvents={allEvents} setAllEvents={setAllEvents} /> */}
+            </header>
+
+            {/* All Events List Container */}
+            <section className="events-list">
+                {filteredEvents.map(eventObj => {
+                    return (
+                        <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
+                    )
+                })}
+            </section>
+        </div>
     )
 }

@@ -150,6 +150,23 @@
     justify-content: space-around;
 }
 
+.create-event-btn,
+.create-event-btn-danger {
+    width: 10%;
+}
+
+.create-event-btn {
+    background-color: #003478;
+    border: #003478;
+    color: white;
+}
+
+.create-event-btn:hover {
+    background-color: white;
+    border: white;
+    color: black;
+}
+
 .create-event-image-container {
     text-align: center;
     width: 100%;
