@@ -1,23 +1,23 @@
 export const getAllClassifieds = () => {
-    return fetch(`http://localhost:8088/classifieds?_expand=itemType&_expand=user&_embed=classifiedImages`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds?_expand=itemType&_expand=user&_embed=classifiedImages`).then(res => res.json())
 }
 
 export const getClassifiedById = (id) => {
-    return fetch(`http://localhost:8088/classifieds/${id}?_expand=itemType&_expand=user&_embed=classifiedImages`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds/${id}?_expand=itemType&_expand=user&_embed=classifiedImages`).then(res => res.json())
 }
 
 export const getClassifiedOnlyById = (id) => {
-    return fetch(`http://localhost:8088/classifieds/${id}`).then(res => res.json()) 
+    return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds/${id}`).then(res => res.json()) 
 }
 
 export const getAllItemTypes = () => {
-    return fetch(`http://localhost:8088/itemTypes`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/itemTypes`).then(res => res.json())
 }
 
 export const uploadClassified = (newClassified, newClassifiedImages) => {
     const classifiedObj = { ...newClassified }
 
-    return fetch(`http://localhost:8088/classifieds`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export const uploadClassified = (newClassified, newClassifiedImages) => {
 
             const imageUploadPromises = newClassifiedImages.map(imgObj => {
                 const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
-                return fetch(`http://localhost:8088/classifiedImages`, {
+                return fetch(`https://dentside-rides-api-copy.onrender.com/classifiedImages`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -53,7 +53,7 @@ export const uploadClassified = (newClassified, newClassifiedImages) => {
 export const uploadClassifiedChanges = (classified, classifiedImages) => {
     const classifiedObj = { ...classified }
 
-    return fetch(`http://localhost:8088/classifieds/${classified.id}`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds/${classified.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -69,7 +69,7 @@ export const uploadClassifiedChanges = (classified, classifiedImages) => {
                     if (imgObj.id > 0) {
                         const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
 
-                        return fetch(`http://localhost:8088/classifiedImages/${imgObj.id}`, {
+                        return fetch(`https://dentside-rides-api-copy.onrender.com/classifiedImages/${imgObj.id}`, {
                             method: "PUT",
                             headers: {
                                 "Content-Type": "application/json"
@@ -79,7 +79,7 @@ export const uploadClassifiedChanges = (classified, classifiedImages) => {
                     } else if (imgObj.id === 0) {
                         const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
     
-                        return fetch(`http://localhost:8088/classifiedImages`, {
+                        return fetch(`https://dentside-rides-api-copy.onrender.com/classifiedImages`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -90,7 +90,7 @@ export const uploadClassifiedChanges = (classified, classifiedImages) => {
                         console.log("THERE WAS AN ERROR AT classifiedService uploadClassifiedChanges()")
                     }
                 } else if (imgObj.id > 0 && imgObj.url == "") {
-                    return fetch(`http://localhost:8088/classifiedImages/${imgObj.id}`, {
+                    return fetch(`https://dentside-rides-api-copy.onrender.com/classifiedImages/${imgObj.id}`, {
                         method: "DELETE",
                     })
                 }
@@ -102,7 +102,7 @@ export const uploadClassifiedChanges = (classified, classifiedImages) => {
 }
 
 export const deleteClassified = (id) => {
-    return fetch(`http://localhost:8088/classifieds/${id}`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds/${id}`, {
         method: "DELETE",
     })
 }

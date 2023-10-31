@@ -1,23 +1,23 @@
 export const getAllPosts = () => {
-    return fetch(`http://localhost:8088/posts?_expand=postTopic&_embed=postLikes&_expand=user`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/posts?_expand=postTopic&_embed=postLikes&_expand=user`).then(res => res.json())
 }
 
 export const getPostById = (id) => {
-    return fetch(`http://localhost:8088/posts/${id}?_expand=postTopic&_embed=postLikes&_expand=user`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/posts/${id}?_expand=postTopic&_embed=postLikes&_expand=user`).then(res => res.json())
 }
 
 export const getPostOnlyById = (id) => {
-    return fetch(`http://localhost:8088/posts/${id}`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/posts/${id}`).then(res => res.json())
 }
 
 export const getAllPostTopics = () => {
-    return fetch(`http://localhost:8088/postTopics`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/postTopics`).then(res => res.json())
 }
 
 export const uploadPost = (newPost) => {
     const postObj = {...newPost}
     
-    return fetch(`http://localhost:8088/posts`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -27,7 +27,7 @@ export const uploadPost = (newPost) => {
 }
 
 export const uploadPostChanges = (post) => {
-    return fetch(`http://localhost:8088/posts/${post.id}`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/posts/${post.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export const uploadPostChanges = (post) => {
 }
 
 export const deletePost = (postId) => {
-    return fetch(`http://localhost:8088/posts/${postId}`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/posts/${postId}`, {
         method: "DELETE",
     })
 }
@@ -53,7 +53,7 @@ export const reactToPost = (userId, postId, postLikesArray, status) => {
 
     if (existingPostLike) {
         if (existingPostLike.status != status) {
-            return fetch(`http://localhost:8088/postLikes/${existingPostLike.id}`, {
+            return fetch(`https://dentside-rides-api-copy.onrender.com/postLikes/${existingPostLike.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -61,13 +61,13 @@ export const reactToPost = (userId, postId, postLikesArray, status) => {
                 body: JSON.stringify(postLike)
             }) 
         } else if (existingPostLike.status == status) {
-            return fetch(`http://localhost:8088/postLikes/${existingPostLike.id}`, {
+            return fetch(`https://dentside-rides-api-copy.onrender.com/postLikes/${existingPostLike.id}`, {
                 method: "DELETE",
             })
         }
 
     } else if (!existingPostLike) {
-        return fetch(`http://localhost:8088/postLikes`, {
+        return fetch(`https://dentside-rides-api-copy.onrender.com/postLikes`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
