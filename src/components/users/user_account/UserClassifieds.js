@@ -52,6 +52,11 @@ export const UserClassifieds = ({ allClassifieds, currentUser, updateData }) => 
                         <AllClassifiedsItem currentUser={currentUser} classifiedObj={classifiedObj} updateData={updateData} key={classifiedObj.id} />
                     )
                 })}
+                {filteredClassifieds.length == 0 && (
+                    <div className="no-user-posts">
+                        <h1>This user has not posted a classified</h1>
+                    </div>
+                )} 
             </section>
         </div>
     )
