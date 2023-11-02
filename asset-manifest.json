@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dentside-rides/static/css/main.df7edd5e.css",
-    "main.js": "/dentside-rides/static/js/main.843a4ab5.js",
+    "main.js": "/dentside-rides/static/js/main.05969aae.js",
     "index.html": "/dentside-rides/index.html",
     "main.df7edd5e.css.map": "/dentside-rides/static/css/main.df7edd5e.css.map",
-    "main.843a4ab5.js.map": "/dentside-rides/static/js/main.843a4ab5.js.map"
+    "main.05969aae.js.map": "/dentside-rides/static/js/main.05969aae.js.map"
   },
   "entrypoints": [
     "static/css/main.df7edd5e.css",
-    "static/js/main.843a4ab5.js"
+    "static/js/main.05969aae.js"
   ]
 }
