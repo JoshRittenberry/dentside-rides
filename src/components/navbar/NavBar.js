@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import "./NavBar.css"
+import { SearchBar } from "./SearchBar"
 
-export const NavBar = ({ allPosts, allClassifieds, allEvents, allUsers }) => {
+export const NavBar = ({ searchTerm, setSearchTerm, searchBarSuggestions }) => {
     const navigate = useNavigate()
     const {pathname} = useLocation()
 
@@ -52,6 +53,9 @@ export const NavBar = ({ allPosts, allClassifieds, allEvents, allUsers }) => {
             }}>
                 Events
             </button>
+
+            {/* Search Bar */}
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchBarSuggestions={searchBarSuggestions} />
         </nav>
     )
 }

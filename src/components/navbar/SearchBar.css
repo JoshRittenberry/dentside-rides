@@ -1,0 +1,88 @@
+.search_section {
+    flex-grow: 1;
+    /* Allow the search section to take up available space */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 3%;
+    /* Space on the right side, similar to .navbar-logo's margin on the left */
+}
+
+.search_input_div {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    /* Using the gray color from .navbar-btn-active for consistency */
+    border-radius: 5px;
+    /* Gentle curve to the corners for a modern look */
+    padding: 5px;
+    /* Padding around the search input */
+}
+
+.search_input {
+    border: none;
+    /* Removing the default border */
+    padding: 5px 10px;
+    /* Padding to the top/bottom and left/right respectively */
+    background-color: transparent;
+    /* Making the input's background same as its container */
+    /* color: #003478; */
+    /* Using the navbar's blue for text color for contrast against gray background */
+    outline: none;
+    /* Removing the default browser outline */
+    width: 200px;
+    /* Fixed width for the search box */
+    transition: width 0.3s;
+    /* Smooth transition for any width change, if you'd like to animate it in future */
+}
+
+.search_input:focus {
+    width: 250px;
+    /* Optionally, expand the input slightly when focused */
+}
+
+.search_result {
+    position: absolute;
+    top: 100%;
+    right: 3%;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 260px;
+    max-height: 400px;
+    overflow-y: scroll;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    /* Increase the z-index to a higher value */
+    display: block;
+    /* For debugging, making it always visible */
+}
+
+/* Optional: adding a border to the search results for clarity */
+.search_result:before {
+    content: "";
+    border-top: 2px solid #003478;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* .search_result::-webkit-scrollbar {
+    display: none;
+} */
+
+.search_suggestion_line {
+    padding: 10px;
+    display: block;
+    /* Making anchor tags display as block for full-width clickable area */
+    color: black;
+    /* Using the navbar's blue for text color */
+    text-decoration: none;
+    /* Removing the underline from links */
+    transition: background 0.2s;
+    /* Smooth background change transition */
+}
+
+.search_suggestion_line:hover {
+    background-color: #e0e1e2;
+    /* Slightly lighter gray for hover effect */
+}

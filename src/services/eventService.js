@@ -1,19 +1,19 @@
 import { eventWrapper } from "@testing-library/user-event/dist/utils"
 
 export const getAllEvents = () => {
-    return fetch(`http://localhost:8088/events?_expand=user&_expand=eventType`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events?_expand=user&_expand=eventType`).then(res => res.json())
 }
 
 export const getEventById = (id) => {
-    return fetch(`http://localhost:8088/events/${id}?_expand=user&_expand=eventType`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events/${id}?_expand=user&_expand=eventType`).then(res => res.json())
 }
 
 export const getEventOnlyById = (id) => {
-    return fetch(`http://localhost:8088/events/${id}`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events/${id}`).then(res => res.json())
 }
 
 export const getAllEventTypes = () => {
-    return fetch(`http://localhost:8088/eventTypes`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/eventTypes`).then(res => res.json())
 }
 
 export const uploadEvent = (newEvent) => {
@@ -27,7 +27,7 @@ export const uploadEvent = (newEvent) => {
         eventObj = newEvent
     }
 
-    return fetch(`http://localhost:8088/events`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -47,7 +47,7 @@ export const uploadEventChanges = (event) => {
         eventObj = event
     }
 
-    return fetch(`http://localhost:8088/events/${event.id}`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events/${event.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -57,7 +57,7 @@ export const uploadEventChanges = (event) => {
 }
 
 export const deleteEvent = (id) => {
-    return fetch(`http://localhost:8088/events/${id}`, {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events/${id}`, {
         method: "DELETE",
     })
 }

@@ -53,6 +53,11 @@ export const UserEvents = ({ allEvents, currentUser, updateData }) => {
                         <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
                     )
                 })}
+                {filteredEvents.length == 0 && (
+                    <div className="no-user-posts">
+                        <h1>This user has not posted an event</h1>
+                    </div>
+                )} 
             </section>
         </div>
     )

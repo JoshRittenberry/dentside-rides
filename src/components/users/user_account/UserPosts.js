@@ -44,6 +44,11 @@ export const UserPosts = ({ allPosts, currentUser, updateData }) => {
                         <AllPostsItem currentUser={currentUser} postObj={postObj} updateData={updateData} key={postObj.id} />
                     )
                 })}
+                {filteredPosts.length == 0 && (
+                    <div className="no-user-posts">
+                        <h1>This user has not made a post</h1>
+                    </div>
+                )} 
             </section>
         </div>
     )

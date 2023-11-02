@@ -33,6 +33,8 @@ export const ApplicationViews = () => {
     const [showUserSideBar, setShowUserSideBar] = useState(true)
     const [currentUserId, setCurrentUserId] = useState(0)
     const [currentUser, setCurrentUser] = useState({})
+    const [searchTerm, setSearchTerm] = useState("")
+    const [searchBarSuggestions, setSearchBarSuggestions] = useState([])
     const [allPosts, setAllPosts] = useState([])
     const [allClassifieds, setAllClassifieds] = useState([])
     const [allEvents, setAllEvents] = useState([])
@@ -94,13 +96,59 @@ export const ApplicationViews = () => {
         }
     }, [pathname])
 
+    useEffect(() => {
+        let suggestionsArray = []
+
+        if (searchTerm != "") {
+            // Set Posts
+            const filteredPosts = allPosts.filter(post =>
+                post.title.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            
+                filteredPosts.map(post => {
+                    suggestionsArray.push(post)
+                })
+            
+            // Set Classifieds
+            const filteredClassifieds = allClassifieds.filter(classified =>
+                classified.title.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+
+                filteredClassifieds.map(classified => {
+                    suggestionsArray.push(classified)
+                })
+
+            // Set Events
+            const filteredEvents = allEvents.filter(event =>
+                event.title.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+
+                filteredEvents.map(event => {
+                    suggestionsArray.push(event)
+                })
+
+            // Set Users
+            const filteredUsers = allUsers.filter(user =>
+                user.username.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+
+                filteredUsers.map(user => {
+                    suggestionsArray.push(user)
+                })
+            
+            setSearchBarSuggestions(suggestionsArray)
+        } else {
+            setSearchBarSuggestions([])
+        }
+    }, [searchTerm])
+
     return (
         <Routes>
             <Route
                 path="/"
                 element={
                     <>
-                        <NavBar allPosts={allPosts} allClassifieds={allClassifieds} allEvents={allEvents} allUsers={allUsers} />
+                        <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchBarSuggestions={searchBarSuggestions} />
                         {showUserSideBar && (
                             <UserSideBar currentUser={currentUser} />
                         )}

@@ -31,6 +31,11 @@ export const MyEvents = ({ myEvents, currentUser, updateData }) => {
                         <AllEventsItem currentUser={currentUser} eventObj={eventObj} updateData={updateData} key={eventObj.id} />
                     )
                 })}
+                {filteredEvents.length == 0 && (
+                    <div className="no-user-posts">
+                        <h1>You don't have any upcoming events</h1>
+                    </div>
+                )} 
             </section>
         </div>
     )

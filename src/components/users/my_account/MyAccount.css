@@ -42,3 +42,8 @@
     justify-content: space-around;
     margin: 1%;
 }
+
+.no-user-posts {
+    width: 100%;
+    text-align: center;
+}
