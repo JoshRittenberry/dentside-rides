@@ -21,7 +21,6 @@ export const Login = () => {
                         isStaff: user.isStaff,
                     })
                 )
-                window.alert("I Promise the webpage is loading, but it takes about a minute since I'm utilizing render.com to host my API for free :)")
                 navigate("/")
             } else {
                 window.alert("Invalid login")
@@ -51,7 +50,9 @@ export const Login = () => {
                     </fieldset>
                     <fieldset>
                         <div className="form-group">
-                            <button className="login-btn btn-info" type="submit">
+                            <button className="login-btn btn-info" type="submit" onClick={() => {
+                                window.alert("I Promise the webpage is loading, but it takes about a minute since I'm utilizing render.com to host my API for free :)")
+                            }}>
                                 Login
                             </button>
                         </div>
