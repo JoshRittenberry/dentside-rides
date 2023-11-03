@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { getUserById } from "../../../services/userService"
+import { UserScore } from "../UserScore"
 
 export const UserAccount = ({ currentUser }) => {
     const [userAccountId, setUserAccountId] = useState(0)
@@ -25,6 +26,7 @@ export const UserAccount = ({ currentUser }) => {
     return (
         <div className="view-account">
             <h1 className="account-name">{userAccount.username}</h1>
+            <UserScore userAccount={userAccount} />
             <div className="account-container">
                 <div className="account-picture-container">
                     <img src={userAccount.imageUrl} />

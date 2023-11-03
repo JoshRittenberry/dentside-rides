@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import "./MyAccount.css"
+import { UserScore } from "../UserScore"
 
 export const MyAccount = ({ currentUser }) => {
     const navigate = useNavigate()
@@ -7,6 +8,7 @@ export const MyAccount = ({ currentUser }) => {
     return (
         <div className="view-account">
             <h1 className="account-name">{currentUser.username}</h1>
+            <UserScore userAccount={currentUser} />
             <div className="account-container">
                 <div className="account-picture-container">
                     <img src={currentUser.imageUrl} />
