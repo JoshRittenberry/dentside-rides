@@ -16,6 +16,10 @@ export const getAllEventTypes = () => {
     return fetch(`https://dentside-rides-api-copy.onrender.com/eventTypes`).then(res => res.json())
 }
 
+export const getEventRSVPByEventId = (id) => {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/eventRSVP?eventId=${id}`).then(res => res.json())
+}
+
 export const uploadEvent = (newEvent) => {
     let eventObj = null
     
