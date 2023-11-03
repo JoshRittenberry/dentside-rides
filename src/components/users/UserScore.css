@@ -1,0 +1,9 @@
+.user-score-stars .fa-star {
+    color: white;
+    /* default empty color */
+}
+
+.user-score-stars .fa-star.filled {
+    color: gold;
+    /* filled star color */
+}

@@ -14,6 +14,10 @@ export const getAllPostTopics = () => {
     return fetch(`https://dentside-rides-api-copy.onrender.com/postTopics`).then(res => res.json())
 }
 
+export const getPostLikesByPostId = (id) => {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/postLikes?postId=${id}`).then(res => res.json())
+}
+
 export const uploadPost = (newPost) => {
     const postObj = {...newPost}
     

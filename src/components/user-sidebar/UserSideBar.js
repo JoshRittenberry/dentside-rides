@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import "./UserSideBar.css"
 import { MerchAd } from "./MerchAd"
 import { useEffect, useState } from "react"
+import { UserScore } from "../users/UserScore"
 
 export const UserSideBar = ({ currentUser }) => {
     const [userJoinYear, setUserJoinYear] = useState("")
@@ -50,6 +51,9 @@ export const UserSideBar = ({ currentUser }) => {
                         <img src={currentUser.imageUrl} />
                     </Link>
                 </Tooltip>
+            </div>
+            <div className="usersidebar-item">
+                <UserScore userAccount={currentUser} />
             </div>
             <h3 className="usersidebar-item">{currentUser.username}</h3>
             <button className="usersidebar-item btn btn-light" onClick={event => {
