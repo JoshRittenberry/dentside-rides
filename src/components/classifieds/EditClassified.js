@@ -180,13 +180,13 @@ export const EditClassified = ({ currentUser, updateData }) => {
                     event.preventDefault()
                     uploadClassifiedChanges(newClassified, newClassifiedImages).then(() => {
                         updateData()
-                        navigate("/classifieds")
+                        navigate("/my_classifieds")
                     })
                 }}>
                     Save Classified
                 </button>
-                <button className="create-classified-btn btn btn-light" onClick={() => {
-
+                <button className="create-classified-btn-danger btn btn-danger" onClick={() => {
+                    navigate("/my_classifieds")
                 }}>
                     Cancel
                 </button>
