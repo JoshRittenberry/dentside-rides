@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react"
-import { getEventRSVPByEventId } from "../../services/eventService"
 import { getUserById } from "../../services/userService"
 
-export const ViewEventRSVP = ({ eventId }) => {
-    const [eventRSVPs, setEventRSVPs] = useState([])
+export const ViewEventRSVP = ({ eventRSVP }) => {
     const [userRSVP, setUserRSVP] = useState([])
-    
-    useEffect(() => {
-        getEventRSVPByEventId(eventId).then(array => {
-            setEventRSVPs(array)
-        })
-    }, [eventId])
 
     useEffect(() => {
-        eventRSVPs.map(rsvp => {
-            getUserById(rsvp.userId).then(userObj => {
-                userRSVP.push(userObj)
-            })
-        })
-    }, [eventRSVPs])
+        // Fetch all user data in parallel
+        const fetchUsers = async () => {
+            const userPromises = eventRSVP.map(rsvp => getUserById(rsvp.userId))
+            const users = await Promise.all(userPromises)
+            setUserRSVP(users)
+        }
+
+        fetchUsers()
+    }, [eventRSVP])
 
     return (
         <div className="view-event-rsvp">
-            {userRSVP.map(userObj => {
-                return (
-                    <div>{userObj.username}</div>
-                )
-            })}
+            <h5 className="event-rsvp-header">RSVP List</h5>
+            {userRSVP.map((userObj, index) => (
+                <div key={index}>{userObj.username}</div>
+            ))}
         </div>
     )
 }
