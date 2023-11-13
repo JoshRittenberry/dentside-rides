@@ -2,10 +2,14 @@ import "./ViewEvent.css"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { UserSideBar } from "../user-sidebar/UserSideBar"
 import { useEffect, useState } from "react"
-import { deleteEvent, getEventById } from "../../services/eventService"
+import { deleteEvent, getEventById, createEventRSVP, deleteEventRSVP } from "../../services/eventService"
+import { ViewEventRSVP } from "./ViewEventRSVP"
 
 export const ViewEvent = ({ currentUser, updateData }) => {
     const [event, setEvent] = useState({})
+    const [eventRSVP, setEventRSVP] = useState([])
+    const [currentUserRSVP, setCurrentUserRSVP] = useState()
+    const [currentUserRSVPObj, setCurrentUserRSVPObj] = useState({})
 
     const eventId = useParams()
     const navigate = useNavigate()
@@ -19,31 +23,59 @@ export const ViewEvent = ({ currentUser, updateData }) => {
         }
     }
 
-    const eventAuthorButtons = () => {
-        if (currentUser.id === event.userId) {
-            return (
-                <div className="view-event-btn-container">
-                    <button className="view-event-btn btn btn-light" onClick={() => {
-                        navigate(`/edit_event/${event.id}`)
-                    }}>
-                        Edit
-                    </button>
-
-                    <button className="view-event-btn-danger btn btn-danger" onClick={() => {
-                        deleteEvent(event.id).then(() => {
+    const eventButtons = () => {
+        return (
+            <div className="view-event-btn-container">
+                {currentUserRSVP && (
+                    <button className="view-event-btn-danger btn btn-danger" onClick={event => {
+                        event.preventDefault()
+                        console.log("Attempting to delete RSVP")
+                        deleteEventRSVP(currentUserRSVPObj.id).then(() => {
                             updateData()
-                            navigate("/my_events")
+                            setCurrentUserRSVP(!currentUserRSVP)
                         })
                     }}>
-                        Delete
+                        UN-RSVP
                     </button>
-                </div>
-            )
-        }
+                )}
+
+                {!currentUserRSVP && (
+                    <button className="view-event-btn btn btn-light" onClick={event => {
+                        event.preventDefault()
+                        console.log("Attempting to create RSVP")
+                        createEventRSVP(currentUser.id, parseInt(eventId.eventId)).then(() => {
+                            updateData()
+                            setCurrentUserRSVP(!currentUserRSVP)
+                        })
+                    }}>
+                        RSVP
+                    </button>
+                )}
+
+                {currentUser.id === event.userId && (
+                    <>
+                        <button className="view-event-btn btn btn-light" onClick={() => {
+                            navigate(`/edit_event/${event.id}`)
+                        }}>
+                            Edit
+                        </button>
+
+                        <button className="view-event-btn-danger btn btn-danger" onClick={() => {
+                            deleteEvent(event.id).then(() => {
+                                updateData()
+                                navigate("/my_events")
+                            })
+                        }}>
+                            Delete
+                        </button>
+                    </>
+                )}
+            </div>
+        )
     }
 
     const Tooltip = ({ children, text }) => {
-        const [visible, setVisible] = useState(false);
+        const [visible, setVisible] = useState(false)
 
         return (
             <div style={{ position: 'relative' }}
@@ -68,14 +100,17 @@ export const ViewEvent = ({ currentUser, updateData }) => {
                     </div>
                 )}
             </div>
-        );
+        )
     }
 
     useEffect(() => {
         getEventById(eventId.eventId).then(eventObj => {
             setEvent(eventObj)
+            setEventRSVP(eventObj.eventRSVP)
+            setCurrentUserRSVP(eventObj.eventRSVP.some(rsvp => rsvp.userId === currentUser.id))
+            setCurrentUserRSVPObj(eventObj.eventRSVP.find(rsvp => rsvp.userId === currentUser.id))
         })
-    }, [])
+    }, [currentUserRSVP])
 
     return (
         <div className="view-event-container">
@@ -89,7 +124,7 @@ export const ViewEvent = ({ currentUser, updateData }) => {
                 <div className="view-event-header-text">
                     <div className="view-event-header-text-top">
                         <h1 className="view-event-title">{event.title}</h1>
-                        {eventAuthorButtons()}
+                        {eventButtons()}
                     </div>
                     <div className="view-event-location">{event.location}</div>
                     <div className="view-event-info">
@@ -102,6 +137,8 @@ export const ViewEvent = ({ currentUser, updateData }) => {
             </header>
 
             <section className="view-event-body-container">
+                <ViewEventRSVP eventRSVP={eventRSVP} setCurrentUserRSVPObj={setCurrentUserRSVPObj} currentUser={currentUser} />
+
                 <div className="view-event-body">{event.body}</div>
 
                 <section className="view-event-image-container">

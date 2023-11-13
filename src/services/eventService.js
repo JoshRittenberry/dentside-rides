@@ -5,7 +5,7 @@ export const getAllEvents = () => {
 }
 
 export const getEventById = (id) => {
-    return fetch(`https://dentside-rides-api-copy.onrender.com/events/${id}?_expand=user&_expand=eventType`).then(res => res.json())
+    return fetch(`https://dentside-rides-api-copy.onrender.com/events/${id}?_expand=user&_embed=eventType&_embed=eventRSVP`).then(res => res.json())
 }
 
 export const getEventOnlyById = (id) => {
@@ -18,6 +18,29 @@ export const getAllEventTypes = () => {
 
 export const getEventRSVPByEventId = (id) => {
     return fetch(`https://dentside-rides-api-copy.onrender.com/eventRSVP?eventId=${id}`).then(res => res.json())
+}
+
+export const createEventRSVP = (userId, eventId) => {
+    let rsvpObj = {
+        userId: userId,
+        eventId: eventId
+    }
+
+    return fetch(`https://dentside-rides-api-copy.onrender.com/eventRSVP`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(rsvpObj)
+    }).then(() => {
+        console.log("RSVP Created")
+    })
+}
+
+export const deleteEventRSVP = (id) => {
+    return fetch(`https://dentside-rides-api-copy.onrender.com/eventRSVP/${id}`, {
+        method: "DELETE",
+    })
 }
 
 export const uploadEvent = (newEvent) => {
