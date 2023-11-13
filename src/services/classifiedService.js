@@ -16,6 +16,7 @@ export const getAllItemTypes = () => {
 
 export const uploadClassified = (newClassified, newClassifiedImages) => {
     const classifiedObj = { ...newClassified }
+    let classifiedImages = newClassifiedImages.filter(imgObj => imgObj.url != "")
 
     return fetch(`https://dentside-rides-api-copy.onrender.com/classifieds`, {
         method: "POST",
@@ -28,22 +29,24 @@ export const uploadClassified = (newClassified, newClassifiedImages) => {
         .then(newClassifiedResponse => {
             const classifiedId = newClassifiedResponse.id
 
-            if (newClassifiedImages.length === 0) {
-                newClassifiedImages = [{
+            if (classifiedImages.length == 0) {
+                classifiedImages = [{
                     classifiedId: classifiedId,
                     url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/310px-Placeholder_view_vector.svg.png',
                 }];
             }
 
-            const imageUploadPromises = newClassifiedImages.map(imgObj => {
-                const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
-                return fetch(`https://dentside-rides-api-copy.onrender.com/classifiedImages`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(imgObjCopy)
-                });
+            const imageUploadPromises = classifiedImages.map(imgObj => {
+                if (imgObj.url != "") {
+                    const imgObjCopy = { ...imgObj, classifiedId: classifiedId }
+                    return fetch(`https://dentside-rides-api-copy.onrender.com/classifiedImages`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(imgObjCopy)
+                    })
+                }
             });
 
             return Promise.all(imageUploadPromises)

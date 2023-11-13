@@ -95,7 +95,7 @@ export const ViewClassified = ({ updateData }) => {
         getClassifiedById(classifiedId.classifiedId).then(classifiedObj => {
             setClassified(classifiedObj)
             setClassifiedImages(classifiedObj.classifiedImages)
-            if (classifiedObj.classifiedImages?.length > 2) {
+            if (classifiedObj.classifiedImages?.length > 1) {
                 setUseCarousel(true)
             }
         })
