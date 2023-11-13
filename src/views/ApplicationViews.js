@@ -20,7 +20,7 @@ import { MyPosts } from "../components/users/my_account/MyPosts"
 import { MyClassifieds } from "../components/users/my_account/MyClassifieds"
 import { UserClassifieds } from "../components/users/user_account/UserClassifieds"
 import { AllEvents } from "../components/events/AllEvents"
-import { getAllEvents } from "../services/eventService"
+import { getAllEventRSVPs, getAllEvents } from "../services/eventService"
 import { ViewEvent } from "../components/events/ViewEvent"
 import { MyEvents } from "../components/users/my_account/MyEvents"
 import { UserEvents } from "../components/users/user_account/UserEvents"
@@ -42,6 +42,7 @@ export const ApplicationViews = () => {
     const [myPosts, setMyPosts] = useState([])
     const [myClassifieds, setMyClassifieds] = useState([])
     const [myEvents, setMyEvents] = useState([])
+    const [myRSVPEvents, setMyRSVPEvents] = useState([])
 
     const {pathname} = useLocation()
     const myAccountString = "/my_account"
@@ -69,6 +70,11 @@ export const ApplicationViews = () => {
 
         getAllUsersOnly().then(array => {
             setAllUsers(array)
+        })
+
+        getAllEventRSVPs().then(rsvps => {
+            const filteredRSVPs = rsvps.filter(rsvp => rsvp.userId == currentUserId)
+            setMyRSVPEvents(filteredRSVPs)
         })
     }
 
@@ -193,7 +199,7 @@ export const ApplicationViews = () => {
                     <Route index element={<AllEvents allEvents={allEvents} setAllEvents={setAllEvents} currentUser={currentUser} updateData={updateData} />} />
                     <Route path=":eventId" element={<ViewEvent currentUser={currentUser} updateData={updateData} />} /> 
                 </Route>
-                <Route path="/my_events" element={<MyEvents myEvents={myEvents} currentUser={currentUser} updateData={updateData} />}/>
+                <Route path="/my_events" element={<MyEvents myEvents={myEvents} myRSVPEvents={myRSVPEvents} currentUser={currentUser} updateData={updateData} />}/>
                 <Route path="/user_events">
                     <Route path=":userId" element={<UserEvents allEvents={allEvents} currentUser={currentUser} updateData={updateData} />} />
                 </Route>

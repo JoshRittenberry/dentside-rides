@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getAllEventTypes } from "../../services/eventService"
 
-export const FilterEventsBTN = ({ events, filteredEvents, setFilteredEvents }) => {
+export const FilterEventsBTN = ({ events, setFilteredEvents }) => {
     const [eventTypes, setEventTypes] = useState([])
     const [filter, setFilter] = useState(0)
     const [buttonText, setButtonText] = useState("Filter Events by Event Type")

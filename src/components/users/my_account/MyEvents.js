@@ -1,12 +1,21 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import { UserSideBar } from "../../user-sidebar/UserSideBar"
+import { useEffect, useState } from "react"
 import { AllEventsItem } from "../../events/AllEventsItem"
 import { FilterEventsBTN } from "../../events/FilterEventsBTN"
 
-export const MyEvents = ({ myEvents, currentUser, updateData }) => {
+export const MyEvents = ({ myEvents, myRSVPEvents, currentUser, updateData }) => {
     const [filteredEvents, setFilteredEvents] = useState([])
+    const [myRSVPs, setMyRSVPs] = useState([])
+    const [hostedToggle, setHostedToggle] = useState(true)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        let myRSVPArray = []
+        myRSVPEvents.map(rsvp => {
+            myRSVPArray.push(rsvp.event)
+        })
+        setMyRSVPs(myRSVPArray)
+    }, [myEvents, myRSVPEvents, currentUser])
 
     return (
         <div className="events-container">
@@ -18,7 +27,21 @@ export const MyEvents = ({ myEvents, currentUser, updateData }) => {
                 }}>
                     Create Event
                 </button>
-                <FilterEventsBTN events={myEvents} filteredEvents={filteredEvents} setFilteredEvents={setFilteredEvents} />
+
+                {hostedToggle && (
+                    <FilterEventsBTN events={myEvents} setFilteredEvents={setFilteredEvents} hostedToggle={hostedToggle} />
+                )}
+
+                {!hostedToggle && (
+                    <FilterEventsBTN events={myRSVPs} setFilteredEvents={setFilteredEvents} hostedToggle={hostedToggle} />
+                )}
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={() => {
+                        setHostedToggle(!hostedToggle)
+                    }}/>
+                    <label class="form-check-label" for="flexSwitchCheckDefault">My RSVPs</label>
+                </div>
 
                 {/* I want this but gawt dang its being a pain in my ass */}
                 {/* <SortPostsBTN allPosts={allPosts} setAllPosts={setAllPosts} /> */}

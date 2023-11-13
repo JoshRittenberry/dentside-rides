@@ -35,7 +35,7 @@ export const ViewEvent = ({ currentUser, updateData }) => {
                             setCurrentUserRSVP(!currentUserRSVP)
                         })
                     }}>
-                        UN-RSVP
+                        Cancel RSVP
                     </button>
                 )}
 
